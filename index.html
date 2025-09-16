@@ -22,7 +22,7 @@
                     colors: {
                         'brand-purple': '#9272CE', 'brand-purple-light': '#AE8BD5', 'brand-purple-lighter': '#CBB8E8',
                         'text-on-black-primary': '#EAEAEA', 'text-on-black-secondary': '#B0B0B0', 'text-on-black-tertiary': '#888888',
-                        'nav-text-dark': '#222222', 'nav-text-dark-subtle': '#555555', 'nav-bg-light-grey': '#E9E9E9', 'nav-quote-bg-on-light': '#DDDDDD',
+                        'nav-text-dark': '#222222', 'nav-text-dark-subtle': '#555555', 'nav-bg-light-grey': '#FFFFFF', 'nav-quote-bg-on-light': '#F0F0F0',
                         'article-bg': 'rgba(20, 20, 22, 0.93)', 'writings-card-bg': 'rgba(25, 15, 40, 0.88)', 'writings-card-hover-bg': 'rgba(45, 35, 60, 0.96)',
                         'correct-answer-bg': 'rgba(146, 114, 206, 0.35)', 'selected-wrong-bg': 'rgba(100, 100, 100, 0.3)', 'disabled-option-bg': 'rgba(30, 20, 50, 0.7)',
                     },
@@ -41,8 +41,8 @@
         :root {
             --page-bg: #000000; --text-main: var(--text-on-black-primary, #EAEAEA); --text-subtle: var(--text-on-black-secondary, #B0B0B0);
             --highlight-purple: #9272CE; --highlight-purple-hover: #AE8BD5; --highlight-purple-lighter: #CBB8E8;
-            --nav-bg: var(--nav-bg-light-grey, #E9E9E9); --nav-text: var(--nav-text-dark, #222222); --nav-text-subtle: var(--nav-text-dark-subtle, #555555);
-            --nav-quote-bg: var(--nav-quote-bg-on-light, #DDDDDD); --nav-link-hover-bg: rgba(146, 114, 206, 0.1); 
+            --nav-bg: var(--nav-bg-light-grey, #FFFFFF); --nav-text: var(--nav-text-dark, #222222); --nav-text-subtle: var(--nav-text-dark-subtle, #555555);
+            --nav-quote-bg: var(--nav-quote-bg-on-light, #F0F0F0); --nav-link-hover-bg: rgba(146, 114, 206, 0.1); 
             --bg-overlay-color-1: rgba(146, 114, 206, 0.02); --bg-overlay-color-2: rgba(0, 0, 0, 0.85); 
             --article-bg-color: rgba(20, 20, 22, 0.93); --writings-card-bg-color: rgba(25, 15, 40, 0.88);
             --writings-card-hover-bg-color: rgba(45, 35, 60, 0.96); --card-border-color: rgba(146, 114, 206, 0.25);
@@ -61,7 +61,7 @@
         .site-container { display: flex; min-height: 100vh; }
         .site-navbar { 
             background-color: var(--nav-bg); 
-            border-right: 1px solid #CCCCCC; 
+            border-right: 1px solid #DDDDDD; 
             position: fixed; top: 0; left: 0; height: 100vh; 
             padding: 2.5rem calc(2.5rem / 1.618); 
             display: flex; flex-direction: column; justify-content: space-between; 
@@ -72,7 +72,6 @@
         .site-content {
             margin-left: 0; 
             width: 100%;   
-            padding: 2rem 1.5rem; 
             background-color: transparent; 
             overflow-x: hidden; 
             position: relative; 
@@ -105,12 +104,12 @@
         /* --- PAGE SECTIONS & ANIMATIONS --- */
         .page-section { display: none; animation: fadeInPage 0.7s ease-out forwards; }
         .page-section.active-section { display: block; }
-        @keyframes fadeInPage { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #writings-content.page-section, #about-content.page-section { padding: 3rem 1.5rem; }
+        @keyframes fadeInPage { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HOME SECTION: HERO & ANIMATED BUBBLES --- */
-        #home-content { min-height: calc(100vh - 4rem); display: flex; flex-direction: column; justify-content: center; }
-        #hero-section { z-index: 10; padding: 2rem; }
-        #animated-images-container-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 5; }
+        /* --- HOME SECTION: ANIMATED BUBBLES --- */
+        #home-content { min-height: 100vh; }
+        #animated-images-container-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         #animated-images-container { position: relative; width: 100%; height: 100%; }
         .animated-post-image-bubble { position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 20%, #000000 50%), 0 0 8px rgba(0,0,0,0.2); border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 30%, transparent); transition: border-color 0.3s ease; opacity: 0; }
         .animated-post-image-bubble:hover { border-color: color-mix(in srgb, var(--highlight-purple-hover) 70%, transparent); }
@@ -118,6 +117,7 @@
         
         /* --- WRITINGS SECTION: CARDS & ARTICLES --- */
         #writings-content, #about-content { font-size: 17px; }
+        .page-heading-container { text-align: center; margin-bottom: 4rem; }
         #writings-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
         .writing-preview-card { background-color: var(--writings-card-bg-color); backdrop-filter: blur(7px); border-radius: 0.75rem; padding: 2rem; border: 1px solid var(--card-border-color); display: flex; flex-direction: column; box-shadow: 0 6px 18px rgba(0,0,0, 0.35); position: relative; overflow: hidden; transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out, background-color 0.3s ease; }
         .writing-preview-card:hover { transform: translateY(-8px); background-color: var(--writings-card-hover-bg-color); box-shadow: 0 15px 30px rgba(0,0,0, 0.4), 0 0 20px color-mix(in srgb, var(--highlight-purple) 25%, transparent); border-color: var(--card-hover-border-color); }
@@ -184,9 +184,8 @@
             .site-content {
                 margin-left: 24vw; 
                 width: calc(100% - 24vw); 
-                padding: 3rem 4rem; 
             }
-            .page-heading-container { padding-top: 2rem; }
+             #writings-content.page-section, #about-content.page-section { padding: 4rem; }
             #full-articles-container article { padding: 3rem; }
             #full-articles-container article .post-content-html {
                 font-size: 1.1875rem; 
@@ -217,7 +216,7 @@
             .hamburger-button { display: flex; }
             .site-navbar {
                 transform: translateX(-100%); width: min(300px, 80vw); 
-                min-width: unset; max-width: unset; border-right: 1px solid #B0B0B0; 
+                min-width: unset; max-width: unset; 
                 box-shadow: 3px 0px 15px rgba(0,0,0,0.15); z-index: 1000; padding: 1.5rem 1rem; 
             }
             .site-navbar.navbar-mobile-open { transform: translateX(0); }
@@ -276,13 +275,6 @@
             </button>
             <div id="page-container">
                 <section id="home-content" class="page-section relative">
-                     <div id="hero-section" class="text-center flex flex-col justify-center items-center h-full">
-                        <h1 class="text-5xl md:text-7xl font-bold font-outfit mb-4 text-white">Agraj Dubey</h1>
-                        <p class="text-xl md:text-2xl text-text-subtle mb-8 max-w-xl">A student navigating the complexities of existence, capturing fleeting thoughts and observations through code and prose.</p>
-                        <a href="#writings" class="glitch-button text-lg bg-brand-purple rounded-md" data-text="Explore My Writings">
-                            <span class="btn-text">Explore My Writings</span>
-                        </a>
-                    </div>
                     <div id="animated-images-container-wrapper">
                         <div id="animated-images-container">
                         </div>
@@ -290,7 +282,7 @@
                 </section>
                 
                 <section id="writings-content" class="page-section"> 
-                    <div class="text-center mb-12 md:mb-16 page-heading-container"> 
+                    <div class="page-heading-container"> 
                         <h1 class="text-4xl md:text-5xl font-bold font-outfit">My Writings</h1> 
                         <p class="text-text-subtle mt-4 text-lg max-w-2xl mx-auto">A collection of essays, reflections, and explorations. Here's what's been on my mind.</p>
                     </div> 
@@ -303,7 +295,7 @@
                 </section>
         
                 <section id="about-content" class="page-section">
-                    <div class="text-center mb-12 md:mb-16 page-heading-container">
+                    <div class="page-heading-container">
                         <h1 class="text-4xl md:text-5xl font-bold font-outfit">A Little More About Me</h1>
                         <p class="text-text-subtle mt-4 text-lg max-w-2xl mx-auto">I believe perspective is everything. Let's see how our views align (or amusingly diverge!) through a few questions.</p>
                     </div>
