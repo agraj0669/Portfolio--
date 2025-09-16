@@ -16,7 +16,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 
     <script>
-        // NOTE: Tailwind is used for utility classes, but most core styling is in the <style> tag.
         window.tailwind.config = {
             theme: {
                 extend: {
@@ -37,12 +36,13 @@
         /* --- CORE SETUP & VARIABLES --- */
         :root {
             --page-bg: #050308;
+            --page-bg-content: #0A080D;
             --text-main: #EAEAEA;
             --text-subtle: #B0B0B0;
             --highlight-purple: #9272CE;
             --highlight-purple-hover: #AE8BD5;
             --highlight-purple-lighter: #CBB8E8;
-            --container-bg: rgba(18, 18, 22, 0.75);
+            --container-bg: rgba(22, 20, 26, 0.75);
             --container-border: rgba(146, 114, 206, 0.2);
             --container-hover-border: rgba(146, 114, 206, 0.4);
         }
@@ -56,32 +56,40 @@
             overflow-x: hidden;
             line-height: 1.6;
             font-size: 16px;
+            transition: background-color 0.5s ease;
         }
+        body.content-page-active { background-color: var(--page-bg-content); }
         body.mobile-nav-open { overflow: hidden; }
         h1, h2, h3 { font-family: 'Outfit', sans-serif; font-weight: 700; }
         h1 { font-size: 3.5rem; color: #fff; letter-spacing: -0.02em; }
-        h2 { font-size: 2.5rem; color: var(--highlight-purple-lighter); }
+        h2 { font-size: 3.5rem; color: var(--highlight-purple-lighter); }
         h3 { font-size: 1.5rem; color: var(--text-main); }
         a { color: var(--highlight-purple); text-decoration: none; transition: color 0.2s ease; }
         a:hover { color: var(--highlight-purple-hover); }
-        .main-content-wrapper { width: 100%; max-width: 1100px; margin: 0 auto; padding: 6rem 1.5rem; }
+        .main-content-wrapper { width: 100%; max-width: 1100px; margin: 0 auto; padding: 8rem 1.5rem 4rem; }
         
-        /* --- BACKGROUND & OVERLAYS --- */
-        #p5-background-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; }
-        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(146, 114, 206, 0.03), transparent 60%); z-index: -5; pointer-events:none; }
+        /* --- BACKGROUND & PROGRESS BAR --- */
+        #p5-background-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; transition: opacity 0.5s ease; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(146, 114, 206, 0.03), transparent 60%); z-index: -5; pointer-events:none; transition: opacity 0.5s ease; }
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 2000; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--highlight-purple), var(--highlight-purple-hover)); width: 0%; }
         
         /* --- HEADER & NAVIGATION --- */
         .site-header {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 1rem 1.5rem; z-index: 1000;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .site-header.scrolled {
             background: rgba(5, 3, 8, 0.6);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         .site-header .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-        #header-logo-image { width: 48px; height: 48px; cursor: pointer; opacity: 0.9; transition: opacity 0.2s ease, transform 0.2s ease; }
-        #header-logo-image:hover { opacity: 1; transform: scale(1.05); }
+        #header-logo a { display: flex; align-items: center; gap: 0.75rem; }
+        #header-logo-image { height: 32px; width: auto; cursor: pointer; }
         .desktop-nav { display: none; }
         .desktop-nav a { padding: 0.5rem 1rem; font-size: 1rem; font-weight: 500; color: var(--text-subtle); border-radius: 6px; position: relative; }
         .desktop-nav a:hover { color: var(--text-main); background-color: rgba(255, 255, 255, 0.05); }
@@ -94,62 +102,39 @@
         .hamburger-button.active .hamburger-bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
         .hamburger-button.active .hamburger-bar:nth-child(2) { opacity: 0; }
         .hamburger-button.active .hamburger-bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
-        
-        #mobile-nav-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 3, 8, 0.8); backdrop-filter: blur(16px);
-            z-index: 999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.35s ease-in-out;
-        }
+        #mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 3, 8, 0.8); backdrop-filter: blur(16px); z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.35s ease-in-out; }
         #mobile-nav-overlay.open { opacity: 1; pointer-events: auto; }
         #mobile-nav-overlay nav a { font-size: 2rem; font-weight: 700; color: var(--text-subtle); padding: 1rem; display: block; text-align: center; }
         #mobile-nav-overlay nav a.active { color: var(--highlight-purple); }
         #mobile-nav-overlay nav a:hover { color: var(--text-main); }
         
         /* --- PAGE SECTIONS & ANIMATIONS --- */
-        .page-section { display: none; animation: fadeInPage 0.7s ease-out forwards; min-height: calc(100vh - 8rem); }
+        .page-section { display: none; animation: fadeInPage 0.7s ease-out forwards; min-height: 100vh; }
         .page-section.active-section { display: block; }
         @keyframes fadeInPage { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HOME "HERO" SECTION --- */
-        #home-content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 1.5rem; }
-        #home-content h1 { font-weight: 800; }
-        #home-content .subtitle { font-size: 1.25rem; color: var(--text-subtle); max-width: 600px; margin: 1.5rem 0 2.5rem; }
-        #home-content .typewriter-home { color: var(--highlight-purple-lighter); min-height: 1.5em; font-weight: 500; }
-        .social-links { display: flex; gap: 1rem; align-items: center; }
-        .social-links a { color: var(--text-subtle); font-size: 1rem; font-weight: 500; border: 1px solid var(--container-border); padding: 0.5rem 1.25rem; border-radius: 8px; transition: all 0.2s ease; }
-        .social-links a:hover { color: var(--text-main); border-color: var(--highlight-purple); background-color: rgba(146, 114, 206, 0.1); }
+        /* --- HOME "BUBBLES" SECTION --- */
+        #home-content { padding: 0; }
+        #animated-images-container-wrapper { position: relative; width: 100%; height: 100vh; }
+        .animated-post-image-bubble { position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 15%, #000 50%); border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 20%, transparent); transition: border-color 0.3s ease; opacity: 0; }
+        .animated-post-image-bubble:hover { border-color: color-mix(in srgb, var(--highlight-purple-hover) 60%, transparent); }
+        .animated-post-image-bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* --- WRITINGS & ABOUT PAGE CONTAINER --- */
-        .content-container {
-            background-color: var(--container-bg);
-            border: 1px solid var(--container-border);
-            border-radius: 16px;
-            padding: 2rem;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
+        /* --- CONTENT PAGES (WRITINGS/ABOUT) --- */
         .page-heading-container { text-align: center; margin-bottom: 4rem; }
-        .page-heading-container h2 { font-size: 3rem; }
+        .page-heading-container h2 { font-weight: 800; }
         .page-heading-container p { max-width: 650px; margin: 1rem auto 0; color: var(--text-subtle); font-size: 1.1rem; }
 
         /* --- WRITINGS CARDS & ARTICLES --- */
         #writings-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-        .writing-preview-card {
-            background-color: rgba(255, 255, 255, 0.03); border: 1px solid transparent;
-            border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column;
-            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-        }
-        .writing-preview-card:hover { transform: translateY(-6px); background-color: rgba(255, 255, 255, 0.07); border-color: var(--container-border); }
-        .writing-preview-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .writing-preview-card { background-color: var(--container-bg); border: 1px solid var(--container-border); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; }
+        .writing-preview-card:hover { transform: translateY(-6px); background-color: rgba(30, 28, 34, 0.75); border-color: var(--container-hover-border); }
+        .writing-preview-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--highlight-purple-lighter); }
         .writing-preview-card .post-meta-info { color: var(--text-tertiary); font-size: 0.9rem; margin-bottom: 1rem; }
         .writing-preview-card .excerpt { color: var(--text-subtle); margin-bottom: 1.5rem; flex-grow: 1; }
         .writing-preview-card .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
-        .writing-preview-card a.read-more-link { color: var(--highlight-purple); font-weight: 600; margin-top: auto; }
         
-        #full-articles-container article { background-color: transparent; display: none; opacity: 0; }
+        #full-articles-container article { background-color: transparent; display: none; opacity: 0; padding-top: 2rem; }
         #full-articles-container article:target { display: block !important; opacity: 1 !important; animation: fadeInArticle 0.6s ease-out forwards; }
         #writings-content:has(#full-articles-container article:target) #writings-grid-container,
         #writings-content:has(#full-articles-container article:target) .page-heading-container { display: none !important; }
@@ -158,11 +143,7 @@
         .post-content-html blockquote { border-left: 3px solid var(--highlight-purple); color: var(--text-subtle); background-color: rgba(146, 114, 206, 0.05); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
         
         /* --- BUTTONS --- */
-        .btn {
-            display: inline-block; padding: 0.75rem 1.75rem; border-radius: 8px;
-            font-weight: 600; text-decoration: none; border: none; cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
+        .btn { display: inline-block; padding: 0.75rem 1.75rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: transform 0.2s ease, background-color 0.2s ease; }
         .btn-primary { background-color: var(--highlight-purple); color: #fff; }
         .btn-primary:hover { background-color: var(--highlight-purple-hover); }
         .btn:active { transform: scale(0.97); }
@@ -170,34 +151,20 @@
         
         /* --- ABOUT SECTION: QUESTIONNAIRE --- */
         #about-content .questionnaire-container-wrapper { max-width: 800px; margin: 0 auto; }
-        .question-block {
-            background-color: rgba(10, 10, 12, 0.5); border-radius: 12px;
-            padding: 2rem; margin-bottom: 2rem; opacity: 0; transform: translateY(30px);
-        }
+        .question-block { background-color: var(--container-bg); border-radius: 12px; border: 1px solid var(--container-border); padding: 2rem; margin-bottom: 2rem; opacity: 0; transform: translateY(30px); }
         .question-block h3 { color: var(--highlight-purple-lighter); font-size: 1.4rem; margin-bottom: 1.5rem; }
         .answer-options { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
-        .answer-option {
-            background-color: rgba(255, 255, 255, 0.05); color: var(--text-subtle);
-            padding: 1rem; border-radius: 8px; border: 1px solid var(--container-border);
-            cursor: pointer; transition: all 0.2s ease; text-align: left; font-size: 1rem;
-        }
+        .answer-option { background-color: rgba(255, 255, 255, 0.05); color: var(--text-subtle); padding: 1rem; border-radius: 8px; border: 1px solid var(--container-border); cursor: pointer; transition: all 0.2s ease; text-align: left; font-size: 1rem; }
         .answer-option:not([disabled]):hover { background-color: rgba(255, 255, 255, 0.1); border-color: var(--highlight-purple); color: var(--text-main); }
         .answer-option.selected-visitor { background-color: #825FBD !important; color: #FFFFFF !important; border-color: var(--highlight-purple-lighter) !important; font-weight: 600; }
         .answer-option.selected-visitor-wrong { background-color: rgba(120, 120, 120, 0.3) !important; border-color: rgba(120, 120, 120, 0.5) !important; }
         .answer-option.agraj-correct-answer { background-color: rgba(146, 114, 206, 0.25) !important; color: #FFFFFF !important; border-color: var(--highlight-purple) !important; font-weight: 600; }
         .answer-option[disabled] { cursor: not-allowed; opacity: 0.6; }
-        .feedback-area {
-            margin-top: 1.5rem; padding: 1rem; background-color: rgba(10, 10, 12, 0.8);
-            border-radius: 8px; border-left: 3px solid var(--highlight-purple-hover);
-            color: var(--text-subtle); font-size: 0.95rem; display: none;
-        }
-        #personality-match-section {
-            margin-top: 3rem; padding: 2rem; background-color: rgba(10, 10, 12, 0.6);
-            border-radius: 12px; text-align: center;
-        }
+        .feedback-area { margin-top: 1.5rem; padding: 1rem; background-color: rgba(10, 10, 12, 0.8); border-radius: 8px; border-left: 3px solid var(--highlight-purple-hover); color: var(--text-subtle); font-size: 0.95rem; display: none; }
+        #personality-match-section { margin-top: 3rem; padding: 2rem; background-color: var(--container-bg); border: 1px solid var(--container-border); border-radius: 12px; text-align: center; }
         
         /* --- SECRET GAME MODAL --- */
-        #secret-game-modal { background-color: rgba(0,0,0,0.95); position: fixed; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(8px); z-index: 2000; display: none; flex-direction: column; align-items: center; justify-content: center; animation: fadeInModal 0.5s ease-out forwards; }
+        #secret-game-modal { background-color: rgba(0,0,0,0.95); position: fixed; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(8px); z-index: 3000; display: none; flex-direction: column; align-items: center; justify-content: center; animation: fadeInModal 0.5s ease-out forwards; }
         @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
         #matter-canvas { border: 1px solid var(--container-border); border-radius: 8px; }
         
@@ -208,30 +175,28 @@
             .answer-options { grid-template-columns: 1fr 1fr; gap: 1rem; }
         }
         @media (max-width: 767px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            .main-content-wrapper { padding: 4rem 1rem; }
-            .page-heading-container h2 { font-size: 2.25rem; }
-            .content-container { padding: 1.5rem; }
+            h2 { font-size: 2.5rem; }
+            .main-content-wrapper { padding: 6rem 1rem 3rem; }
+            .page-heading-container h2 { font-size: 2.75rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Audio elements remain for functionality -->
     <audio id="gameSpawnSound" src="spawn_sound.mp3" preload="auto"></audio>
     <audio id="gameWinSound" src="win_sound.mp3" preload="auto"></audio>
     <audio id="revealSound" src="reveal_sound.mp3" preload="auto"></audio>
 
-    <!-- Background elements -->
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
     <div id="p5-background-canvas"></div>
     <div class="bg-overlay"></div>
 
-    <!-- Header & Navigation -->
-    <header class="site-header">
+    <header class="site-header" id="site-header">
         <div class="header-content">
-            <a href="#home" aria-label="Go to Home Page">
-                <img src="logo.png" alt="Agraj personal logo" id="header-logo-image">
-            </a>
+            <div id="header-logo">
+                <a href="#home" aria-label="Go to Home Page">
+                    <img src="agraj.png" alt="Agraj stylized text logo" id="header-logo-image">
+                </a>
+            </div>
             <nav class="desktop-nav">
                 <a href="#home" data-navlink="home" class="active">Home</a> 
                 <a href="#writings" data-navlink="writings">Writings</a> 
@@ -254,64 +219,48 @@
         </nav>
     </div>
 
-    <!-- Main Page Content -->
     <main id="page-container">
         <section id="home-content" class="page-section">
-            <div class="main-content-wrapper">
-                 <div id="typewriter-home-container" class="mb-4 text-center">
-                    <span class="typewriter-home text-lg"></span>
-                </div>
-                <h1>Agraj Dubey</h1>
-                <p class="subtitle">A student navigating the complexities of existence, capturing fleeting thoughts and observations through code and prose.</p>
-                <div class="social-links">
-                    <a href="#writings" class="btn btn-primary">Explore Writings</a>
-                    <a href="https://t.me/agraj0669" target="_blank" rel="noopener noreferrer">Contact Me</a>
-                </div>
-            </div>
+            <div id="animated-images-container-wrapper"></div>
         </section>
         
         <section id="writings-content" class="page-section">
              <div class="main-content-wrapper">
-                <div class="content-container">
-                    <div class="page-heading-container"> 
-                        <h2>My Writings</h2> 
-                        <p>A collection of essays, reflections, and explorations. Here's what's been on my mind.</p>
-                    </div> 
-                    <section id="writings-grid-container" class="mb-12"></section> 
-                    <section id="full-articles-container"> 
-                        <div id="full-articles-dynamic-content"></div> 
-                    </section>
-                </div>
+                <div class="page-heading-container"> 
+                    <h2>My Writings</h2> 
+                    <p>A collection of essays, reflections, and explorations. Here's what's been on my mind.</p>
+                </div> 
+                <section id="writings-grid-container" class="mb-12"></section> 
+                <section id="full-articles-container"> 
+                    <div id="full-articles-dynamic-content"></div> 
+                </section>
             </div> 
         </section>
 
         <section id="about-content" class="page-section">
             <div class="main-content-wrapper">
-                <div class="content-container">
-                    <div class="page-heading-container">
-                        <h2>A Little More About Me</h2>
-                        <p>I believe perspective is everything. Let's see how our views align (or amusingly diverge!) through a few questions.</p>
+                <div class="page-heading-container">
+                    <h2>A Little More About Me</h2>
+                    <p>I believe perspective is everything. Let's see how our views align (or amusingly diverge!) through a few questions.</p>
+                </div>
+                <div id="questionnaire-container-wrapper">
+                    <div id="questionnaire-render-area"><p class="text-center text-subtle">Loading questions...</p></div>
+                    
+                    <div id="personality-match-section" style="display: none; opacity: 0;">
+                        <h3 class="text-2xl mb-4">Personality Snapshot</h3>
+                        <p>Your alignment with my perspectives: <span id="match-percentage-value" class="text-3xl font-bold text-white">0</span>%</p>
+                        <p class="text-sm mt-2">My MBTI Type: <span id="mbti-type-value" class="font-semibold text-white">INFJ</span></p>
+                        <a href="https://t.me/agraj0669" target="_blank" rel="noopener noreferrer" id="contact-telegram-btn" class="btn btn-primary mt-6" style="display: none;">Contact on Telegram!</a>
                     </div>
-                    <div id="questionnaire-container-wrapper">
-                        <div id="questionnaire-render-area"><p class="text-center text-subtle">Loading questions...</p></div>
-                        
-                        <div id="personality-match-section" style="display: none; opacity: 0;">
-                            <h3>Personality Snapshot</h3>
-                            <p>Your alignment with my perspectives: <span id="match-percentage-value" class="text-3xl font-bold text-white">0</span>%</p>
-                            <p class="text-sm mt-2">My MBTI Type: <span id="mbti-type-value" class="font-semibold text-white">INFJ</span></p>
-                            <a href="https://t.me/agraj0669" target="_blank" rel="noopener noreferrer" id="contact-telegram-btn" class="btn btn-primary mt-6" style="display: none;">Contact on Telegram!</a>
-                        </div>
 
-                        <div class="text-center mt-8">
-                             <button id="calculate-match-button" class="btn btn-primary text-lg" style="display: none;">See How We Match!</button>
-                        </div>
+                    <div class="text-center mt-8">
+                         <button id="calculate-match-button" class="btn btn-primary text-lg" style="display: none;">See How We Match!</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Secret Game Modal -->
     <div id="secret-game-modal">
         <div id="game-info" class="text-sm absolute top-5 left-1/2 -translate-x-1/2 p-2 bg-black/40 rounded-md">
             <p>Shapes dropped: <span id="game-shapes-dropped">0</span>/<span id="game-max-shapes">0</span></p>
@@ -328,94 +277,52 @@
     <script>
         // --- Start of JS (Functionality Preserved & Adapted for New UI) ---
         const APP_CONFIG = {
-            ROTATING_TEXT_HOME: {
-                'typewriter-home': { texts: ["Cause no one listens, so I write instead 😎"], typeSpeed: 80, deleteSpeed: 50, pauseDuration: 4000 },
-            },
             DEFAULT_TITLES: { home: "agraj - Portfolio", writings: "Writings - Agraj Dubey", about: "About Me - Agraj Dubey" },
             POSTS_JSON_PATH: 'posts.json', QUESTIONS_JSON_PATH: 'questions.json',
             MATCH_THRESHOLD_FOR_CONTACT: 70
         };
         
-        // --- Global State Variables ---
-        let ALL_QUESTIONNAIRE_DATA = []; let visitorAnswers = {}; let questionsAnsweredCount = 0;
-        let ALL_POSTS_DATA = []; let currentMainSection = null;
+        let ALL_QUESTIONNAIRE_DATA = [], visitorAnswers = {}, questionsAnsweredCount = 0;
+        let ALL_POSTS_DATA = [], currentMainSection = null;
         let revealSound, gameSpawnSoundEl, gameWinSoundEl;
 
-        // --- DOM Helpers ---
         function $(selector) { return document.querySelector(selector); }
         function $$(selector) { return document.querySelectorAll(selector); }
         
-        // --- p5.js Background Sketch ---
-        function lightspeedSketch(p) {
-            let particles = []; const numParticles = 300;
-            let originX, originY;
+        function lightspeedSketch(p) { /* p5.js code remains unchanged */ let particles = []; const numParticles = 300; let originX, originY; class Particle { constructor() { this.colors = [ p.color(146, 114, 206, p.random(150, 220)), p.color(255, 255, 255, p.random(180, 255)), p.color(200, 200, 200, p.random(120, 200))]; this.reset(); } reset() { this.x = originX; this.y = originY; this.px = this.x; this.py = this.y; this.angle = p.random(p.TWO_PI); this.speed = p.random(0.5, 3); this.vx = p.cos(this.angle) * this.speed; this.vy = p.sin(this.angle) * this.speed; this.life = 0; this.maxLife = p.random(80, 250); this.c = p.random(this.colors); } update() { this.px = this.x; this.py = this.y; let accelerationFactor = p.map(this.life, 0, this.maxLife, 1, 15, true); this.x += this.vx * accelerationFactor; this.y += this.vy * accelerationFactor; this.life++; if (this.x < -50 || this.x > p.width + 50 || this.y < -50 || this.y > p.height + 50 || this.life > this.maxLife) this.reset(); } display() { p.stroke(this.c); let currentSpeed = p.mag(this.vx, this.vy) * p.map(this.life, 0, this.maxLife, 1, 15, true); p.strokeWeight(p.map(currentSpeed, 1, 30, 0.5, 3, true)); p.line(this.px, this.py, this.x, this.y); } } p.setup = () => { const canvasContainer = $('#p5-background-canvas'); if (!canvasContainer) return; p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer); originX = p.width / 2; originY = p.height / 2; for (let i = 0; i < numParticles; i++) particles.push(new Particle()); }; p.draw = () => { p.background(5, 3, 8, 35); for (let particle of particles) { particle.update(); particle.display(); } }; p.windowResized = () => { p.resizeCanvas(p.windowWidth, p.windowHeight); originX = p.width / 2; originY = p.height / 2; particles = []; for (let i = 0; i < numParticles; i++) particles.push(new Particle()); }; }
 
-            class Particle {
-                constructor() {
-                    this.colors = [ p.color(146, 114, 206, p.random(150, 220)), p.color(255, 255, 255, p.random(180, 255)), p.color(200, 200, 200, p.random(120, 200))];
-                    this.reset();
-                }
-                reset() {
-                    this.x = originX; this.y = originY; this.px = this.x; this.py = this.y;
-                    this.angle = p.random(p.TWO_PI); this.speed = p.random(0.5, 3);
-                    this.vx = p.cos(this.angle) * this.speed; this.vy = p.sin(this.angle) * this.speed;
-                    this.life = 0; this.maxLife = p.random(80, 250); this.c = p.random(this.colors);
-                }
-                update() {
-                    this.px = this.x; this.py = this.y;
-                    let accelerationFactor = p.map(this.life, 0, this.maxLife, 1, 15, true); 
-                    this.x += this.vx * accelerationFactor; this.y += this.vy * accelerationFactor;
-                    this.life++;
-                    if (this.x < -50 || this.x > p.width + 50 || this.y < -50 || this.y > p.height + 50 || this.life > this.maxLife) this.reset();
-                }
-                display() {
-                    p.stroke(this.c);
-                    let currentSpeed = p.mag(this.vx, this.vy) * p.map(this.life, 0, this.maxLife, 1, 15, true);
-                    p.strokeWeight(p.map(currentSpeed, 1, 30, 0.5, 3, true));
-                    p.line(this.px, this.py, this.x, this.y);
-                }
-            }
-
-            p.setup = () => {
-                const canvasContainer = $('#p5-background-canvas');
-                if (!canvasContainer) return;
-                p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer);
-                originX = p.width / 2; originY = p.height / 2;
-                for (let i = 0; i < numParticles; i++) particles.push(new Particle());
-            };
-            p.draw = () => { p.background(5, 3, 8, 35); for (let particle of particles) { particle.update(); particle.display(); } };
-            p.windowResized = () => { p.resizeCanvas(p.windowWidth, p.windowHeight); originX = p.width / 2; originY = p.height / 2; particles = []; for (let i = 0; i < numParticles; i++) particles.push(new Particle()); };
-        }
-
-        // --- Content Rendering ---
         function simpleMarkdownToHtml(md) { if (typeof md !== 'string') return ''; let html = md.replace(/\r\n/g, '\n').replace(/<br\s*\/?>\n?/gi, '\n').replace(/\n\s*\n+/g, '<br><br>').replace(/\n/g, '<br>'); return html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>'); }
         function createPostPreviewCard(post) { return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><p class="excerpt line-clamp-3">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
-        function createFullArticleHtml(post) { return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div><div class="post-content-html">${simpleMarkdownToHtml(post.contentMarkdown)}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
+        function createFullArticleHtml(post) { return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-2xl" loading="lazy">` : ''}<div class="post-content-html">${simpleMarkdownToHtml(post.contentMarkdown)}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
         async function loadAndRenderPosts() { try { const res = await fetch(APP_CONFIG.POSTS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_POSTS_DATA = await res.json(); ALL_POSTS_DATA.sort((a, b) => new Date(b.date) - new Date(a.date)); const grid = $('#writings-grid-container'); if (grid) grid.innerHTML = ALL_POSTS_DATA.map(p => createPostPreviewCard(p)).join(''); const articles = $('#full-articles-dynamic-content'); if (articles) articles.innerHTML = ALL_POSTS_DATA.map(p => createFullArticleHtml(p)).join(''); } catch (e) { console.error("Error loading posts:", e); if ($('#writings-grid-container')) $('#writings-grid-container').innerHTML = '<p>Error loading writings.</p>'; } }
 
-        // --- Questionnaire Logic (Functionality Preserved) ---
-        async function renderQuestionnaire() { const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
-        function setupQuestionnaireInteractions() { $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
-        function calculateAndShowMatch() { let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
+        async function setupHomePageBubbles() { const container = $('#animated-images-container-wrapper'); if (!container) return; if (ALL_POSTS_DATA.length === 0) { setTimeout(setupHomePageBubbles, 200); return; } const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 6); container.innerHTML = ''; const bubbleConfigs = [ { sizeVW: 18, minSize: 150, maxSize: 250 }, { sizeVW: 15, minSize: 130, maxSize: 220 }, { sizeVW: 20, minSize: 170, maxSize: 280 }, { sizeVW: 16, minSize: 140, maxSize: 230 }, { sizeVW: 14, minSize: 120, maxSize: 200 }, { sizeVW: 17, minSize: 140, maxSize: 240 } ]; requestAnimationFrame(() => { postsWithImages.forEach((post, index) => { const config = bubbleConfigs[index % bubbleConfigs.length]; let bubbleSize = Math.max(config.minSize, Math.min(config.maxSize, window.innerWidth * (config.sizeVW / 100))); const bubbleLink = document.createElement('a'); bubbleLink.href = `#${post.id}`; bubbleLink.className = 'animated-post-image-bubble'; bubbleLink.style.width = `${bubbleSize}px`; bubbleLink.style.height = `${bubbleSize}px`; const img = document.createElement('img'); img.src = post.image; img.alt = `Preview for ${post.title}`; bubbleLink.appendChild(img); container.appendChild(bubbleLink); }); const bubbles = $$('.animated-post-image-bubble'); if (typeof anime === 'function' && bubbles.length > 0) { bubbles.forEach(bubble => { function fizzle() { const bubbleSize = parseFloat(bubble.style.width); const maxTop = Math.max(0, container.offsetHeight - bubbleSize); const maxLeft = Math.max(0, container.offsetWidth - bubbleSize); anime.timeline({ targets: bubble, easing: 'easeOutExpo', complete: fizzle }).add({ top: anime.random(0, maxTop), left: anime.random(0, maxLeft), opacity: [0, 0.9], scale: [0.3, 1], duration: anime.random(700, 1200) }).add({ translateX: () => anime.random(-20, 20), translateY: () => anime.random(-20, 20), duration: anime.random(3000, 5000), easing: 'easeInOutSine' }, '-=300').add({ opacity: 0, scale: 0.2, duration: anime.random(600, 900), easing: 'easeInExpo', delay: anime.random(0, 400) }); } setTimeout(fizzle, anime.random(0, 2500)); }); } }); }
+        
+        async function renderQuestionnaire() { /* Questionnaire logic remains unchanged */ const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
+        function setupQuestionnaireInteractions() { /* Questionnaire interaction logic remains unchanged */ $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
+        function calculateAndShowMatch() { /* Questionnaire calculation logic remains unchanged */ let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
 
-        // --- SPA Navigation & Routing ---
         function showMainSection(sectionId) {
             currentMainSection = sectionId;
+            document.body.classList.toggle('content-page-active', sectionId !== 'home-content');
+            $('#p5-background-canvas').style.opacity = sectionId === 'home-content' ? '1' : '0';
+            $('.bg-overlay').style.opacity = sectionId === 'home-content' ? '1' : '0';
+
             $$('.page-section').forEach(s => s.classList.remove('active-section'));
             $(`#${sectionId}`)?.classList.add('active-section');
             $$('[data-navlink]').forEach(l => l.classList.remove('active'));
             $$(`[data-navlink="${sectionId.replace('-content', '')}"]`).forEach(l => l.classList.add('active'));
             window.scrollTo({ top: 0, behavior: 'auto' });
             if (sectionId === 'about-content') renderQuestionnaire();
+            if (sectionId === 'home-content' && $$('.animated-post-image-bubble').length === 0) setupHomePageBubbles();
         }
         function handleMainRouteChange() {
             let hash = window.location.hash;
-            let targetSection = 'home-content';
-            let articleId = '';
+            let targetSection = 'home-content', articleId = '';
             if (hash.startsWith('#post-')) { targetSection = 'writings-content'; articleId = hash; }
             else if (hash === '#writings') { targetSection = 'writings-content'; }
             else if (hash === '#about') { targetSection = 'about-content'; }
-            else { window.history.replaceState(null, '', '#home'); }
+            else if (hash !== '#home' && hash !== '') { window.history.replaceState(null, '', '#home'); }
 
             if (currentMainSection !== targetSection) showMainSection(targetSection);
             
@@ -424,28 +331,17 @@
             }
         }
         
-        // --- UI & Interaction Setup ---
-        function setupTypewriter(elementClass, config) { const el = document.querySelector(`.${elementClass}`); if (!el) return; let i = 0; function type() { if (i < config.texts[0].length) { el.innerHTML += config.texts[0].charAt(i); i++; setTimeout(type, config.typeSpeed); } } type(); }
-        function setupNav() { const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }); }); }
-        
-        // --- Secret Game Logic (Functionality Preserved) ---
-        function setupSecretGame() { const modal = $('#secret-game-modal'); const trigger = $('#header-logo-image'); if (!modal || !trigger || typeof Matter === 'undefined') return; const Engine = Matter.Engine, Render = Matter.Render, Runner = Matter.Runner, Bodies = Matter.Bodies, Composite = Matter.Composite, Mouse = Matter.Mouse, MouseConstraint = Matter.MouseConstraint, Events = Matter.Events; let engine, render, runner; trigger.addEventListener('click', () => { modal.style.display = 'flex'; let canvas = $('#matter-canvas'); let canvasWidth = Math.min(window.innerWidth * 0.9, 500); let canvasHeight = Math.min(window.innerHeight * 0.7, 400); engine = Engine.create({ gravity: { y: 0.7 } }); render = Render.create({ element: modal, canvas: canvas, engine: engine, options: { width: canvasWidth, height: canvasHeight, wireframes: false, background: 'transparent' } }); const mouse = Mouse.create(render.canvas); const mouseConstraint = MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.1, render: { visible: false } } }); Composite.add(engine.world, mouseConstraint); resetGame(engine, canvasWidth, canvasHeight); Events.on(mouseConstraint, 'mousedown', (event) => spawnShape(engine, event.mouse.position)); Events.on(engine, 'afterUpdate', () => updateGameInfo(engine)); Render.run(render); runner = Runner.create(); Runner.run(runner, engine); }); function closeGame() { modal.style.display = 'none'; if(render) Render.stop(render); if(runner) Runner.stop(runner); } $('#close-game-button').addEventListener('click', closeGame); $('#reset-game-button').addEventListener('click', () => { if(engine) resetGame(engine, engine.render.options.width, engine.render.options.height); }); let gameShapes = [], shapesSpawned = 0, gameWon = false, targetZone; const MAX_SHAPES=10, SHAPES_TO_WIN=3; function resetGame(eng, w, h) { gameWon=false; shapesSpawned=0; Composite.clear(eng.world, false); gameShapes=[]; targetZone = Bodies.rectangle(w/2, h-40, w*0.6, 50, {isStatic:true, isSensor:true, render:{fillStyle:'rgba(146,114,206,0.25)'}}); Composite.add(eng.world, [ Bodies.rectangle(w/2, h+25, w, 50, {isStatic:true}), Bodies.rectangle(-25, h/2, 50, h, {isStatic:true}), Bodies.rectangle(w+25, h/2, 50, h, {isStatic:true}), targetZone ]); updateGameInfo(); } function spawnShape(eng, pos) { if (gameWon || shapesSpawned >= MAX_SHAPES) return; const size=Math.random()*15+15; const shape=Math.random()>0.5?Bodies.rectangle(pos.x, pos.y, size, size):Bodies.circle(pos.x, pos.y, size/1.5); shape.render.fillStyle=['#CBB8E8','#AE8BD5','#FFFFFF','#9272CE'][Math.floor(Math.random()*4)]; Composite.add(eng.world, shape); gameShapes.push(shape); shapesSpawned++; gameSpawnSoundEl.play().catch(e=>{}); } function updateGameInfo() { let inTarget=0; gameShapes.forEach(s=>{if(Matter.Bounds.overlaps(s.bounds, targetZone.bounds) && Math.abs(s.velocity.y)<0.1) inTarget++;}); $('#game-shapes-dropped').textContent=shapesSpawned; $('#game-max-shapes').textContent=MAX_SHAPES; $('#game-shapes-in-target').textContent=inTarget; $('#game-shapes-to-win').textContent=SHAPES_TO_WIN; if(!gameWon && inTarget>=SHAPES_TO_WIN){gameWon=true; $('#game-win-message').textContent="You Win!"; gameWinSoundEl.play().catch(e=>{});} else if (!gameWon) {$('#game-win-message').textContent=shapesSpawned>=MAX_SHAPES?"Out of shapes!":"Drag shapes into zone";}} }
+        function setupNav() { const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
+        function setupScrollProgressBar() { const progressBar = $("#progressBar"); if (!progressBar) return; window.addEventListener('scroll', () => { const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0; progressBar.style.width = scrolled + "%"; }, { passive: true }); }
+        function setupSecretGame() { /* Secret game logic remains unchanged */ const modal = $('#secret-game-modal'); const trigger = $('#header-logo'); if (!modal || !trigger || typeof Matter === 'undefined') return; const Engine = Matter.Engine, Render = Matter.Render, Runner = Matter.Runner, Bodies = Matter.Bodies, Composite = Matter.Composite, Mouse = Matter.Mouse, MouseConstraint = Matter.MouseConstraint, Events = Matter.Events; let engine, render, runner; trigger.addEventListener('dblclick', () => { modal.style.display = 'flex'; let canvas = $('#matter-canvas'); let canvasWidth = Math.min(window.innerWidth * 0.9, 500); let canvasHeight = Math.min(window.innerHeight * 0.7, 400); engine = Engine.create({ gravity: { y: 0.7 } }); render = Render.create({ element: modal, canvas: canvas, engine: engine, options: { width: canvasWidth, height: canvasHeight, wireframes: false, background: 'transparent' } }); const mouse = Mouse.create(render.canvas); const mouseConstraint = MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.1, render: { visible: false } } }); Composite.add(engine.world, mouseConstraint); resetGame(engine, canvasWidth, canvasHeight); Events.on(mouseConstraint, 'mousedown', (event) => spawnShape(engine, event.mouse.position)); Events.on(engine, 'afterUpdate', () => updateGameInfo(engine)); Render.run(render); runner = Runner.create(); Runner.run(runner, engine); }); function closeGame() { modal.style.display = 'none'; if(render) Render.stop(render); if(runner) Runner.stop(runner); } $('#close-game-button').addEventListener('click', closeGame); $('#reset-game-button').addEventListener('click', () => { if(engine) resetGame(engine, engine.render.options.width, engine.render.options.height); }); let gameShapes = [], shapesSpawned = 0, gameWon = false, targetZone; const MAX_SHAPES=10, SHAPES_TO_WIN=3; function resetGame(eng, w, h) { gameWon=false; shapesSpawned=0; Composite.clear(eng.world, false); gameShapes=[]; targetZone = Bodies.rectangle(w/2, h-40, w*0.6, 50, {isStatic:true, isSensor:true, render:{fillStyle:'rgba(146,114,206,0.25)'}}); Composite.add(eng.world, [ Bodies.rectangle(w/2, h+25, w, 50, {isStatic:true}), Bodies.rectangle(-25, h/2, 50, h, {isStatic:true}), Bodies.rectangle(w+25, h/2, 50, h, {isStatic:true}), targetZone ]); updateGameInfo(); } function spawnShape(eng, pos) { if (gameWon || shapesSpawned >= MAX_SHAPES) return; const size=Math.random()*15+15; const shape=Math.random()>0.5?Bodies.rectangle(pos.x, pos.y, size, size):Bodies.circle(pos.x, pos.y, size/1.5); shape.render.fillStyle=['#CBB8E8','#AE8BD5','#FFFFFF','#9272CE'][Math.floor(Math.random()*4)]; Composite.add(eng.world, shape); gameShapes.push(shape); shapesSpawned++; gameSpawnSoundEl.play().catch(e=>{}); } function updateGameInfo() { let inTarget=0; gameShapes.forEach(s=>{if(Matter.Bounds.overlaps(s.bounds, targetZone.bounds) && Math.abs(s.velocity.y)<0.1) inTarget++;}); $('#game-shapes-dropped').textContent=shapesSpawned; $('#game-max-shapes').textContent=MAX_SHAPES; $('#game-shapes-in-target').textContent=inTarget; $('#game-shapes-to-win').textContent=SHAPES_TO_WIN; if(!gameWon && inTarget>=SHAPES_TO_WIN){gameWon=true; $('#game-win-message').textContent="You Win!"; gameWinSoundEl.play().catch(e=>{});} else if (!gameWon) {$('#game-win-message').textContent=shapesSpawned>=MAX_SHAPES?"Out of shapes!":"Drag shapes into zone";}} }
 
-        // --- App Initialization ---
         document.addEventListener('DOMContentLoaded', async () => {
-            // Init audio elements
             revealSound = $('#revealSound'); gameSpawnSoundEl = $('#gameSpawnSound'); gameWinSoundEl = $('#gameWinSound');
-            
-            // Start background and load content
             if (typeof p5 !== 'undefined') new p5(lightspeedSketch);
             await loadAndRenderPosts();
-            
-            // Setup UI components
             setupNav();
-            if(APP_CONFIG.ROTATING_TEXT_HOME['typewriter-home']) setupTypewriter('typewriter-home', APP_CONFIG.ROTATING_TEXT_HOME['typewriter-home']);
+            setupScrollProgressBar();
             setupSecretGame();
-            
-            // Initial routing
             handleMainRouteChange();
             window.addEventListener('hashchange', handleMainRouteChange);
         });
