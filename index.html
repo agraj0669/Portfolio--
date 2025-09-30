@@ -39,9 +39,9 @@
             --page-bg-content: #0A080D;
             --text-main: #EAEAEA;
             --text-subtle: #B0B0B0;
-            --highlight-purple: #9272CE;
-            --highlight-purple-hover: #AE8BD5;
-            --highlight-purple-lighter: #CBB8E8;
+            --highlight-purple: '#9272CE';
+            --highlight-purple-hover: '#AE8BD5';
+            --highlight-purple-lighter: '#CBB8E8';
             --container-bg: rgba(22, 20, 26, 0.75);
             --container-border: rgba(146, 114, 206, 0.2);
             --container-hover-border: rgba(146, 114, 206, 0.4);
@@ -296,9 +296,8 @@
         function $(selector) { return document.querySelector(selector); }
         function $$(selector) { return document.querySelectorAll(selector); }
         
-        // --- P5.JS CONSTELLATION SKETCH (RESTORED & WORKING) ---
         function constellationSketch(p) {
-            let particles = []; let nebulae = []; const particleCount = Math.floor(window.innerWidth / 15); const mouseProximity = 120; const particleProximity = 80;
+            let particles = [], nebulae = []; const particleCount = Math.floor(window.innerWidth / 15); const mouseProximity = 120; const particleProximity = 80;
             class Nebula {
                 constructor() { this.xOff = p.random(1000); this.yOff = p.random(1000); this.zOff = p.random(1000); this.centerX = p.random(p.width * 0.2, p.width * 0.8); this.centerY = p.random(p.height * 0.2, p.height * 0.8); this.radius = p.random(p.width / 5, p.width / 3); }
                 display() { p.noStroke(); let time = p.frameCount * 0.0005; for (let i = 0; i < 80; i++) { let angle = p.noise(this.xOff + i * 0.1, this.yOff + time) * p.TWO_PI * 2.5; let r = p.noise(this.xOff + i * 0.2, this.zOff + time) * this.radius; let x = this.centerX + p.cos(angle) * r; let y = this.centerY + p.sin(angle) * r; let alpha = p.noise(this.yOff + i * 0.3, this.zOff + time) * 20; let size = p.noise(this.xOff + i * 0.4, this.yOff + time) * 60 + 20; p.fill(146, 114, 206, alpha); p.ellipse(x, y, size, size); } }
@@ -317,16 +316,15 @@
             p.windowResized = () => { p.resizeCanvas(p.windowWidth, p.windowHeight); nebulae.forEach(n => { n.centerX = p.random(p.width * 0.2, p.width * 0.8); n.centerY = p.random(p.height * 0.2, p.height * 0.8); }); };
         }
 
-        // --- CONTENT RENDERING FUNCTIONS (CORRECTED) ---
         function createPostPreviewCard(post) { const tagsHtml = post.tags && post.tags.length > 0 ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''; return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#post-${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
         function createFullArticleHtml(post) { const cleanContent = post.contentMarkdown.replace(/^`|`$/g, '').trim(); return `<article id="post-${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-3xl" loading="lazy">` : ''}<div class="post-content-html">${cleanContent}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
         async function loadAndRenderPosts() { try { const res = await fetch(APP_CONFIG.POSTS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_POSTS_DATA = await res.json(); ALL_POSTS_DATA.sort((a, b) => new Date(b.date) - new Date(a.date)); const grid = $('#writings-grid-container'); if (grid) grid.innerHTML = ALL_POSTS_DATA.map(p => createPostPreviewCard(p)).join(''); const articles = $('#full-articles-dynamic-content'); if (articles) articles.innerHTML = ALL_POSTS_DATA.map(p => createFullArticleHtml(p)).join(''); } catch (e) { console.error("Error loading posts:", e); if ($('#writings-grid-container')) $('#writings-grid-container').innerHTML = '<p>Error loading writings.</p>'; } }
 
-        // --- HOME PAGE BUBBLES (CORRECTED) ---
-        async function setupHomePageBubbles() {
+        function setupHomePageBubbles() {
             const container = $('#animated-images-container-wrapper');
-            if (!container || typeof Matter === 'undefined') { console.error("Matter.js or container not found"); return; }
-            if (ALL_POSTS_DATA.length === 0) { setTimeout(setupHomePageBubbles, 200); return; }
+            if (!container || typeof Matter === 'undefined' || !ALL_POSTS_DATA || ALL_POSTS_DATA.length === 0) {
+                return;
+            }
 
             const Engine = Matter.Engine, Runner = Matter.Runner, World = Matter.World, Bodies = Matter.Bodies, Mouse = Matter.Mouse, MouseConstraint = Matter.MouseConstraint, Composite = Matter.Composite, Events = Matter.Events;
             const engine = Engine.create({ gravity: { y: 0.6 } });
@@ -342,7 +340,8 @@
             const rightWall = Bodies.rectangle(container.offsetWidth + 60, container.offsetHeight / 2, 120, container.offsetHeight * 2.5, wallOptions);
             World.add(world, [ground, ceiling, leftWall, rightWall]);
             
-            const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 8);
+            const postsWithImages = ALL_POSTS_DATA.filter(post => post && post.image).slice(0, 8);
+            
             postsWithImages.forEach((post) => {
                 const bubbleSize = Math.max(120, Math.min(250, window.innerWidth * (Math.random() * 0.05 + 0.12)));
                 let radius = bubbleSize / 2;
@@ -364,12 +363,12 @@
 
                 let isDragging = false;
                 Events.on(mouseConstraint, 'startdrag', (event) => { if (event.body === body) isDragging = true; });
-                Events.on(mouseConstraint, 'enddrag', (event) => { if (event.body === body) setTimeout(() => { isDragging = false; }, 0); });
+                Events.on(mouseConstraint, 'enddrag', (event) => { if (event.body === body) setTimeout(() => { isDragging = false; }, 50); });
                 bubbleLink.addEventListener('click', e => { if (isDragging) e.preventDefault(); });
             });
 
             const mouse = Mouse.create(container);
-            const mouseConstraint = MouseConstraint.create(engine, { mouse, constraint: { stiffness: 0.2, render: { visible: false } } });
+            const mouseConstraint = MouseConstraint.create({ mouse, constraint: { stiffness: 0.2, render: { visible: false } } });
             World.add(world, mouseConstraint);
 
             (function render() {
@@ -384,12 +383,10 @@
             })();
         }
         
-        // --- QUESTIONNAIRE (Unchanged) ---
         async function renderQuestionnaire() { const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
         function setupQuestionnaireInteractions() { $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
         function calculateAndShowMatch() { let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
 
-        // --- CORE NAVIGATION LOGIC (CORRECTED) ---
         function showMainSection(sectionId) {
             if (currentMainSection === sectionId) return;
             currentMainSection = sectionId;
@@ -401,37 +398,33 @@
             $$('[data-navlink]').forEach(l => l.classList.remove('active'));
             $$(`[data-navlink="${sectionId.replace('-content', '')}"]`).forEach(l => l.classList.add('active'));
             if (sectionId !== 'home-content') window.scrollTo({ top: 0, behavior: 'auto' });
-            if (sectionId === 'about-content') renderQuestionnaire();
+            if (sectionId === 'about-content' && !$('#questionnaire-render-area').hasChildNodes()) renderQuestionnaire();
             if (sectionId === 'home-content' && $$('.animated-post-image-bubble').length === 0) setupHomePageBubbles();
         }
 
         function handleMainRouteChange() {
             let hash = window.location.hash || '#home';
-            let targetSection = 'home-content';
-
+            let targetSectionId = 'home-content';
             if (hash.startsWith('#post-')) {
-                targetSection = 'writings-content';
+                targetSectionId = 'writings-content';
             } else if (hash === '#writings') {
-                targetSection = 'writings-content';
+                targetSectionId = 'writings-content';
             } else if (hash === '#about') {
-                targetSection = 'about-content';
+                targetSectionId = 'about-content';
             }
-            
-            showMainSection(targetSection);
-            
+            showMainSection(targetSectionId);
             if (hash.startsWith('#post-')) {
                 setTimeout(() => {
                     const article = $(hash);
                     if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 150);
+                }, 100); 
             }
         }
         
-        function setupNav() { const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a, .desktop-nav a').forEach(link => { link.addEventListener('click', () => { if(mobileNav.classList.contains('open')) { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); } }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
+        function setupNav() { const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); const closeNav = () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }; hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a, .desktop-nav a').forEach(link => { link.addEventListener('click', (e) => { if (link.href.includes('#')) closeNav(); }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
         function setupScrollProgressBar() { const progressBar = $("#progressBar"); if (!progressBar) return; window.addEventListener('scroll', () => { const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0; progressBar.style.width = scrolled + "%"; }, { passive: true }); }
         function setupSecretGame() { /* Secret game logic unchanged */ }
 
-        // --- INITIALIZATION ---
         document.addEventListener('DOMContentLoaded', async () => {
             revealSound = $('#revealSound'); gameSpawnSoundEl = $('#gameSpawnSound'); gameWinSoundEl = $('#gameWinSound');
             if (typeof p5 !== 'undefined') new p5(constellationSketch);
@@ -439,7 +432,7 @@
             setupNav();
             setupScrollProgressBar();
             setupSecretGame();
-            handleMainRouteChange();
+            handleMainRouteChange(); // Initial page load based on URL
             window.addEventListener('hashchange', handleMainRouteChange);
         });
     </script>
