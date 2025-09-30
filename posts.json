@@ -1,36 +1,64 @@
 [
-{
-    "id": "post-20250930",
+[
+  {
+    "id": "post-20250930-gods-perfect-child",
     "title": "God's Perfect Child",
     "date": "2025-09-30",
-   "image": "https://images.unsplash.com/photo-1601860301885-02816519460a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "excerpt": "A raw meditation on an open, shattered heart and the mask of perfection.",
-    "content": "<p>There is no lock to my heart, it's open<br/>There simply can never be a key<br/>The shelf of my heart is all empty<br/>Feel free to reach in and tow in<br/>Stack all words and thoughts shallow<br/>All your worries for me to mellow</p><p>No glue to my heart, its shattered<br/>There simply can never be<br/>Once, it was taken out, and hammered<br/>Every breath, is spent mending, for me</p><p>God's perfect child is no emotion fed.<br/>With a smile drawn, across their face.<br/>If they had a heart, it wouldn't be red-<br/>Black and hollow, is all they will nest.</p>",
+    "image": "https://images.unsplash.com/photo-1601860301885-02816519460a?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "contentMarkdown": "<p>There is no lock to my heart, it's open<br/>There simply can never be a key<br/>The shelf of my heart is all empty<br/>Feel free to reach in and tow in<br/>Stack all words and thoughts shallow<br/>All your worries for me to mellow</p><p>No glue to my heart, its shattered<br/>There simply can never be<br/>Once, it was taken out, and hammered<br/>Every breath, is spent mending, for me</p><p>God's perfect child is no emotion fed.<br/>With a smile drawn, across their face.<br/>If they had a heart, it wouldn't be red-<br/>Black and hollow, is all they will nest.</p>",
+    "tags": [
+      "heart",
+      "loss",
+      "identity",
+      "mask"
+    ],
+    "slug": "gods-perfect-child"
   },
   {
-    "id": "post-20250930",
+    "id": "post-20250930-up-on-melancholy-fields",
     "title": "Up on melancholy fields",
-    "date": "2025-09-10",
-    "image": "https://images.unsplash.com/photo-1574254706427-213d446e2f2b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "date": "2025-09-30",
+     "image": "https://images.unsplash.com/photo-1574254706427-213d446e2f2b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "excerpt": "A scarecrow-like speaker stands among fields of sorrow and memory.",
-    "content": "<p>Upright like a scarecrow amid fields.<br/>Pain picks only me to please.<br/>Waving the wheat, no hand to bear.<br/>Touch, not even the wind can dare.</p><p>Dreading, to gaze at the scattered sky-<br/>Swoon, with my splintered heart.<br/>A silver drop splashed, right at my face-<br/>Descendent of the brightest star.</p><p>Slides, along the curve of my cheek,<br/>It lingers and learns of my past.<br/>Reluctant, to leave, and then wraps-<br/>A kiss, on my lips, fore' leaving at last.<br/>Bliss can never be, more than an eyeflap.</p>",
+      
+    "contentMarkdown": "<p>Upright like a scarecrow amid fields.<br/>Pain picks only me to please.<br/>Waving the wheat, no hand to bear.<br/>Touch, not even the wind can dare.</p><p>Dreading, to gaze at the scattered sky-<br/>Swoon, with my splintered heart.<br/>A silver drop splashed, right at my face-<br/>Descendent of the brightest star.</p><p>Slides, along the curve of my cheek,<br/>It lingers and learns of my past.<br/>Reluctant, to leave, and then wraps-<br/>A kiss, on my lips, fore' leaving at last.<br/>Bliss can never be, more than an eyeflap.</p>",
+    "tags": [
+      "melancholy",
+      "nature",
+      "memory"
+    ],
+    "slug": "up-on-melancholy-fields"
   },
   {
-    "id": "post-20250930",
+    "id": "post-20250930-as-september-ends",
     "title": "As September ends",
-    "date": "2025-09-20",
-    "image": "https://images.unsplash.com/photo-1728406970272-1b68f161df6b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "date": "2025-09-30",
     "excerpt": "Seasonal parting and the pale glory of endings and rain.",
-    "content": "<p>As September ends, When You fell awake.<br/>A goodbye to all the warmth we cast, Summers long gone, long past,<br/>Arrives the season of silver glory with dreams so vast,<br/>The foolish, they were never meant to last.</p><p>As September ends, When You fell awake.<br/>There comes the rain falling, that again-<br/>The distant stars right down swayed. We were all drenched in pain again,<br/>Which from us, will now be ripped away.</p><p>As September ends, When you fell awake.<br/>The scattered sky, begins to gloat and sing,<br/>The heralds of dawn with crickets, begin to dance-<br/>And the chorus of colors, begin to vim. The fire in our heart thrums and roars,<br/>As the warmth of our skin, begins to slim.</p>",
+     "image": "https://images.unsplash.com/photo-1728406970272-1b68f161df6b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "contentMarkdown": "<p>As September ends, When You fell awake.<br/>A goodbye to all the warmth we cast, Summers long gone, long past,<br/>Arrives the season of silver glory with dreams so vast,<br/>The foolish, they were never meant to last.</p><p>As September ends, When You fell awake.<br/>There comes the rain falling, that again-<br/>The distant stars right down swayed. We were all drenched in pain again,<br/>Which from us, will now be ripped away.</p><p>As September ends, When you fell awake.<br/>The scattered sky, begins to gloat and sing,<br/>The heralds of dawn with crickets, begin to dance-<br/>And the chorus of colors, begin to vim. The fire in our heart thrums and roars,<br/>As the warmth of our skin, begins to slim.</p>",
+    "tags": [
+      "seasons",
+      "autumn",
+      "transitions"
+    ],
+    "slug": "as-september-ends"
   },
   {
-    "id": "post-20250930",
+    "id": "post-20250930-vantablack",
     "title": "Vantablack",
-    "date": "2025-09-11",
-    "image": "https://images.unsplash.com/photo-1604079628040-94301bb21b91?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "date": "2025-09-30",
     "excerpt": "A city-worn speaker wandering a lighthouse, mourning a lost tether.",
+    "image": "https://images.unsplash.com/photo-1604079628040-94301bb21b91?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "content": "<p>I live in the city now,<br/>A city like no other,<br/>A city just like every other.<br/>When I leave the shores my spirit is severed;<br/>Since then I've been Vantablack-hollowed, untethered.</p><p>Far away from all blinding lights and bustle,<br/>Deafening pace of a city's endless rustle.<br/>Off the shore, there lies a lighthouse pulsing white,<br/>Where verdures dance, as crickets sing through moonlight.</p><p>Wet cheek from greeting mist, while moving through the tussle,<br/>The moon peeping through gaping holes, as the yearly visitor bids.<br/>Lights up the coarse edge of my weary lips-trembling like a rusty blade.<br/>Atop the spiral, a window to my warped heart where my soul settles.</p><p>My hand reached for the light, my soul within the light,<br/>The beacon shattered then, and swallowed it whole.<br/>Now I'm the specter on the stairs, the salt upon the stone,<br/>In my happy place now, and I will greet the dawn.</p>",
-  },
+    "tags": [
+      "city",
+      "nostalgia",
+      "isolation"
+    ],
+    "slug": "vantablack"
+  }
+]
   {
       "id": "post-7720240615103000001",
       "title": "Solace In Slumber",
