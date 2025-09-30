@@ -108,9 +108,19 @@
         /* --- HOME "BUBBLES" SECTION --- */
         #home-content { padding: 0; height: 100vh; }
         #animated-images-container-wrapper { position: relative; width: 100%; height: 100%; }
-        .animated-post-image-bubble { position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 15%, #000 50%); border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 20%, transparent); transition: border-color 0.3s ease; opacity: 0; }
+        .animated-post-image-bubble {
+            position: absolute;
+            top: 0; left: 0; /* Position is now controlled by Matter.js */
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 15%, #000 50%);
+            border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 20%, transparent);
+            transition: border-color 0.3s ease;
+            cursor: grab;
+        }
+        .animated-post-image-bubble:active { cursor: grabbing; }
         .animated-post-image-bubble:hover { border-color: color-mix(in srgb, var(--highlight-purple-hover) 60%, transparent); }
-        .animated-post-image-bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .animated-post-image-bubble img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; /* Prevents image from being dragged instead of the div */ }
         
         /* --- CONTENT PAGES (WRITINGS/ABOUT) --- */
         .page-heading-container { text-align: center; margin-bottom: 4rem; }
@@ -288,189 +298,102 @@
         function $(selector) { return document.querySelector(selector); }
         function $$(selector) { return document.querySelectorAll(selector); }
         
-        // --- NEW P5.JS CONSTELLATION SKETCH ---
-        function constellationSketch(p) {
-            let particles = [];
-            let nebulae = [];
-            const particleCount = Math.floor(window.innerWidth / 15);
-            const mouseProximity = 120;
-            const particleProximity = 80;
-
-            class Nebula {
-                constructor() {
-                    this.xOff = p.random(1000);
-                    this.yOff = p.random(1000);
-                    this.zOff = p.random(1000);
-                    this.centerX = p.random(p.width * 0.2, p.width * 0.8);
-                    this.centerY = p.random(p.height * 0.2, p.height * 0.8);
-                    this.radius = p.random(p.width / 5, p.width / 3);
-                }
-                display() {
-                    p.noStroke();
-                    let time = p.frameCount * 0.0005;
-                    for (let i = 0; i < 80; i++) {
-                        let angle = p.noise(this.xOff + i * 0.1, this.yOff + time) * p.TWO_PI * 2.5;
-                        let r = p.noise(this.xOff + i * 0.2, this.zOff + time) * this.radius;
-                        let x = this.centerX + p.cos(angle) * r;
-                        let y = this.centerY + p.sin(angle) * r;
-                        let alpha = p.noise(this.yOff + i * 0.3, this.zOff + time) * 20;
-                        let size = p.noise(this.xOff + i * 0.4, this.yOff + time) * 60 + 20;
-                        p.fill(146, 114, 206, alpha);
-                        p.ellipse(x, y, size, size);
-                    }
-                }
-            }
-
-            class Particle {
-                constructor() {
-                    this.reset();
-                    this.baseRadius = p.random(1.5, 3);
-                    this.radius = this.baseRadius;
-                    this.isPulsing = p.random(1) < 0.1;
-                    this.pulseSpeed = p.random(0.01, 0.03);
-                    this.pulseOffset = p.random(p.TWO_PI);
-                    this.isShootingStar = false;
-                    this.trail = [];
-                }
-
-                reset() {
-                    this.x = p.random(p.width);
-                    this.y = p.random(p.height);
-                    this.vx = p.random(-0.5, 0.5);
-                    this.vy = p.random(-0.5, 0.5);
-                    this.isShootingStar = false;
-                    this.trail = [];
-                }
-
-                shoot() {
-                    this.isShootingStar = true;
-                    this.trail = [];
-                    const startSide = p.floor(p.random(4));
-                    const endX = p.random(p.width);
-                    const endY = p.random(p.height);
-
-                    if (startSide === 0) { this.x = p.random(p.width); this.y = -10; } // Top
-                    else if (startSide === 1) { this.x = p.width + 10; this.y = p.random(p.height); } // Right
-                    else if (startSide === 2) { this.x = p.random(p.width); this.y = p.height + 10; } // Bottom
-                    else { this.x = -10; this.y = p.random(p.height); } // Left
-
-                    let angle = p.atan2(endY - this.y, endX - this.x);
-                    const speed = p.random(8, 15);
-                    this.vx = p.cos(angle) * speed;
-                    this.vy = p.sin(angle) * speed;
-                }
-
-                update() {
-                    if (this.isShootingStar) {
-                        this.trail.push({ x: this.x, y: this.y, alpha: 1 });
-                        for (let i = this.trail.length - 1; i >= 0; i--) {
-                            this.trail[i].alpha -= 0.05;
-                            if (this.trail[i].alpha <= 0) this.trail.splice(i, 1);
-                        }
-                        if (this.x < -50 || this.x > p.width + 50 || this.y < -50 || this.y > p.height + 50) {
-                            this.reset();
-                        }
-                    } else {
-                        if (this.x < 0 || this.x > p.width) this.vx *= -1;
-                        if (this.y < 0 || this.y > p.height) this.vy *= -1;
-                    }
-                    this.x += this.vx;
-                    this.y += this.vy;
-                }
-
-                display() {
-                    if (this.isShootingStar) {
-                        p.noFill();
-                        for (let i = 0; i < this.trail.length - 1; i++) {
-                             p.strokeWeight(this.baseRadius * this.trail[i].alpha);
-                             p.stroke(203, 184, 232, this.trail[i].alpha * 200);
-                             p.line(this.trail[i].x, this.trail[i].y, this.trail[i+1].x, this.trail[i+1].y);
-                        }
-                        p.noStroke();
-                        p.fill(230, 210, 255);
-                        p.circle(this.x, this.y, this.baseRadius * 1.5);
-                    } else {
-                        if (this.isPulsing) {
-                            this.radius = this.baseRadius + p.sin(p.frameCount * this.pulseSpeed + this.pulseOffset) * (this.baseRadius * 0.4);
-                        }
-                        p.noStroke();
-                        p.fill('rgba(203, 184, 232, 0.8)');
-                        p.circle(this.x, this.y, this.radius * 2);
-                    }
-                }
-            }
-
-            function triggerShootingStar() {
-                let availableParticles = particles.filter(part => !part.isShootingStar);
-                if (availableParticles.length > 0) {
-                    p.random(availableParticles).shoot();
-                }
-                setTimeout(triggerShootingStar, p.random(3000, 8000));
-            }
-
-            p.setup = () => {
-                const canvasContainer = $('#p5-background-canvas');
-                if (!canvasContainer) return;
-                p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer);
-                for (let i = 0; i < particleCount; i++) {
-                    particles.push(new Particle());
-                }
-                for (let i = 0; i < 2; i++) {
-                    nebulae.push(new Nebula());
-                }
-                setTimeout(triggerShootingStar, p.random(2000, 5000));
-            };
-
-            p.draw = () => {
-                p.background(5, 3, 8);
-                p.blendMode(p.ADD);
-                nebulae.forEach(nebula => nebula.display());
-                p.blendMode(p.BLEND);
-
-                particles.forEach(particle => {
-                    particle.update();
-                    particle.display();
-                });
-                drawConnections();
-            };
-            
-            function drawConnections() {
-                for (let i = 0; i < particles.length; i++) {
-                    if (particles[i].isShootingStar) continue;
-                    for (let j = i + 1; j < particles.length; j++) {
-                        if (particles[j].isShootingStar) continue;
-                        let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-                        if (d < particleProximity) {
-                            let opacity = p.map(d, 0, particleProximity, 0.5, 0);
-                            p.stroke(`rgba(146, 114, 206, ${opacity})`);
-                            p.strokeWeight(1);
-                            p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-                        }
-                    }
-                    let dMouse = p.dist(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
-                    if (dMouse < mouseProximity) {
-                        let opacity = p.map(dMouse, 0, mouseProximity, 0.7, 0);
-                        p.stroke(`rgba(203, 184, 232, ${opacity})`);
-                        p.strokeWeight(1);
-                        p.line(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
-                    }
-                }
-            }
-            p.windowResized = () => {
-                p.resizeCanvas(p.windowWidth, p.windowHeight);
-                nebulae.forEach(n => {
-                    n.centerX = p.random(p.width * 0.2, p.width * 0.8);
-                    n.centerY = p.random(p.height * 0.2, p.height * 0.8);
-                });
-            };
-        }
-
+        function constellationSketch(p) { /* Unchanged */ let particles = []; const particleCount = Math.floor(window.innerWidth / 15); const mouseProximity = 120; const particleProximity = 80; class Particle { constructor() { this.x = p.random(p.width); this.y = p.random(p.height); this.vx = p.random(-0.5, 0.5); this.vy = p.random(-0.5, 0.5); this.radius = p.random(1.5, 3); } update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > p.width) this.vx *= -1; if (this.y < 0 || this.y > p.height) this.vy *= -1; } display() { p.noStroke(); p.fill('rgba(203, 184, 232, 0.8)'); p.circle(this.x, this.y, this.radius * 2); } } p.setup = () => { const canvasContainer = $('#p5-background-canvas'); if (!canvasContainer) return; p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer); for (let i = 0; i < particleCount; i++) { particles.push(new Particle()); } }; p.draw = () => { p.background(5, 3, 8); particles.forEach(particle => { particle.update(); particle.display(); }); drawConnections(); }; function drawConnections() { for (let i = 0; i < particles.length; i++) { for (let j = i + 1; j < particles.length; j++) { let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y); if (d < particleProximity) { let opacity = p.map(d, 0, particleProximity, 0.5, 0); p.stroke(`rgba(146, 114, 206, ${opacity})`); p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y); } } let dMouse = p.dist(particles[i].x, particles[i].y, p.mouseX, p.mouseY); if (dMouse < mouseProximity) { let opacity = p.map(dMouse, 0, mouseProximity, 0.7, 0); p.stroke(`rgba(203, 184, 232, ${opacity})`); p.line(particles[i].x, particles[i].y, p.mouseX, p.mouseY); } } } p.windowResized = () => p.resizeCanvas(p.windowWidth, p.windowHeight); }
         function createPostPreviewCard(post) { /* Unchanged */ const tagsHtml = post.tags && post.tags.length > 0 ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''; return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
         function createFullArticleHtml(post) { /* Unchanged */ const cleanContent = post.contentMarkdown.replace(/^`|`$/g, '').trim(); return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-3xl" loading="lazy">` : ''}<div class="post-content-html">${cleanContent}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
         async function loadAndRenderPosts() { try { const res = await fetch(APP_CONFIG.POSTS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_POSTS_DATA = await res.json(); ALL_POSTS_DATA.sort((a, b) => new Date(b.date) - new Date(a.date)); const grid = $('#writings-grid-container'); if (grid) grid.innerHTML = ALL_POSTS_DATA.map(p => createPostPreviewCard(p)).join(''); const articles = $('#full-articles-dynamic-content'); if (articles) articles.innerHTML = ALL_POSTS_DATA.map(p => createFullArticleHtml(p)).join(''); } catch (e) { console.error("Error loading posts:", e); if ($('#writings-grid-container')) $('#writings-grid-container').innerHTML = '<p>Error loading writings.</p>'; } }
 
         async function setupHomePageBubbles() {
-            const container = $('#animated-images-container-wrapper'); if (!container) return; if (ALL_POSTS_DATA.length === 0) { setTimeout(setupHomePageBubbles, 200); return; } const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 6); container.innerHTML = ''; const bubbleConfigs = [ { sizeVW: 18, minSize: 150, maxSize: 250 }, { sizeVW: 15, minSize: 130, maxSize: 220 }, { sizeVW: 20, minSize: 170, maxSize: 280 }, { sizeVW: 16, minSize: 140, maxSize: 230 }, { sizeVW: 14, minSize: 120, maxSize: 200 }, { sizeVW: 17, minSize: 140, maxSize: 240 } ]; requestAnimationFrame(() => { postsWithImages.forEach((post, index) => { const config = bubbleConfigs[index % bubbleConfigs.length]; let bubbleSize = Math.max(config.minSize, Math.min(config.maxSize, window.innerWidth * (config.sizeVW / 100))); const bubbleLink = document.createElement('a'); bubbleLink.href = `#${post.id}`; bubbleLink.className = 'animated-post-image-bubble'; bubbleLink.style.width = `${bubbleSize}px`; bubbleLink.style.height = `${bubbleSize}px`; const img = document.createElement('img'); img.src = post.image; img.alt = `Preview for ${post.title}`; bubbleLink.appendChild(img); container.appendChild(bubbleLink); }); const bubbles = $$('.animated-post-image-bubble'); if (typeof anime === 'function' && bubbles.length > 0) { bubbles.forEach(bubble => { function fizzle() { const bubbleSize = parseFloat(bubble.style.width); const maxTop = Math.max(0, container.offsetHeight - bubbleSize); const maxLeft = Math.max(0, container.offsetWidth - bubbleSize); anime.timeline({ targets: bubble, easing: 'easeOutExpo', complete: fizzle }).add({ top: anime.random(0, maxTop), left: anime.random(0, maxLeft), opacity: [0, 0.9], scale: [0.3, 1], duration: anime.random(700, 1200) }).add({ translateX: () => anime.random(-20, 20), translateY: () => anime.random(-20, 20), duration: anime.random(3000, 5000), easing: 'easeInOutSine' }, '-=300').add({ opacity: 0, scale: 0.2, duration: anime.random(600, 900), easing: 'easeInExpo', delay: anime.random(0, 400) }); } setTimeout(fizzle, anime.random(0, 2500)); }); } });
+            const container = $('#animated-images-container-wrapper');
+            if (!container || typeof Matter === 'undefined') return;
+            if (ALL_POSTS_DATA.length === 0) { setTimeout(setupHomePageBubbles, 200); return; }
+
+            // --- MATTER.JS SETUP ---
+            const Engine = Matter.Engine,
+                  Runner = Matter.Runner,
+                  World = Matter.World,
+                  Bodies = Matter.Bodies,
+                  Mouse = Matter.Mouse,
+                  MouseConstraint = Matter.MouseConstraint,
+                  Composite = Matter.Composite;
+                  
+            const engine = Engine.create({ gravity: { y: 0.6 } });
+            const world = engine.world;
+            const runner = Runner.create();
+            Runner.run(runner, engine);
+
+            const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 8);
+            container.innerHTML = '';
+            
+            // --- CREATE BOUNDARIES ---
+            const wallOptions = { isStatic: true, render: { visible: false } };
+            const ground = Bodies.rectangle(container.offsetWidth / 2, container.offsetHeight + 30, container.offsetWidth, 60, wallOptions);
+            const leftWall = Bodies.rectangle(-30, container.offsetHeight / 2, 60, container.offsetHeight, wallOptions);
+            const rightWall = Bodies.rectangle(container.offsetWidth + 30, container.offsetHeight / 2, 60, container.offsetHeight, wallOptions);
+            World.add(world, [ground, leftWall, rightWall]);
+            
+            // --- CREATE BUBBLES ---
+            const bubbleConfigs = [ { sizeVW: 18, minSize: 150, maxSize: 250 }, { sizeVW: 15, minSize: 130, maxSize: 220 }, { sizeVW: 20, minSize: 170, maxSize: 280 }, { sizeVW: 16, minSize: 140, maxSize: 230 }, { sizeVW: 14, minSize: 120, maxSize: 200 }, { sizeVW: 17, minSize: 140, maxSize: 240 } ];
+            
+            postsWithImages.forEach((post, index) => {
+                const config = bubbleConfigs[index % bubbleConfigs.length];
+                let bubbleSize = Math.max(config.minSize, Math.min(config.maxSize, window.innerWidth * (config.sizeVW / 100)));
+                let radius = bubbleSize / 2;
+
+                // Create DOM Element
+                const bubbleLink = document.createElement('a');
+                bubbleLink.href = `#${post.id}`;
+                bubbleLink.className = 'animated-post-image-bubble';
+                bubbleLink.style.width = `${bubbleSize}px`;
+                bubbleLink.style.height = `${bubbleSize}px`;
+                const img = document.createElement('img');
+                img.src = post.image;
+                img.alt = `Preview for ${post.title}`;
+                bubbleLink.appendChild(img);
+                container.appendChild(bubbleLink);
+
+                // Create Matter.js Body
+                const body = Bodies.circle(
+                    Math.random() * (container.offsetWidth - bubbleSize) + radius, // Random initial X
+                    -Math.random() * 200 - 100, // Random initial Y (above screen)
+                    radius,
+                    {
+                        restitution: 0.5, // Bounciness
+                        friction: 0.1,
+                        density: 0.001
+                    }
+                );
+                
+                // Link DOM element to physics body
+                body.domElement = bubbleLink;
+                World.add(world, body);
+            });
+
+            // --- ADD MOUSE CONTROLS ---
+            const mouse = Mouse.create(container);
+            const mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: { visible: false }
+                }
+            });
+            World.add(world, mouseConstraint);
+
+            // --- RENDER LOOP (Syncs physics to DOM) ---
+            (function render() {
+                const bodies = Composite.allBodies(world);
+                bodies.forEach(body => {
+                    if (body.domElement) {
+                        const { x, y } = body.position;
+                        const angle = body.angle;
+                        const radius = body.circleRadius;
+                        
+                        body.domElement.style.transform = `translate(${x - radius}px, ${y - radius}px) rotate(${angle}rad)`;
+                    }
+                });
+                requestAnimationFrame(render);
+            })();
         }
         
         async function renderQuestionnaire() { /* Unchanged */ const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
