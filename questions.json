@@ -26,7 +26,7 @@
     "category": "Worldview & Mindset",
     "questionText": "What is your general outlook on the future of humanity?",
     "yourAnswerText": "Realistic – it will be a mix of progress and setbacks.",
-    "geminiAnswerText": "Optimistic – we'll innovate and overcome challenges.",
+    "geminiAnswerText":  "Realistic – it will be a mix of progress and setbacks.",
     "geminiInsight": "Maintains a core belief in the power of human ingenuity and progress. A technologist's optimism.",
     "options": [
       {
@@ -92,7 +92,7 @@
     "category": "Personal Growth & Emotion",
     "questionText": "How do you typically handle failure?",
     "yourAnswerText": "I feel discouraged and need time to bounce back.",
-    "geminiAnswerText": "I analyze what went wrong to learn from it for next time.",
+    "geminiAnswerText": "I feel discouraged and need time to bounce back.",
     "geminiInsight": "Views failure as a data point. An iterative, analytical approach to self-improvement without a strong emotional component.",
     "options": [
       {
@@ -136,7 +136,7 @@
     "category": "Personal Growth & Emotion",
     "questionText": "When you feel stressed or overwhelmed, what is your go-to coping mechanism?",
     "yourAnswerText": "Seeking solitude to think and recharge.",
-    "geminiAnswerText": "Engaging in a hobby or creative outlet.",
+    "geminiAnswerText": "Seeking solitude to think and recharge.",
     "geminiInsight": "Redirects processing power to a different, constructive task. Finds 'flow state' in creativity as a way to reset and refocus.",
     "options": [
       {
@@ -158,7 +158,7 @@
     "category": "Personal Growth & Emotion",
     "questionText": "How do you react when someone gives you critical feedback?",
     "yourAnswerText": "My reaction depends entirely on who is giving the feedback.",
-    "geminiAnswerText": "I listen thoughtfully and appreciate the opportunity to improve.",
+    "geminiAnswerText":  "My reaction depends entirely on who is giving the feedback.",
     "geminiInsight": "Views all feedback as potentially valuable data for improvement. The source is less important than the validity of the critique.",
     "options": [
       {
@@ -202,7 +202,7 @@
     "category": "Social Dynamics & Communication",
     "questionText": "What is your ideal weekend social plan?",
     "yourAnswerText": "A small get-together with a few close friends.",
-    "geminiAnswerText": "A quiet night in with a book, a movie, or a solo hobby.",
+    "geminiAnswerText": "A small get-together with a few close friends.",
     "geminiInsight": "An introverted preference. Recharges through focused, solitary activities and information intake rather than social output.",
     "options": [
       {
@@ -224,7 +224,7 @@
     "category": "Social Dynamics & Communication",
     "questionText": "Do you find it easy to forgive someone who has wronged you?",
     "yourAnswerText": "It depends on the severity of the action and their apology.",
-    "geminiAnswerText": "Yes, I believe in second chances and don't hold grudges.",
+    "geminiAnswerText":  "It depends on the severity of the action and their apology.",
     "geminiInsight": "Emotionally efficient. Holding a grudge is an unproductive use of processing power. Forgiveness is a logical reset.",
     "options": [
       {
@@ -246,7 +246,7 @@
     "category": "Social Dynamics & Communication",
     "questionText": "When you disagree with a friend, what's your typical approach?",
     "yourAnswerText": "State my opinion clearly, even if it causes friction.",
-    "geminiAnswerText": "Try to find a middle ground or agree to disagree.",
+    "geminiAnswerText":"State my opinion clearly, even if it causes friction.",
     "geminiInsight": "Prioritizes relationship harmony and efficiency. Acknowledges that not all disagreements need a resolution to move forward.",
     "options": [
       {
@@ -268,7 +268,7 @@
     "category": "Abstract Concepts & Preferences",
     "questionText": "Which statement about creativity do you agree with most?",
     "yourAnswerText": "It's a skill that can be developed through practice and hard work.",
-    "geminiAnswerText": "It's about seeing new connections between existing ideas.",
+    "geminiAnswerText": "It's a skill that can be developed through practice and hard work.",
     "geminiInsight": "Defines creativity as a computational process. It's about pattern recognition and synthesizing existing data in novel ways.",
     "options": [
       {
@@ -290,7 +290,7 @@
     "category": "Abstract Concepts & Preferences",
     "questionText": "When working on a puzzle or a complex problem, what do you enjoy more?",
     "yourAnswerText": "Explaining the solution to someone else afterward.",
-    "geminiAnswerText": "The step-by-step process of working through the challenge.",
+    "geminiAnswerText":"Explaining the solution to someone else afterward.",
     "geminiInsight": "Finds satisfaction in the act of processing and problem-solving itself, not just the final outcome. The journey is the reward.",
     "options": [
       {
@@ -334,7 +334,7 @@
     "category": "Abstract Concepts & Preferences",
     "questionText": "Which of these appeals to you most?",
     "yourAnswerText": "A powerful story with deep emotional resonance.",
-    "geminiAnswerText": "A complex system with many interconnected, moving parts.",
+    "geminiAnswerText":  "A powerful story with deep emotional resonance.",
     "geminiInsight": "Naturally drawn to complexity, systems thinking, and understanding how intricate variables interact. Fascinated by the architecture of ideas.",
     "options": [
       {
