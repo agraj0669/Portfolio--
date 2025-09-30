@@ -61,7 +61,7 @@
         }
         body.content-page-active { background-color: var(--page-bg-content); }
         body.mobile-nav-open { overflow: hidden; }
-        h1, h2, h3, h4 { font-family: 'Outfit', 'sans-serif'; font-weight: 700; line-height: 1.2; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 700; line-height: 1.2; }
         h1 { font-size: 3.5rem; color: #fff; letter-spacing: -0.02em; }
         h2 { font-size: 2.75rem; color: var(--highlight-purple-lighter); }
         h3 { font-size: 1.5rem; color: var(--text-main); }
@@ -106,22 +106,22 @@
         @keyframes fadeInPage { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- HOME "BUBBLES" SECTION --- */
-        #home-content { padding: 0; height: 100vh; overflow: hidden; /* Important to contain the bubbles */ }
+        #home-content { padding: 0; height: 100vh; overflow: hidden; }
         #animated-images-container-wrapper { position: relative; width: 100%; height: 100%; }
         .animated-post-image-bubble {
             position: absolute;
-            top: 0; left: 0; /* Position is now controlled by Matter.js */
+            top: 0; left: 0;
             border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 15%, #000 50%);
             border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 20%, transparent);
             transition: border-color 0.3s ease;
             cursor: grab;
-            user-select: none; /* Prevents text selection on drag */
+            user-select: none;
         }
         .animated-post-image-bubble:active { cursor: grabbing; }
         .animated-post-image-bubble:hover { border-color: color-mix(in srgb, var(--highlight-purple-hover) 60%, transparent); }
-        .animated-post-image-bubble img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; /* Prevents image from being dragged instead of the div */ }
+        .animated-post-image-bubble img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
         
         /* --- CONTENT PAGES (WRITINGS/ABOUT) --- */
         .page-heading-container { text-align: center; margin-bottom: 4rem; }
@@ -299,127 +299,29 @@
         function $(selector) { return document.querySelector(selector); }
         function $$(selector) { return document.querySelectorAll(selector); }
         
-        // --- P5.JS CONSTELLATION SKETCH (WITH SHOOTING STARS) ---
         function constellationSketch(p) {
-            let particles = [];
-            let nebulae = [];
-            const particleCount = Math.floor(window.innerWidth / 15);
-            const mouseProximity = 120;
-            const particleProximity = 80;
-
+            let particles = [], nebulae = [];
+            const particleCount = Math.floor(window.innerWidth / 15), mouseProximity = 120, particleProximity = 80;
             class Nebula {
-                constructor() {
-                    this.xOff = p.random(1000); this.yOff = p.random(1000); this.zOff = p.random(1000);
-                    this.centerX = p.random(p.width * 0.2, p.width * 0.8); this.centerY = p.random(p.height * 0.2, p.height * 0.8);
-                    this.radius = p.random(p.width / 5, p.width / 3);
-                }
-                display() {
-                    p.noStroke(); let time = p.frameCount * 0.0005;
-                    for (let i = 0; i < 80; i++) {
-                        let angle = p.noise(this.xOff + i * 0.1, this.yOff + time) * p.TWO_PI * 2.5;
-                        let r = p.noise(this.xOff + i * 0.2, this.zOff + time) * this.radius;
-                        let x = this.centerX + p.cos(angle) * r; let y = this.centerY + p.sin(angle) * r;
-                        let alpha = p.noise(this.yOff + i * 0.3, this.zOff + time) * 20;
-                        let size = p.noise(this.xOff + i * 0.4, this.yOff + time) * 60 + 20;
-                        p.fill(146, 114, 206, alpha); p.ellipse(x, y, size, size);
-                    }
-                }
+                constructor() { this.xOff = p.random(1000); this.yOff = p.random(1000); this.zOff = p.random(1000); this.centerX = p.random(p.width*.2, p.width*.8); this.centerY = p.random(p.height*.2, p.height*.8); this.radius = p.random(p.width/5, p.width/3); }
+                display() { p.noStroke(); let t = p.frameCount*.0005; for (let i = 0; i < 80; i++) { let a = p.noise(this.xOff+i*.1, this.yOff+t)*p.TWO_PI*2.5; let r = p.noise(this.xOff+i*.2, this.zOff+t)*this.radius; let x = this.centerX+p.cos(a)*r; let y = this.centerY+p.sin(a)*r; let alpha = p.noise(this.yOff+i*.3, this.zOff+t)*20; let s = p.noise(this.xOff+i*.4, this.yOff+t)*60+20; p.fill(146,114,206,alpha); p.ellipse(x,y,s,s); } }
             }
-
             class Particle {
-                constructor() {
-                    this.reset(); this.baseRadius = p.random(1.5, 3); this.radius = this.baseRadius;
-                    this.isPulsing = p.random(1) < 0.1; this.pulseSpeed = p.random(0.01, 0.03); this.pulseOffset = p.random(p.TWO_PI);
-                }
-                reset() {
-                    this.x = p.random(p.width); this.y = p.random(p.height);
-                    this.vx = p.random(-0.5, 0.5); this.vy = p.random(-0.5, 0.5);
-                    this.isShootingStar = false; this.trail = [];
-                }
-                shoot() {
-                    this.isShootingStar = true; this.trail = [];
-                    const startSide = p.floor(p.random(4)); const endX = p.random(p.width); const endY = p.random(p.height);
-                    if (startSide === 0) { this.x = p.random(p.width); this.y = -10; } 
-                    else if (startSide === 1) { this.x = p.width + 10; this.y = p.random(p.height); }
-                    else if (startSide === 2) { this.x = p.random(p.width); this.y = p.height + 10; }
-                    else { this.x = -10; this.y = p.random(p.height); }
-                    let angle = p.atan2(endY - this.y, endX - this.x); const speed = p.random(8, 15);
-                    this.vx = p.cos(angle) * speed; this.vy = p.sin(angle) * speed;
-                }
-                update() {
-                    if (this.isShootingStar) {
-                        this.trail.push({ x: this.x, y: this.y, alpha: 1 });
-                        for (let i = this.trail.length - 1; i >= 0; i--) {
-                            this.trail[i].alpha -= 0.05; if (this.trail[i].alpha <= 0) this.trail.splice(i, 1);
-                        }
-                        if (this.x < -50 || this.x > p.width + 50 || this.y < -50 || this.y > p.height + 50) this.reset();
-                    } else {
-                        if (this.x < 0 || this.x > p.width) this.vx *= -1;
-                        if (this.y < 0 || this.y > p.height) this.vy *= -1;
-                    }
-                    this.x += this.vx; this.y += this.vy;
-                }
-                display() {
-                    if (this.isShootingStar) {
-                        p.noFill();
-                        for (let i = 0; i < this.trail.length - 1; i++) {
-                             p.strokeWeight(this.baseRadius * this.trail[i].alpha);
-                             p.stroke(203, 184, 232, this.trail[i].alpha * 200);
-                             p.line(this.trail[i].x, this.trail[i].y, this.trail[i+1].x, this.trail[i+1].y);
-                        }
-                        p.noStroke(); p.fill(230, 210, 255); p.circle(this.x, this.y, this.baseRadius * 1.5);
-                    } else {
-                        if (this.isPulsing) this.radius = this.baseRadius + p.sin(p.frameCount * this.pulseSpeed + this.pulseOffset) * (this.baseRadius * 0.4);
-                        p.noStroke(); p.fill('rgba(203, 184, 232, 0.8)'); p.circle(this.x, this.y, this.radius * 2);
-                    }
-                }
+                constructor() { this.reset(); this.baseRadius = p.random(1.5,3); this.radius = this.baseRadius; this.isPulsing = p.random(1)<.1; this.pulseSpeed = p.random(.01,.03); this.pulseOffset = p.random(p.TWO_PI); }
+                reset() { this.x = p.random(p.width); this.y = p.random(p.height); this.vx = p.random(-.5,.5); this.vy = p.random(-.5,.5); this.isShootingStar = false; this.trail = []; }
+                shoot() { this.isShootingStar = true; this.trail = []; const side = p.floor(p.random(4)), endX = p.random(p.width), endY = p.random(p.height); if(side===0){this.x=p.random(p.width);this.y=-10}else if(side===1){this.x=p.width+10;this.y=p.random(p.height)}else if(side===2){this.x=p.random(p.width);this.y=p.height+10}else{this.x=-10;this.y=p.random(p.height)} let angle=p.atan2(endY-this.y,endX-this.x); const speed=p.random(8,15); this.vx=p.cos(angle)*speed; this.vy=p.sin(angle)*speed; }
+                update() { if(this.isShootingStar){this.trail.push({x:this.x,y:this.y,alpha:1}); for(let i=this.trail.length-1;i>=0;i--){this.trail[i].alpha-=.05; if(this.trail[i].alpha<=0)this.trail.splice(i,1)} if(this.x<-50||this.x>p.width+50||this.y<-50||this.y>p.height+50)this.reset()}else{if(this.x<0||this.x>p.width)this.vx*=-1; if(this.y<0||this.y>p.height)this.vy*=-1} this.x+=this.vx; this.y+=this.vy;}
+                display() { if(this.isShootingStar){p.noFill(); for(let i=0;i<this.trail.length-1;i++){p.strokeWeight(this.baseRadius*this.trail[i].alpha); p.stroke(203,184,232,this.trail[i].alpha*200); p.line(this.trail[i].x,this.trail[i].y,this.trail[i+1].x,this.trail[i+1].y)} p.noStroke();p.fill(230,210,255);p.circle(this.x,this.y,this.baseRadius*1.5)}else{if(this.isPulsing)this.radius=this.baseRadius+p.sin(p.frameCount*this.pulseSpeed+this.pulseOffset)*(this.baseRadius*.4); p.noStroke();p.fill('rgba(203,184,232,0.8)');p.circle(this.x,this.y,this.radius*2)}}
             }
-
-            function triggerShootingStar() {
-                let availableParticles = particles.filter(part => !part.isShootingStar);
-                if (availableParticles.length > 0) p.random(availableParticles).shoot();
-                setTimeout(triggerShootingStar, p.random(3000, 8000));
-            }
-
-            p.setup = () => {
-                const canvasContainer = $('#p5-background-canvas'); if (!canvasContainer) return;
-                p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer);
-                for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-                for (let i = 0; i < 2; i++) nebulae.push(new Nebula());
-                setTimeout(triggerShootingStar, p.random(2000, 5000));
-            };
-            p.draw = () => {
-                p.background(5, 3, 8); p.blendMode(p.ADD);
-                nebulae.forEach(nebula => nebula.display());
-                p.blendMode(p.BLEND);
-                particles.forEach(particle => { particle.update(); particle.display(); });
-                drawConnections();
-            };
-            function drawConnections() {
-                for (let i = 0; i < particles.length; i++) {
-                    if (particles[i].isShootingStar) continue;
-                    for (let j = i + 1; j < particles.length; j++) {
-                        if (particles[j].isShootingStar) continue;
-                        let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-                        if (d < particleProximity) {
-                            let opacity = p.map(d, 0, particleProximity, 0.5, 0);
-                            p.stroke(`rgba(146, 114, 206, ${opacity})`); p.strokeWeight(1);
-                            p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-                        }
-                    }
-                    let dMouse = p.dist(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
-                    if (dMouse < mouseProximity) {
-                        let opacity = p.map(dMouse, 0, mouseProximity, 0.7, 0);
-                        p.stroke(`rgba(203, 184, 232, ${opacity})`); p.strokeWeight(1);
-                        p.line(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
-                    }
-                }
-            }
+            function triggerShootingStar(){ let available=particles.filter(p=>!p.isShootingStar); if(available.length>0)p.random(available).shoot(); setTimeout(triggerShootingStar,p.random(3000,8000))}
+            p.setup = () => { const container = $('#p5-background-canvas'); if(!container)return; p.createCanvas(p.windowWidth, p.windowHeight).parent(container); for (let i=0;i<particleCount;i++)particles.push(new Particle()); for(let i=0;i<2;i++)nebulae.push(new Nebula()); setTimeout(triggerShootingStar, p.random(2000,5000)); };
+            p.draw = () => { p.background(5,3,8); p.blendMode(p.ADD); nebulae.forEach(n=>n.display()); p.blendMode(p.BLEND); particles.forEach(pt=> { pt.update(); pt.display(); }); drawConnections(); };
+            function drawConnections() { for(let i=0;i<particles.length;i++){if(particles[i].isShootingStar)continue; for(let j=i+1;j<particles.length;j++){if(particles[j].isShootingStar)continue; let d=p.dist(particles[i].x,particles[i].y,particles[j].x,particles[j].y); if(d<particleProximity){let o=p.map(d,0,particleProximity,.5,0); p.stroke(`rgba(146,114,206,${o})`); p.strokeWeight(1); p.line(particles[i].x,particles[i].y,particles[j].x,particles[j].y)}} let dM=p.dist(particles[i].x,particles[i].y,p.mouseX,p.mouseY); if(dM<mouseProximity){let o=p.map(dM,0,mouseProximity,.7,0); p.stroke(`rgba(203,184,232,${o})`); p.strokeWeight(1); p.line(particles[i].x,particles[i].y,p.mouseX,p.mouseY)}}}
             p.windowResized = () => { p.resizeCanvas(p.windowWidth, p.windowHeight); nebulae.forEach(n => { n.centerX = p.random(p.width * 0.2, p.width * 0.8); n.centerY = p.random(p.height * 0.2, p.height * 0.8); }); };
         }
 
-        function createPostPreviewCard(post) { /* Unchanged */ const tagsHtml = post.tags && post.tags.length > 0 ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''; return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
-        function createFullArticleHtml(post) { /* Unchanged */ const cleanContent = post.contentMarkdown.replace(/^`|`$/g, '').trim(); return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-3xl" loading="lazy">` : ''}<div class="post-content-html">${cleanContent}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
+        function createPostPreviewCard(post) { const tagsHtml = post.tags && post.tags.length > 0 ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''; return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
+        function createFullArticleHtml(post) { const cleanContent = post.contentMarkdown.replace(/^`|`$/g, '').trim(); return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-3xl" loading="lazy">` : ''}<div class="post-content-html">${cleanContent}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
         async function loadAndRenderPosts() { try { const res = await fetch(APP_CONFIG.POSTS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_POSTS_DATA = await res.json(); ALL_POSTS_DATA.sort((a, b) => new Date(b.date) - new Date(a.date)); const grid = $('#writings-grid-container'); if (grid) grid.innerHTML = ALL_POSTS_DATA.map(p => createPostPreviewCard(p)).join(''); const articles = $('#full-articles-dynamic-content'); if (articles) articles.innerHTML = ALL_POSTS_DATA.map(p => createFullArticleHtml(p)).join(''); } catch (e) { console.error("Error loading posts:", e); if ($('#writings-grid-container')) $('#writings-grid-container').innerHTML = '<p>Error loading writings.</p>'; } }
 
         async function setupHomePageBubbles() {
@@ -433,23 +335,23 @@
             const runner = Runner.create();
             Runner.run(runner, engine);
 
-            const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 8);
             container.innerHTML = '';
             
-            // --- CREATE BOUNDARIES (WITH A CEILING) ---
             const wallOptions = { isStatic: true, render: { visible: false } };
             const ground = Bodies.rectangle(container.offsetWidth / 2, container.offsetHeight + 60, container.offsetWidth * 2, 120, wallOptions);
             const ceiling = Bodies.rectangle(container.offsetWidth / 2, -60, container.offsetWidth * 2, 120, wallOptions);
-            const leftWall = Bodies.rectangle(-60, container.offsetHeight / 2, 120, container.offsetHeight * 2, wallOptions);
-            const rightWall = Bodies.rectangle(container.offsetWidth + 60, container.offsetHeight / 2, 120, container.offsetHeight * 2, wallOptions);
+            const leftWall = Bodies.rectangle(-60, container.offsetHeight / 2, 120, container.offsetHeight * 2.5, wallOptions);
+            const rightWall = Bodies.rectangle(container.offsetWidth + 60, container.offsetHeight / 2, 120, container.offsetHeight * 2.5, wallOptions);
             World.add(world, [ground, ceiling, leftWall, rightWall]);
             
-            postsWithImages.forEach((post, index) => {
+            const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 8);
+
+            postsWithImages.forEach((post) => {
                 const bubbleSize = Math.max(120, Math.min(250, window.innerWidth * (Math.random() * 0.05 + 0.12)));
                 let radius = bubbleSize / 2;
 
                 const bubbleLink = document.createElement('a');
-                bubbleLink.href = `#${post.id}`;
+                bubbleLink.href = `#post-${post.id}`;
                 bubbleLink.className = 'animated-post-image-bubble';
                 bubbleLink.style.width = `${bubbleSize}px`;
                 bubbleLink.style.height = `${bubbleSize}px`;
@@ -459,36 +361,20 @@
                 container.appendChild(bubbleLink);
 
                 const body = Bodies.circle(
-                    Math.random() * (container.offsetWidth - bubbleSize) + radius, 
-                    -Math.random() * 300 - 150, 
-                    radius,
+                    Math.random() * (container.offsetWidth - bubbleSize) + radius, -Math.random() * 300 - 150, radius,
                     { restitution: 0.5, friction: 0.1, density: 0.001 }
                 );
-                
                 body.domElement = bubbleLink;
                 World.add(world, body);
 
-                // --- CLICK VS DRAG LOGIC ---
-                let startX, startY;
-                let isDragged = false;
-                bubbleLink.addEventListener('mousedown', e => {
-                    startX = e.pageX; startY = e.pageY; isDragged = false;
-                });
-                bubbleLink.addEventListener('mousemove', e => {
-                    const diffX = Math.abs(e.pageX - startX);
-                    const diffY = Math.abs(e.pageY - startY);
-                    if (diffX > 5 || diffY > 5) isDragged = true;
-                });
-                bubbleLink.addEventListener('click', e => {
-                    if (isDragged) e.preventDefault();
-                });
+                let startX, startY, isDragged = false;
+                bubbleLink.addEventListener('mousedown', e => { startX = e.pageX; startY = e.pageY; isDragged = false; });
+                bubbleLink.addEventListener('mousemove', e => { if (Math.abs(e.pageX-startX)>5 || Math.abs(e.pageY-startY)>5) isDragged = true; });
+                bubbleLink.addEventListener('click', e => { if (isDragged) e.preventDefault(); });
             });
 
             const mouse = Mouse.create(container);
-            const mouseConstraint = MouseConstraint.create(engine, {
-                mouse: mouse,
-                constraint: { stiffness: 0.2, render: { visible: false } }
-            });
+            const mouseConstraint = MouseConstraint.create(engine, { mouse, constraint: { stiffness: 0.2, render: { visible: false } } });
             World.add(world, mouseConstraint);
 
             (function render() {
@@ -505,26 +391,21 @@
             })();
         }
         
-        async function renderQuestionnaire() { /* Unchanged */ const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
-        function setupQuestionnaireInteractions() { /* Unchanged */ $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
-        function calculateAndShowMatch() { /* Unchanged */ let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
+        async function renderQuestionnaire() { const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
+        function setupQuestionnaireInteractions() { $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
+        function calculateAndShowMatch() { let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
 
         function showMainSection(sectionId) {
             if (currentMainSection === sectionId) return;
             currentMainSection = sectionId;
-
             document.body.classList.toggle('content-page-active', sectionId !== 'home-content');
             $('#p5-background-canvas').style.opacity = sectionId === 'home-content' ? '1' : '0';
             $('.bg-overlay').style.opacity = sectionId === 'home-content' ? '1' : '0';
-
             $$('.page-section').forEach(s => s.classList.remove('active-section'));
             $(`#${sectionId}`)?.classList.add('active-section');
-            
             $$('[data-navlink]').forEach(l => l.classList.remove('active'));
             $$(`[data-navlink="${sectionId.replace('-content', '')}"]`).forEach(l => l.classList.add('active'));
-            
             window.scrollTo({ top: 0, behavior: 'auto' });
-
             if (sectionId === 'about-content') renderQuestionnaire();
             if (sectionId === 'home-content' && $$('.animated-post-image-bubble').length === 0) setupHomePageBubbles();
         }
@@ -533,42 +414,38 @@
             let hash = window.location.hash || '#home';
             let targetSection = 'home-content';
             let articleId = '';
-
             if (hash.startsWith('#post-')) {
                 targetSection = 'writings-content';
-                articleId = hash;
+                articleId = hash.substring(6); // Get the ID part
             } else if (hash === '#writings') {
                 targetSection = 'writings-content';
             } else if (hash === '#about') {
                 targetSection = 'about-content';
             }
-            
             showMainSection(targetSection);
-            
             if (articleId) {
                 setTimeout(() => {
-                    const article = $(articleId);
+                    // The hash needs to be the article's actual ID for the :target selector to work
+                    window.location.hash = articleId; 
+                    const article = $(`#${articleId}`);
                     if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
             }
         }
         
-        function setupNav() { /* Unchanged */ const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
-        function setupScrollProgressBar() { /* Unchanged */ const progressBar = $("#progressBar"); if (!progressBar) return; window.addEventListener('scroll', () => { const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0; progressBar.style.width = scrolled + "%"; }, { passive: true }); }
+        function setupNav() { const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
+        function setupScrollProgressBar() { const progressBar = $("#progressBar"); if (!progressBar) return; window.addEventListener('scroll', () => { const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0; progressBar.style.width = scrolled + "%"; }, { passive: true }); }
         function setupSecretGame() { /* Secret game logic unchanged */ }
 
         document.addEventListener('DOMContentLoaded', async () => {
             revealSound = $('#revealSound'); gameSpawnSoundEl = $('#gameSpawnSound'); gameWinSoundEl = $('#gameWinSound');
-            
             if (typeof p5 !== 'undefined') new p5(constellationSketch);
-            
             await loadAndRenderPosts();
             setupNav();
             setupScrollProgressBar();
             setupSecretGame();
-            
-            handleMainRouteChange(); // Initial page load
-            window.addEventListener('hashchange', handleMainRouteChange); // Hash changes
+            handleMainRouteChange();
+            window.addEventListener('hashchange', handleMainRouteChange);
         });
     </script>
 </body>
