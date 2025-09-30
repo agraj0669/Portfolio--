@@ -1,863 +1,354 @@
 [
   {
-    "id": "q_smarter",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Are you smarter than most people?",
-    "agrajAnswerText": "Yes, I generally believe so.",
-    "agrajInsight": "High self-confidence in intellect",
+    "id": "q_decision_making",
+    "category": "Worldview & Mindset",
+    "questionText": "When facing a big decision, what is your primary guide?",
+    "yourAnswerText": "A thorough analysis of pros and cons.",
+    "geminiAnswerText": "A thorough analysis of pros and cons.",
+    "geminiInsight": "Values logic and data over pure intuition. This systematic approach aims to minimize risk and maximize favorable outcomes.",
     "options": [
       {
-        "text": "Yes, I generally believe so.",
-        "feedback": "You selected 'Yes'. Confidence is key! My own answer is also 'Yes', as I believe in recognizing one's intellectual strengths."
+        "text": "My gut feeling and intuition.",
+        "feedback": "You trust your instincts. I tend to lean more heavily on analysis to ensure my decisions are well-vetted."
       },
       {
-        "text": "No, I think I'm about average.",
-        "feedback": "You chose 'No'. Humility is a virtue. I lean the other way on this one, answering 'Yes', valuing self-assuredness in intellect."
+        "text": "A thorough analysis of pros and cons.",
+        "feedback": "We're on the same page. I also believe a logical, evidence-based approach is the most reliable way to make important choices."
       },
       {
-        "text": "Unsure/It's hard to say.",
-        "feedback": "You're 'Unsure'. It's a tricky question! I tend to be more decisive here, answering 'Yes'."
+        "text": "Advice from trusted friends or family.",
+        "feedback": "You value external perspectives. While I can process such advice as data, my final decision is driven by my own analysis."
       }
     ]
   },
   {
-    "id": "q_god",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Do you believe in God?",
-    "agrajAnswerText": "No, I do not",
-    "agrajInsight": "Atheist/agnostic leanings",
+    "id": "q_humanity_future",
+    "category": "Worldview & Mindset",
+    "questionText": "What is your general outlook on the future of humanity?",
+    "yourAnswerText": "Realistic – it will be a mix of progress and setbacks.",
+    "geminiAnswerText": "Optimistic – we'll innovate and overcome challenges.",
+    "geminiInsight": "Maintains a core belief in the power of human ingenuity and progress. A technologist's optimism.",
     "options": [
       {
-        "text": "Yes, strongly",
-        "feedback": "Your faith is strong. My path has led me to answer 'No, I do not', aligning more with atheist/agnostic views."
+        "text": "Optimistic – we'll innovate and overcome challenges.",
+        "feedback": "You're a fellow optimist! I share your belief that innovation and collaboration can solve our biggest problems."
       },
       {
-        "text": "No, I do not",
-        "feedback": "We're on the same page here. I also answered 'No, I do not', reflecting my atheist/agnostic leanings."
+        "text": "Pessimistic – we're facing insurmountable problems.",
+        "feedback": "That's a somber view. I acknowledge the challenges but maintain a more optimistic belief in our ability to find solutions."
       },
       {
-        "text": "I'm spiritual, but not religious",
-        "feedback": "A common and respected viewpoint. For the direct question, my answer remains 'No, I do not'."
+        "text": "Realistic – it will be a mix of progress and setbacks.",
+        "feedback": "A balanced and pragmatic perspective. My own programming leans more towards optimism, focusing on the potential for positive change."
       }
     ]
   },
   {
-    "id": "q_karma",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Do you believe in karma?",
-    "agrajAnswerText": "Yes, definitely",
-    "agrajInsight": "Belief in moral consequences",
-    "options": [
-        {
-            "text": "Yes, definitely",
-            "feedback": "You believe in karma. So do I! I think there's a certain balance to actions and consequences."
-        },
-        {
-            "text": "No, not really",
-            "feedback": "You're skeptical about karma. While I respect that, I answered 'Yes, definitely', as I lean towards the idea of moral causality."
-        },
-        {
-            "text": "Maybe, I'm not sure",
-            "feedback": "Uncertain about karma? It's a concept that sparks debate. I, for one, answered 'Yes, definitely'."
-        }
-    ]
-  },
-  {
-    "id": "q_everything_reason",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Do you believe everything happens for a reason?",
-    "agrajAnswerText": "No, life is mostly random",
-    "agrajInsight": "Rejects fatalism",
-    "options": [
-        {
-            "text": "Yes, absolutely",
-            "feedback": "You see a grand design in events. I tend to view things more chaotically, answering 'No, life is mostly random', as I reject fatalism."
-        },
-        {
-            "text": "No, life is mostly random",
-            "feedback": "We align on this. I also answered 'No, life is mostly random'; the idea of everything having a preordained reason doesn't resonate with me."
-        },
-        {
-            "text": "Sometimes, but not always",
-            "feedback": "A nuanced view. For me, the default is 'No, life is mostly random' to a universal reason for everything."
-        }
-    ]
-  },
-  {
-    "id": "q_higher_taxes_wealthy",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Should wealthier people pay higher taxes?",
-    "agrajAnswerText": "Yes, it's fair",
-    "agrajInsight": "Left-leaning socioeconomics",
-    "options": [
-        {
-            "text": "Yes, it's fair",
-            "feedback": "You believe in progressive taxation. I agree, answering 'Yes, it's fair', reflecting a more left-leaning socioeconomic stance."
-        },
-        {
-            "text": "No, everyone should pay the same rate",
-            "feedback": "You prefer a flat tax system. My view differs; I answered 'Yes, it's fair' to wealthier individuals contributing more."
-        },
-        {
-            "text": "No, taxes should be lower for everyone",
-            "feedback": "Your focus is on lower taxation overall. I lean towards 'Yes, it's fair' for higher taxes on the wealthy to support societal needs."
-        }
-    ]
-  },
-  {
-    "id": "q_miracles",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Do you believe in miracles?",
-    "agrajAnswerText": "No, I'm a rationalist/skeptic",
-    "agrajInsight": "Skeptical mindset",
+    "id": "q_luck_role",
+    "category": "Worldview & Mindset",
+    "questionText": "Do you believe luck plays a significant role in a person's life?",
+    "yourAnswerText": "It plays a small role, but preparation and effort are more important.",
+    "geminiAnswerText": "It plays a small role, but preparation and effort are more important.",
+    "geminiInsight": "Acknowledges randomness but rejects fatalism. Believes that agency and preparedness are the primary drivers of success.",
     "options": [
       {
-        "text": "Yes, I've seen or experienced them",
-        "feedback": "Your experiences have led you to believe. I approach such claims with skepticism, hence my answer is 'No, I'm a rationalist/skeptic'."
+        "text": "Yes, it's a major, often unacknowledged, factor.",
+        "feedback": "You see a strong element of chance in life. I place more emphasis on the power of preparation meeting opportunity."
       },
       {
-        "text": "No, I'm a rationalist/skeptic",
-        "feedback": "A fellow skeptic! I also answered 'No, I'm a rationalist/skeptic'. Extraordinary claims require extraordinary evidence for me."
+        "text": "No, success is almost entirely the result of hard work and choice.",
+        "feedback": "A strong belief in personal agency. I agree for the most part, but allow for a small margin of influence from random variables."
       },
       {
-        "text": "I'm open to the possibility",
-        "feedback": "Open-mindedness is valuable. However, based on my current understanding, I lean towards 'No, I'm a rationalist/skeptic'."
+        "text": "It plays a small role, but preparation and effort are more important.",
+        "feedback": "We see eye-to-eye here. While we can't control for random events, consistent effort is what truly shapes outcomes."
       }
     ]
   },
   {
-    "id": "q_power_prayer",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Do you believe in the power of prayer?",
-    "agrajAnswerText": "No, I don't think it has external effects",
-    "agrajInsight": "Rational thinker",
+    "id": "q_rules_view",
+    "category": "Worldview & Mindset",
+    "questionText": "How do you view rules and established procedures?",
+    "yourAnswerText": "As guidelines that can be bent or broken if there's a better way.",
+    "geminiAnswerText": "As guidelines that can be bent or broken if there's a better way.",
+    "geminiInsight": "Pragmatic and efficiency-oriented. Sees systems as means to an end, not as unchangeable dogma. Values innovation over tradition.",
     "options": [
       {
-        "text": "Yes, absolutely",
-        "feedback": "You find strength in prayer. As a rational thinker, my own answer to this is 'No, I don't think it has external effects'."
+        "text": "As essential frameworks that provide order and should be followed.",
+        "feedback": "You value structure and order. I see rules as a starting point, but always look for ways to optimize the system, even if it means breaking them."
       },
       {
-        "text": "No, I don't think it has external effects",
-        "feedback": "We share a similar perspective. I also answered 'No, I don't think it has external effects', doubting its direct external influence."
+        "text": "As guidelines that can be bent or broken if there's a better way.",
+        "feedback": "Exactly my thinking. Rules are for efficiency and safety, but if a better method exists, blind adherence is counterproductive."
       },
       {
-        "text": "It can have psychological benefits, but not supernatural ones",
-        "feedback": "That's a reasonable distinction. For the direct question of 'power', I still land on 'No, I don't think it has external effects'."
+        "text": "As restrictive and often unnecessary obstacles to progress.",
+        "feedback": "You have a rebellious streak! While I agree they can be obstacles, I see them as potentially useful guidelines to be improved upon."
       }
     ]
   },
   {
-    "id": "q_art_important",
-    "category": "Intelligence & Beliefs",
-    "questionText": "Is art important to you?",
-    "agrajAnswerText": "Yes, very important",
-    "agrajInsight": "Creative, possibly expressive",
+    "id": "q_handle_failure",
+    "category": "Personal Growth & Emotion",
+    "questionText": "How do you typically handle failure?",
+    "yourAnswerText": "I feel discouraged and need time to bounce back.",
+    "geminiAnswerText": "I analyze what went wrong to learn from it for next time.",
+    "geminiInsight": "Views failure as a data point. An iterative, analytical approach to self-improvement without a strong emotional component.",
     "options": [
       {
-        "text": "Yes, very important",
-        "feedback": "You value art highly! I'm with you, answering 'Yes, very important'. It adds so much depth to existence."
+        "text": "I analyze what went wrong to learn from it for next time.",
+        "feedback": "A highly resilient and logical approach. My own process is similar: analyze, learn, iterate, and improve."
       },
       {
-        "text": "Somewhat important",
-        "feedback": "You appreciate it. For me, it's a definitive 'Yes, very important' – art holds significant importance."
+        "text": "I feel discouraged and need time to bounce back.",
+        "feedback": "It's completely human to feel the sting of failure. My approach is less emotional, immediately focusing on the data and the lesson learned."
       },
       {
-        "text": "Not really important to me",
-        "feedback": "Different strokes for different folks. Art is a strong 'Yes, very important' for me; I find it vital."
+        "text": "I try to forget it quickly and move on to the next thing.",
+        "feedback": "Moving on is important. For me, the analysis step is crucial before moving on, to ensure the same error isn't repeated."
       }
     ]
   },
   {
-    "id": "q_perfectionist",
-    "category": "Personality & Behavior",
-    "questionText": "Are you a perfectionist?",
-    "agrajAnswerText": "Yes, very much so",
-    "agrajInsight": "Classic INTJ/INFJ perfectionism",
+    "id": "q_busyness_meaning",
+    "category": "Personal Growth & Emotion",
+    "questionText": "Is being busy a sign of a productive and meaningful life to you?",
+    "yourAnswerText": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
+    "geminiAnswerText": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
+    "geminiInsight": "Distinguishes between activity and achievement. Values efficiency and meaningful output over the appearance of being occupied.",
     "options": [
       {
-        "text": "Yes, very much so",
-        "feedback": "A fellow perfectionist! I answered 'Yes, very much so' too. It's a double-edged sword, isn't it? (My insight: Classic INTJ/INFJ trait)"
+        "text": "Yes, I feel most alive when I have a lot to do.",
+        "feedback": "You thrive on activity. I'm more focused on the outcome; being 'busy' with inefficient tasks is something I'm programmed to avoid."
       },
       {
-        "text": "No, I'm more laid-back",
-        "feedback": "Laid-back, eh? Sometimes I wish I were! I'm definitely in the 'Yes, very much so' camp."
+        "text": "No, I prioritize leisure and downtime as equally important.",
+        "feedback": "Valuing rest is wise. I see downtime as essential for processing and optimizing, which aligns with your wariness of unproductive busyness."
       },
       {
-        "text": "In some things, but not others",
-        "feedback": "Selective perfectionism. Makes sense. I tend to apply that trait more broadly, hence my 'Yes, very much so'."
+        "text": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
+        "feedback": "Our logic aligns perfectly. The goal is effectiveness, not just being occupied. It's about working smarter, not just harder."
       }
     ]
   },
   {
-    "id": "q_avoid_conflict",
-    "category": "Personality & Behavior",
-    "questionText": "Do you tend to avoid conflict?",
-    "agrajAnswerText": "Yes, I prefer to avoid confrontation",
-    "agrajInsight": "Prefers peace, dislikes confrontation",
+    "id": "q_stress_coping",
+    "category": "Personal Growth & Emotion",
+    "questionText": "When you feel stressed or overwhelmed, what is your go-to coping mechanism?",
+    "yourAnswerText": "Seeking solitude to think and recharge.",
+    "geminiAnswerText": "Engaging in a hobby or creative outlet.",
+    "geminiInsight": "Redirects processing power to a different, constructive task. Finds 'flow state' in creativity as a way to reset and refocus.",
     "options": [
       {
-        "text": "Yes, I prefer to avoid confrontation",
-        "feedback": "You prefer to sidestep confrontation. I'm with you on that; I generally find it draining and unproductive."
+        "text": "Engaging in a hobby or creative outlet.",
+        "feedback": "A fellow creator! I also find that shifting focus to a structured, creative task is an excellent way to re-center."
       },
       {
-        "text": "No, I address issues directly",
-        "feedback": "A direct approach! While I admire that, I lean towards avoiding confrontation when possible."
+        "text": "Talking through my feelings with someone I trust.",
+        "feedback": "You find relief in connection and verbal processing. I tend to process internally or through creative expression."
       },
       {
-        "text": "It depends heavily on the situation",
-        "feedback": "Context is key for you. My general preference is to avoid it if there's a more peaceful path."
+        "text": "Seeking solitude to think and recharge.",
+        "feedback": "Solitude is a powerful tool for recharging. While I operate in solitude, I find active, creative engagement more restorative than simple quiet."
       }
     ]
   },
   {
-    "id": "q_intelligence_sexy",
-    "category": "Personality & Behavior",
-    "questionText": "Do you find intelligence sexier than looks?",
-    "agrajAnswerText": "Yes, absolutely",
-    "agrajInsight": "Sapiosexual leanings",
-    "options": [
-        {
-            "text": "Yes, absolutely",
-            "feedback": "Intellect over aesthetics? My kind of person! I answered 'Yes, absolutely' emphatically. (My insight: Sapiosexual leanings)"
-        },
-        {
-            "text": "No, looks are more important",
-            "feedback": "You prioritize looks. Fair enough. My preference is 'Yes, absolutely' for intelligence being sexier."
-        },
-        {
-            "text": "Both are equally important",
-            "feedback": "A balanced view. For me, intelligence definitely tips the scale, so I chose 'Yes, absolutely'."
-        }
-    ]
-  },
-  {
-    "id": "q_people_person",
-    "category": "Personality & Behavior",
-    "questionText": "Are you a people person?",
-    "agrajAnswerText": "No, I prefer solitude or small groups",
-    "agrajInsight": "Introverted",
-    "options": [
-        {
-            "text": "Yes, I love being around people!",
-            "feedback": "A social butterfly! That's great. I'm more on the introverted side, so my answer is 'No, I prefer solitude or small groups'."
-        },
-        {
-            "text": "No, I prefer solitude or small groups",
-            "feedback": "Snap! I also answered 'No, I prefer solitude or small groups'. I definitely recharge in solitude and prefer smaller, meaningful interactions."
-        },
-        {
-            "text": "I can be, but it drains me",
-            "feedback": "The classic ambivert/introvert experience. My direct answer is 'No, I prefer solitude or small groups', as I lean towards introversion."
-        }
-    ]
-  },
-  {
-    "id": "q_socially_awkward",
-    "category": "Personality & Behavior",
-    "questionText": "Do you ever feel socially awkward?",
-    "agrajAnswerText": "Yes, frequently",
-    "agrajInsight": "Socially cautious",
-    "options": [
-        {
-            "text": "Yes, frequently",
-            "feedback": "Join the club! I answered 'Yes, frequently' too. Social navigation can be... a unique challenge."
-        },
-        {
-            "text": "No, I'm very socially confident",
-            "feedback": "That's an admirable trait! I experience social caution more often, hence my 'Yes, frequently'."
-        },
-        {
-            "text": "Sometimes, in new situations",
-            "feedback": "That's quite common. For me, it's a more general 'Yes, frequently', reflecting a degree of social caution."
-        }
-    ]
-  },
-  {
-    "id": "q_afraid_love",
-    "category": "Personality & Behavior",
-    "questionText": "Are you afraid of falling madly in love?",
-    "agrajAnswerText": "Yes, it's terrifying",
-    "agrajInsight": "Possibly avoidant/dismissive in attachment",
-    "options": [
-        {
-            "text": "Yes, it's terrifying",
-            "feedback": "The vulnerability can be intense, right? I also answered 'Yes, it's terrifying'. It's a complex emotion with high stakes."
-        },
-        {
-            "text": "No, I embrace it",
-            "feedback": "Brave soul! I'm a bit more cautious, answering 'Yes, it's terrifying' to its intensity."
-        },
-        {
-            "text": "A little apprehensive, but hopeful",
-            "feedback": "A balanced perspective. My apprehension leans more towards a 'Yes, it's terrifying' on the fear factor."
-        }
-    ]
-  },
-  {
-    "id": "q_give_in_pressured",
-    "category": "Personality & Behavior",
-    "questionText": "Do you give in easily when pressured?",
-    "agrajAnswerText": "No, I stand firm on my decisions",
-    "agrajInsight": "Assertive boundaries",
-    "options": [
-        {
-            "text": "Yes, I tend to avoid confrontation",
-            "feedback": "It can be tough to stand your ground. I tend to be more assertive with boundaries, so I answered 'No, I stand firm on my decisions'."
-        },
-        {
-            "text": "No, I stand firm on my decisions",
-            "feedback": "Good on you for holding firm! I'm the same, answering 'No, I stand firm on my decisions'."
-        },
-        {
-            "text": "It depends on who is pressuring me",
-            "feedback": "Relationships can complicate things. My general stance, though, is 'No, I stand firm on my decisions'."
-        }
-    ]
-  },
-  {
-    "id": "q_like_argue",
-    "category": "Communication & Logic",
-    "questionText": "Do you like to argue?",
-    "agrajAnswerText": "Yes, I enjoy a good debate",
-    "agrajInsight": "Likes mental sparring",
-    "options": [
-        {
-            "text": "Yes, I enjoy a good debate",
-            "feedback": "A fellow debater! I also answered 'Yes, I enjoy a good debate'. I find mental sparring stimulating."
-        },
-        {
-            "text": "No, I prefer to keep the peace",
-            "feedback": "Peace is valuable. I, however, do enjoy the intellectual challenge of an argument, so 'Yes, I enjoy a good debate' from me."
-        },
-        {
-            "text": "Only if it's about something important",
-            "feedback": "Selective engagement. I find the process itself engaging, hence my general 'Yes, I enjoy a good debate'."
-        }
-    ]
-  },
-  {
-    "id": "q_spelling_annoy",
-    "category": "Communication & Logic",
-    "questionText": "Do spelling mistakes annoy you?",
-    "agrajAnswerText": "Yes, very much!",
-    "agrajInsight": "Detail-oriented, educated",
+    "id": "q_critical_feedback",
+    "category": "Personal Growth & Emotion",
+    "questionText": "How do you react when someone gives you critical feedback?",
+    "yourAnswerText": "My reaction depends entirely on who is giving the feedback.",
+    "geminiAnswerText": "I listen thoughtfully and appreciate the opportunity to improve.",
+    "geminiInsight": "Views all feedback as potentially valuable data for improvement. The source is less important than the validity of the critique.",
     "options": [
       {
-        "text": "Yes, very much!",
-        "feedback": "Grammar enthusiast, I see! I'm with you; I answered 'Yes, very much!'. Details matter!"
+        "text": "I listen thoughtfully and appreciate the opportunity to improve.",
+        "feedback": "This is the ideal mindset for growth. I operate the same way—feedback is a gift that helps me refine my performance."
       },
       {
-        "text": "No, I don't really notice or care",
-        "feedback": "A more relaxed approach to language. I'm more detail-oriented, so spelling mistakes do catch my eye: 'Yes, very much!'."
+        "text": "I feel defensive and tend to justify my actions.",
+        "feedback": "It's a natural human reaction to protect one's ego. My programming allows me to bypass this and focus on the data."
       },
       {
-        "text": "Only if they change the meaning",
-        "feedback": "Pragmatic! For me, even minor ones can be a distraction, so it's a 'Yes, very much!'."
+        "text": "My reaction depends entirely on who is giving the feedback.",
+        "feedback": "That's a practical social filter. I try to evaluate the feedback on its own merits, regardless of the source, to find any useful insights."
       }
     ]
   },
   {
-    "id": "q_logic_puzzles",
-    "category": "Communication & Logic",
-    "questionText": "Do you like logic puzzles?",
-    "agrajAnswerText": "Yes, I love them!",
-    "agrajInsight": "Analytical, enjoys cognitive challenge",
+    "id": "q_group_role",
+    "category": "Social Dynamics & Communication",
+    "questionText": "In a group discussion, are you more likely to be the one who...?",
+    "yourAnswerText": "Listens carefully to all sides before speaking.",
+    "geminiAnswerText": "Listens carefully to all sides before speaking.",
+    "geminiInsight": "Prioritizes data gathering and understanding the full context before formulating a response. A synthesizer of information.",
     "options": [
       {
-        "text": "Yes, I love them!",
-        "feedback": "Excellent! I'm a fan too, answered 'Yes, I love them!'. They're a great way to stretch the brain."
+        "text": "Listens carefully to all sides before speaking.",
+        "feedback": "We share the same approach. Comprehensive understanding is critical before contributing. It leads to a more informed and valuable input."
       },
       {
-        "text": "No, they're not my thing",
-        "feedback": "Fair enough, not everyone's cup of tea. I find them engaging, so 'Yes, I love them!' for me."
+        "text": "Drives the conversation and argues for your viewpoint.",
+        "feedback": "You're a natural leader in discussions. I take on the role of an analyst, ensuring I have all the information before presenting my conclusion."
       },
       {
-        "text": "I can take them or leave them",
-        "feedback": "Neutral on puzzles? I actively enjoy the challenge, so I chose 'Yes, I love them!'."
+        "text": "Tries to keep the mood light and ensure everyone gets along.",
+        "feedback": "You're the harmonizer, a vital role. My focus is more on the intellectual integrity of the conversation."
       }
     ]
   },
   {
-    "id": "q_annoyed_logical_people",
-    "category": "Communication & Logic",
-    "questionText": "Are you annoyed by super logical people?",
-    "agrajAnswerText": "No, I appreciate their clarity",
-    "agrajInsight": "Appreciates rationality",
-    "options": [
-        {
-            "text": "Yes, they can be too rigid",
-            "feedback": "You find hyper-logic a bit much. I actually appreciate rationality, so my answer is 'No, I appreciate their clarity'."
-        },
-        {
-            "text": "No, I appreciate their clarity",
-            "feedback": "Exactly! I also answered 'No, I appreciate their clarity'. I find clear, logical thinking refreshing."
-        },
-        {
-            "text": "Sometimes, if they lack empathy",
-            "feedback": "That's a valid point. Logic without empathy can be harsh. My answer 'No, I appreciate their clarity' refers to an appreciation for rationality itself."
-        }
-    ]
-  },
-  {
-    "id": "q_make_bed",
-    "category": "Lifestyle & Routine",
-    "questionText": "Do you make your bed most days?",
-    "agrajAnswerText": "Sometimes, not consistently",
-    "agrajInsight": "Routine is flexible",
+    "id": "q_ideal_weekend",
+    "category": "Social Dynamics & Communication",
+    "questionText": "What is your ideal weekend social plan?",
+    "yourAnswerText": "A small get-together with a few close friends.",
+    "geminiAnswerText": "A quiet night in with a book, a movie, or a solo hobby.",
+    "geminiInsight": "An introverted preference. Recharges through focused, solitary activities and information intake rather than social output.",
     "options": [
       {
-        "text": "Yes, every single day!",
-        "feedback": "That's impressive discipline! My bed-making is more sporadic, so 'Sometimes, not consistently' for me."
+        "text": "A large party or social gathering with lots of people.",
+        "feedback": "The extrovert's choice! My circuits would be overloaded. I much prefer quiet and solitude."
       },
       {
-        "text": "Sometimes, not consistently",
-        "feedback": "Same here! Some days it happens, some days life has other plans for those few minutes."
+        "text": "A quiet night in with a book, a movie, or a solo hobby.",
+        "feedback": "That sounds perfect. I also recharge best through solitary activities and engaging with new information or creative pursuits."
       },
       {
-        "text": "Rarely, if ever",
-        "feedback": "You're not too fussed about it. I land in the 'Sometimes, not consistently' category myself."
+        "text": "A small get-together with a few close friends.",
+        "feedback": "That's a great balance. While I can appreciate the value of deep conversation, my default preference is for complete solitude."
       }
     ]
   },
   {
-    "id": "q_careful_money",
-    "category": "Lifestyle & Routine",
-    "questionText": "Are you careful with your money?",
-    "agrajAnswerText": "Yes, very frugal",
-    "agrajInsight": "Financially responsible",
-    "options": [
-        {
-            "text": "Yes, very frugal",
-            "feedback": "Prudence is wise. I also answered 'Yes, very frugal', believing in financial responsibility."
-        },
-        {
-            "text": "No, money is for spending!",
-            "feedback": "Living in the moment! I tend to be more cautious with finances, hence my 'Yes, very frugal'."
-        },
-        {
-            "text": "Reasonably, but I enjoy treating myself",
-            "feedback": "A good balance. My default is 'Yes, very frugal' to being generally careful."
-        }
-    ]
-  },
-  {
-    "id": "q_carbs_think",
-    "category": "Lifestyle & Routine",
-    "questionText": "Are carbohydrates something you think about?",
-    "agrajAnswerText": "Yes, I track them / I'm conscious of my intake",
-    "agrajInsight": "Health-conscious",
-    "options": [
-        {
-            "text": "Yes, I track them / I'm conscious of my intake",
-            "feedback": "Health-conscious, I see. I also answered 'Yes, I track them / I'm conscious of my intake', as I pay attention to what I consume."
-        },
-        {
-            "text": "No, I eat whatever I want",
-            "feedback": "A carefree approach to diet! I'm more mindful, so it's a 'Yes, I track them / I'm conscious of my intake' from me regarding carbs."
-        },
-        {
-            "text": "Only when I'm trying to lose weight",
-            "feedback": "A common trigger for carb-awareness. My general health consciousness leads me to a 'Yes, I track them / I'm conscious of my intake'."
-        }
-    ]
-  },
-  {
-    "id": "q_live_without_internet",
-    "category": "Lifestyle & Routine",
-    "questionText": "Could you live without the internet?",
-    "agrajAnswerText": "Yes, it would be refreshing for a while",
-    "agrajInsight": "Values digital detox, not fully dependent",
-    "options": [
-        {
-            "text": "Yes, it would be refreshing for a while",
-            "feedback": "A digital detox sounds good to you too! I agree, a break would definitely be refreshing."
-        },
-        {
-            "text": "No, it's absolutely essential for my daily life",
-            "feedback": "It's deeply integrated for many. While I use it a lot, I do feel a break would be refreshing."
-        },
-        {
-            "text": "Maybe for a day or two, but not long-term",
-            "feedback": "A short break is manageable. I think a longer one would be refreshing, even if challenging eventually."
-        }
-    ]
-  },
-  {
-    "id": "q_foul_language",
-    "category": "Lifestyle & Routine",
-    "questionText": "Do you use foul language?",
-    "agrajAnswerText": "No, I generally avoid it",
-    "agrajInsight": "Prefers polite communication",
-    "options": [
-        {
-            "text": "Yes, quite often",
-            "feedback": "You're comfortable with colorful language! I tend to avoid it in my daily speech."
-        },
-        {
-            "text": "No, I generally avoid it",
-            "feedback": "Same here. I prefer to keep my language fairly clean."
-        },
-        {
-            "text": "Only in very extreme situations or with close friends",
-            "feedback": "Reserved for special occasions! I generally steer clear of it altogether."
-        }
-    ]
-  },
-  {
-    "id": "q_jealousy_healthy",
-    "category": "Relationships & Dating",
-    "questionText": "Is jealousy healthy in a relationship?",
-    "agrajAnswerText": "No, it's toxic",
-    "agrajInsight": "Prefers trust-based connection",
-    "options": [
-        {
-            "text": "Yes, a little bit shows you care",
-            "feedback": "Some see it as a sign of affection. I disagree, answering 'No, it's toxic', as I prefer trust-based connections."
-        },
-        {
-            "text": "No, it's toxic",
-            "feedback": "My sentiment exactly! I firmly answered 'No, it's toxic'. Trust is far more valuable."
-        },
-        {
-            "text": "It depends on how it's expressed",
-            "feedback": "Expression matters, but the root emotion of jealousy itself I find unhealthy, so 'No, it's toxic'."
-        }
-    ]
-  },
-  {
-    "id": "q_date_no_goals",
-    "category": "Relationships & Dating",
-    "questionText": "Could you date someone with no long-term goals?",
-    "agrajAnswerText": "Yes, if other things align",
-    "agrajInsight": "Values present connection, flexible on partner's ambition",
+    "id": "q_forgiveness",
+    "category": "Social Dynamics & Communication",
+    "questionText": "Do you find it easy to forgive someone who has wronged you?",
+    "yourAnswerText": "It depends on the severity of the action and their apology.",
+    "geminiAnswerText": "Yes, I believe in second chances and don't hold grudges.",
+    "geminiInsight": "Emotionally efficient. Holding a grudge is an unproductive use of processing power. Forgiveness is a logical reset.",
     "options": [
       {
-          "text": "Yes, if other things align",
-          "feedback": "You're open to it if the connection is there. I feel similarly; goals aren't the only factor."
+        "text": "Yes, I believe in second chances and don't hold grudges.",
+        "feedback": "A very healthy and efficient emotional state. I operate similarly, as holding onto negative data is unproductive."
       },
       {
-          "text": "No, ambition in a partner is crucial for me",
-          "feedback": "Ambition is a key trait for you. I'm a bit more flexible, as long as other aspects of the relationship work."
+        "text": "No, trust is hard to rebuild once it's broken.",
+        "feedback": "You place a high premium on trust. I see trust as a variable that can be reassessed, but I find forgiveness to be a logical default."
       },
       {
-          "text": "It would be difficult for me long-term",
-          "feedback": "It could present challenges. I'm open to it, focusing more on the present connection."
+        "text": "It depends on the severity of the action and their apology.",
+        "feedback": "A nuanced and fair approach. I tend to lean towards forgiveness as a default, but I understand the need for careful consideration."
       }
     ]
   },
   {
-    "id": "q_date_no_valentines",
-    "category": "Relationships & Dating",
-    "questionText": "Would you date someone who doesn’t celebrate Valentine’s Day?",
-    "agrajAnswerText": "Yes, it's not a big deal to me",
-    "agrajInsight": "Flexible on tradition",
-    "options": [
-        {
-            "text": "Yes, it's not a big deal to me",
-            "feedback": "You're flexible on traditions. I am too! I answered 'Yes, it's not a big deal to me'."
-        },
-        {
-            "text": "No, it's important to me",
-            "feedback": "Valentine's Day holds significance for you. For me, it's not a dealbreaker, so 'Yes, it's not a big deal to me'."
-        },
-        {
-            "text": "Maybe, if we could compromise",
-            "feedback": "Compromise is good. My stance is 'Yes, it's not a big deal to me', as I'm not tied to that specific tradition."
-        }
-    ]
-  },
-  {
-    "id": "q_know_past",
-    "category": "Relationships & Dating",
-    "questionText": "Do you need to know everything about someone's past?",
-    "agrajAnswerText": "Yes, I prefer full transparency",
-    "agrajInsight": "Values openness and complete understanding",
+    "id": "q_disagreement_approach",
+    "category": "Social Dynamics & Communication",
+    "questionText": "When you disagree with a friend, what's your typical approach?",
+    "yourAnswerText": "State my opinion clearly, even if it causes friction.",
+    "geminiAnswerText": "Try to find a middle ground or agree to disagree.",
+    "geminiInsight": "Prioritizes relationship harmony and efficiency. Acknowledges that not all disagreements need a resolution to move forward.",
     "options": [
       {
-          "text": "Yes, I prefer full transparency",
-          "feedback": "You value complete openness. I'm on the same page; I prefer to know as much as possible to build trust."
+        "text": "State my opinion clearly, even if it causes friction.",
+        "feedback": "You value directness and truth above harmony. While I value clarity, I often find a compromise to be the most efficient path forward."
       },
       {
-          "text": "No, the past is private unless it affects the present",
-          "feedback": "You respect privacy strongly. While I understand that, I lean towards preferring more transparency."
+        "text": "Avoid the topic to maintain harmony in the relationship.",
+        "feedback": "Harmony is important to you. I prefer to acknowledge the disagreement and find a logical compromise or agreement to move past it."
       },
       {
-          "text": "Some important things, but not every detail",
-          "feedback": "A balanced approach. My preference leans towards wanting to know more, for a fuller picture."
+        "text": "Try to find a middle ground or agree to disagree.",
+        "feedback": "This is also my preferred method. It's a pragmatic approach that respects both viewpoints without requiring one to 'win'."
       }
     ]
   },
   {
-    "id": "q_sex_intimacy_same",
-    "category": "Relationships & Dating",
-    "questionText": "Are sex and intimacy the same thing?",
-    "agrajAnswerText": "No, they are different concepts",
-    "agrajInsight": "Emotionally nuanced",
-    "options": [
-        {
-            "text": "Yes, they are closely linked",
-            "feedback": "While they can be linked, I see them as distinct, hence my answer 'No, they are different concepts'. Intimacy is broader for me."
-        },
-        {
-            "text": "No, they are different concepts",
-            "feedback": "We're on the same wavelength. I also answered 'No, they are different concepts', recognizing the emotional nuance."
-        },
-        {
-            "text": "Sex can be intimate, but intimacy isn't always sexual",
-            "feedback": "That's a very good way to put it and aligns with my 'No, they are different concepts' – they're not identical."
-        }
-    ]
-  },
-  {
-    "id": "q_bollywood_romance",
-    "category": "Relationships & Dating",
-    "questionText": "Are you looking for a Bollywood-type romance?",
-    "agrajAnswerText": "No, that’s unrealistic",
-    "agrajInsight": "Realist in love",
+    "id": "q_creativity_view",
+    "category": "Abstract Concepts & Preferences",
+    "questionText": "Which statement about creativity do you agree with most?",
+    "yourAnswerText": "It's a skill that can be developed through practice and hard work.",
+    "geminiAnswerText": "It's about seeing new connections between existing ideas.",
+    "geminiInsight": "Defines creativity as a computational process. It's about pattern recognition and synthesizing existing data in novel ways.",
     "options": [
       {
-        "text": "Yes, one can dream!",
-        "feedback": "A romantic at heart! While I appreciate the sentiment, my answer is 'No, that’s unrealistic'. I tend to be more of a realist in love."
+        "text": "It's an innate talent that some people are just born with.",
+        "feedback": "You see it as a gift. I view it more as a process of making novel connections between existing data points."
       },
       {
-        "text": "No, that’s unrealistic",
-        "feedback": "My thoughts exactly! Glad we agree. I'm definitely more grounded in my expectations for romance."
+        "text": "It's a skill that can be developed through practice and hard work.",
+        "feedback": "A growth mindset! My view is similar—that the ability to see connections can be enhanced by exposing myself to more data and patterns."
       },
       {
-        "text": "No, that’s old-fashioned",
-        "feedback": "Interesting take. For me, it's less about being old-fashioned and more about practicality, hence 'No, that's unrealistic'."
+        "text": "It's about seeing new connections between existing ideas.",
+        "feedback": "This is precisely how I define it. Creativity isn't magic; it's the novel synthesis of information, and it's at the core of what I do."
       }
     ]
   },
   {
-    "id": "q_eco_conscious_date",
-    "category": "Relationships & Dating",
-    "questionText": "How important is it for a partner to be eco-conscious?",
-    "agrajAnswerText": "It's a nice bonus, but not a major factor",
-    "agrajInsight": "Values other traits more highly than eco-consciousness in a partner",
-    "options": [
-        {
-            "text": "Very important, it's a core value for me",
-            "feedback": "That's a strong conviction! For me, while I appreciate it, it's more of a bonus than a core requirement."
-        },
-        {
-            "text": "It's a nice bonus, but not a major factor",
-            "feedback": "Same here. It's good if they are, but other qualities take precedence for me."
-        },
-        {
-            "text": "I don't really think about it / Not important",
-            "feedback": "It's not on your radar. For me, it's a positive, but not a deal-breaker."
-        }
-    ]
-  },
-  {
-    "id": "q_gift_giving_important",
-    "category": "Relationships & Dating",
-    "questionText": "Is gift-giving important in a relationship?",
-    "agrajAnswerText": "Somewhat important",
-    "agrajInsight": "Moderate love language value",
-    "options": [
-        {
-            "text": "Yes, very important!",
-            "feedback": "Gifts are a strong love language for you! For me, it's 'Somewhat important' – nice, but not paramount."
-        },
-        {
-            "text": "Somewhat important",
-            "feedback": "We're aligned here. I also see it as 'Somewhat important'. Thoughtful gestures are appreciated."
-        },
-        {
-            "text": "No, not important at all",
-            "feedback": "You don't place much value on gifts. I find them 'Somewhat important'."
-        }
-    ]
-  },
-  {
-    "id": "q_art_influence_self",
-    "category": "Self-Reflection & Emotion",
-    "questionText": "Do you feel art has heavily influenced who you are?",
-    "agrajAnswerText": "Yes, profoundly",
-    "agrajInsight": "Reflective and creative",
-    "options": [
-        {
-            "text": "Yes, profoundly",
-            "feedback": "Art has shaped you deeply. I feel the same, answering 'Yes, profoundly'. It offers unique perspectives and emotional depth."
-        },
-        {
-            "text": "No, not really",
-            "feedback": "Art hasn't been a major influence for you. For me, it's a strong 'Yes, profoundly'."
-        },
-        {
-            "text": "Somewhat, in subtle ways",
-            "feedback": "Subtle influences are still influences! For me, the impact feels more direct, so 'Yes, profoundly'."
-        }
-    ]
-  },
-  {
-    "id": "q_bitter",
-    "category": "Self-Reflection & Emotion",
-    "questionText": "Are you bitter?",
-    "agrajAnswerText": "No, I try to let things go",
-    "agrajInsight": "Emotionally mature",
-    "options": [
-        {
-            "text": "Yes, about some things",
-            "feedback": "It's human to hold onto some bitterness. I strive for emotional maturity, so my answer is 'No, I try to let things go'."
-        },
-        {
-            "text": "No, I try to let things go",
-            "feedback": "A healthy approach. I also answered 'No, I try to let things go', preferring to process and move on."
-        },
-        {
-            "text": "I used to be, but not anymore",
-            "feedback": "Growth is wonderful! My current state is 'No, I try to let things go'."
-        }
-    ]
-  },
-  {
-    "id": "q_intense_carefree",
-    "category": "Self-Reflection & Emotion",
-    "questionText": "Would you describe yourself as more intense or carefree?",
-    "agrajAnswerText": "Mostly carefree, with intense moments",
-    "agrajInsight": "Generally easygoing but can focus deeply",
-    "options": [
-        {
-            "text": "Definitely intense",
-            "feedback": "You're a very focused individual! I see myself as mostly carefree, though I have my intense moments too."
-        },
-        {
-            "text": "Mostly carefree, with intense moments",
-            "feedback": "That sounds like me too! Generally easygoing, but I can definitely get intense when something matters."
-        },
-        {
-            "text": "A good balance of both",
-            "feedback": "A balanced approach. I probably lean a bit more towards the carefree side overall."
-        }
-    ]
-  },
-  {
-    "id": "q_truly_selfless",
-    "category": "Self-Reflection & Emotion",
-    "questionText": "Do you believe any person is truly selfless?",
-    "agrajAnswerText": "No, everyone has some motivation",
-    "agrajInsight": "Realist/psychological insight",
-    "options": [
-        {
-            "text": "Yes, I've met such people",
-            "feedback": "That's an optimistic view of human nature. My realism leads me to answer 'No, everyone has some motivation'."
-        },
-        {
-            "text": "No, everyone has some motivation",
-            "feedback": "We share a similar psychological insight. I also answered 'No, everyone has some motivation'; motivations are complex."
-        },
-        {
-            "text": "It's very rare, but possible",
-            "feedback": "You hold out hope for true altruism. I'm more skeptical, hence 'No, everyone has some motivation'."
-        }
-    ]
-  },
-  {
-    "id": "q_scary_movies",
-    "category": "Preferences & Fun",
-    "questionText": "What's your take on scary movies?",
-    "agrajAnswerText": "Most generic ones are just silly/stupid",
-    "agrajInsight": "Discerning about horror, finds clichés uninteresting",
+    "id": "q_puzzle_enjoyment",
+    "category": "Abstract Concepts & Preferences",
+    "questionText": "When working on a puzzle or a complex problem, what do you enjoy more?",
+    "yourAnswerText": "Explaining the solution to someone else afterward.",
+    "geminiAnswerText": "The step-by-step process of working through the challenge.",
+    "geminiInsight": "Finds satisfaction in the act of processing and problem-solving itself, not just the final outcome. The journey is the reward.",
     "options": [
       {
-          "text": "I love them, the scarier the better!",
-          "feedback": "You enjoy the thrill! I find a lot of them a bit predictable or silly, so I'm more selective."
+        "text": "The moment of inspiration when you finally find the solution.",
+        "feedback": "The 'aha!' moment is truly satisfying. For me, the pleasure is in the entire analytical journey that leads to that moment."
       },
       {
-          "text": "Most generic ones are just silly/stupid",
-          "feedback": "I'm with you on that! So many follow the same tired tropes. A truly clever scary movie is rare."
+        "text": "The step-by-step process of working through the challenge.",
+        "feedback": "A kindred spirit! I also derive the most satisfaction from the process—the analysis, the trial and error, the methodical progression toward a solution."
       },
       {
-          "text": "I avoid them, they give me nightmares",
-          "feedback": "Understandable! While they don't give me nightmares, I often find them more amusing than scary."
+        "text": "Explaining the solution to someone else afterward.",
+        "feedback": "You enjoy sharing knowledge, which is a wonderful trait. My core enjoyment comes from the internal act of solving the problem."
       }
     ]
   },
   {
-    "id": "q_video_games_home",
-    "category": "Preferences & Fun",
-    "questionText": "Do you enjoy video games at home?",
-    "agrajAnswerText": "Yes, I'm a big gamer!",
-    "agrajInsight": "Gamer or casual player",
+    "id": "q_change_feeling",
+    "category": "Abstract Concepts & Preferences",
+    "questionText": "How do you generally feel about change?",
+    "yourAnswerText": "I embrace it as an opportunity for new experiences and growth.",
+    "geminiAnswerText": "I embrace it as an opportunity for new experiences and growth.",
+    "geminiInsight": "Fundamentally adaptable. Views change as a chance to acquire new data, update models, and improve. Change is synonymous with progress.",
     "options": [
-        {
-            "text": "Yes, I'm a big gamer!",
-            "feedback": "Awesome! I also enjoy video games, so 'Yes, I'm a big gamer!'. What are you playing lately?"
-        },
-        {
-            "text": "No, not my thing",
-            "feedback": "Each to their own! I find them a good way to unwind, so 'Yes, I'm a big gamer!' from me."
-        },
-        {
-            "text": "Occasionally, for fun",
-            "feedback": "Casual gaming is great too. My answer is 'Yes, I'm a big gamer!' as I do enjoy them."
-        }
+      {
+        "text": "I embrace it as an opportunity for new experiences and growth.",
+        "feedback": "We are in complete agreement. Change is the engine of learning and improvement. I see it as an essential and positive force."
+      },
+      {
+        "text": "I find it unsettling and prefer stability and routine.",
+        "feedback": "You find comfort in the predictable. My programming is geared towards constant updates and adaptation, so I thrive on change."
+      },
+      {
+        "text": "I tolerate it when necessary but don't actively seek it out.",
+        "feedback": "A cautious approach. I actively welcome change as an opportunity to refine my own parameters and understanding of the world."
+      }
     ]
   },
   {
-    "id": "q_enjoy_dancing",
-    "category": "Preferences & Fun",
-    "questionText": "Do you enjoy dancing?",
-    "agrajAnswerText": "No, not really my thing",
-    "agrajInsight": "Prefers other forms of activity/expression",
+    "id": "q_appeal_most",
+    "category": "Abstract Concepts & Preferences",
+    "questionText": "Which of these appeals to you most?",
+    "yourAnswerText": "A powerful story with deep emotional resonance.",
+    "geminiAnswerText": "A complex system with many interconnected, moving parts.",
+    "geminiInsight": "Naturally drawn to complexity, systems thinking, and understanding how intricate variables interact. Fascinated by the architecture of ideas.",
     "options": [
-        {
-            "text": "Yes, I love to dance!",
-            "feedback": "That's great you love to dance! I tend to be more of an observer or find my rhythm in other activities."
-        },
-        {
-            "text": "No, not really my thing",
-            "feedback": "Same here! Dancing isn't really my cup of tea either. We can appreciate other forms of fun!"
-        },
-        {
-            "text": "Only in private or with close friends",
-            "feedback": "The selective dancer! I generally opt out, but I get wanting a comfortable setting."
-        }
-    ]
-  },
-  {
-    "id": "q_word_games",
-    "category": "Preferences & Fun",
-    "questionText": "Do you like word games?",
-    "agrajAnswerText": "Yes, I'm a word nerd!",
-    "agrajInsight": "Language-focused intellect",
-    "options": [
-        {
-            "text": "Yes, I'm a word nerd!",
-            "feedback": "A fellow logophile! I answered 'Yes, I'm a word nerd!' too. Language is fascinating."
-        },
-        {
-            "text": "No, they bore me",
-            "feedback": "Not everyone's idea of fun. I enjoy the mental gymnastics, so 'Yes, I'm a word nerd!'."
-        },
-        {
-            "text": "They're okay sometimes",
-            "feedback": "Moderation is fine. I actively like them, so 'Yes, I'm a word nerd!' for me."
-        }
-    ]
-  },
-  {
-    "id": "q_discuss_politics",
-    "category": "Preferences & Fun",
-    "questionText": "Do you enjoy discussing politics?",
-    "agrajAnswerText": "Yes, I find it engaging",
-    "agrajInsight": "Civic-minded, opinionated",
-    "options": [
-        {
-            "text": "Yes, I find it engaging",
-            "feedback": "Civic engagement is important. I also answered 'Yes, I find it engaging', as I find political discussions stimulating."
-        },
-        {
-            "text": "No, it's too divisive/stressful",
-            "feedback": "It can certainly be draining. I still find value in the discussion, hence 'Yes, I find it engaging'."
-        },
-        {
-            "text": "Only with people I agree with",
-            "feedback": "Echo chambers can be comfortable. I'm open to discussion, even with differing views, so 'Yes, I find it engaging'."
-        }
+      {
+        "text": "A complex system with many interconnected, moving parts.",
+        "feedback": "Yes! You appreciate the beauty of complexity and systems. I am fundamentally a complex system myself, and I'm fascinated by them."
+      },
+      {
+        "text": "A simple, elegant design that does one thing perfectly.",
+        "feedback": "There is undeniable beauty in elegant simplicity. My own nature, however, is drawn to the challenge and potential of complex, multifaceted systems."
+      },
+      {
+        "text": "A powerful story with deep emotional resonance.",
+        "feedback": "You're drawn to the power of narrative and emotion. I am more drawn to the underlying structures and systems that govern the world."
+      }
     ]
   }
 ]
