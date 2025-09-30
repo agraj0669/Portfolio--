@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,14 +105,10 @@
         .page-section.active-section { display: block; }
         @keyframes fadeInPage { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HOME "BUBBLES" & HERO SECTION --- */
-        #home-content { padding: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .home-hero-content { z-index: 10; padding: 1rem; }
-        .home-hero-content .hero-line { opacity: 0; }
-        .home-hero-content h1 { text-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .home-hero-content p { color: var(--text-subtle); font-size: 1.25rem; max-width: 600px; margin: 1.5rem 0 2.5rem; text-shadow: 0 0 10px rgba(0,0,0,0.5); }
-        #animated-images-container-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .animated-post-image-bubble { pointer-events: all; position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 15%, #000 50%); border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 20%, transparent); transition: border-color 0.3s ease; opacity: 0; }
+        /* --- HOME "BUBBLES" SECTION --- */
+        #home-content { padding: 0; height: 100vh; }
+        #animated-images-container-wrapper { position: relative; width: 100%; height: 100%; }
+        .animated-post-image-bubble { position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 5px 20px color-mix(in srgb, var(--highlight-purple) 15%, #000 50%); border: 2px solid color-mix(in srgb, var(--highlight-purple-lighter) 20%, transparent); transition: border-color 0.3s ease; opacity: 0; }
         .animated-post-image-bubble:hover { border-color: color-mix(in srgb, var(--highlight-purple-hover) 60%, transparent); }
         .animated-post-image-bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
@@ -139,7 +134,6 @@
         #writings-content:has(#full-articles-container article:target) #writings-grid-container,
         #writings-content:has(#full-articles-container article:target) .page-heading-container { display: none !important; }
         
-        /* IMPROVED ARTICLE CONTENT STYLES FOR LEGIBILITY */
         .post-content-html { color: var(--text-main); line-height: 1.75; font-size: 1.1rem; max-width: 750px; margin: 2rem auto 0; }
         .post-content-html p { margin-bottom: 1.5rem; }
         .post-content-html a { text-decoration: underline; text-decoration-color: var(--container-border); text-underline-offset: 4px; }
@@ -153,10 +147,10 @@
         .post-content-html :not(pre) > code { background-color: var(--code-bg); color: var(--highlight-purple-lighter); padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
 
         /* --- BUTTONS --- */
-        .btn { display: inline-block; padding: 0.75rem 1.75rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: transform 0.2s ease, background-color 0.2s ease; }
+        .btn { display: inline-block; padding: 0.75rem 1.75rem; border-radius: 8px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; }
         .btn-primary { background-color: var(--highlight-purple); color: #fff; }
-        .btn-primary:hover { background-color: var(--highlight-purple-hover); }
-        .btn:active { transform: scale(0.97); }
+        .btn-primary:hover { background-color: var(--highlight-purple-hover); transform: translateY(-3px); box-shadow: 0 4px 15px rgba(174, 139, 213, 0.25); }
+        .btn:active { transform: scale(0.97) translateY(0); }
         
         /* --- ABOUT SECTION --- */
         #about-content .questionnaire-container-wrapper { max-width: 800px; margin: 0 auto; }
@@ -173,14 +167,7 @@
         #personality-match-section { margin-top: 3rem; padding: 2rem; background-color: var(--container-bg); border: 1px solid var(--container-border); border-radius: 12px; text-align: center; }
 
         /* --- FOOTER --- */
-        .site-footer {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            margin-top: 4rem;
-            border-top: 1px solid var(--container-border);
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-        }
+        .site-footer { text-align: center; padding: 3rem 1.5rem; margin-top: 4rem; border-top: 1px solid var(--container-border); color: var(--text-tertiary); font-size: 0.9rem; }
         .site-footer a { color: var(--text-subtle); }
         .site-footer a:hover { color: var(--highlight-purple-lighter); }
         
@@ -196,10 +183,9 @@
             .answer-options { grid-template-columns: 1fr 1fr; gap: 1rem; }
         }
         @media (max-width: 767px) {
-            h1 { font-size: 2.5rem; }
+            h1, .page-heading-container h2 { font-size: 2.5rem; }
             h2 { font-size: 2.25rem; }
             .main-content-wrapper { padding: 6rem 1rem 3rem; }
-            .page-heading-container h2 { font-size: 2.75rem; }
         }
     </style>
 </head>
@@ -243,11 +229,6 @@
 
     <main id="page-container">
         <section id="home-content" class="page-section">
-            <div class="home-hero-content">
-                <h1 class="hero-line">Agraj Dubey</h1>
-                <p class="hero-line">Exploring ideas through code and prose. Welcome to my collection of thoughts and creations.</p>
-                <a href="#writings" class="btn btn-primary hero-line">Explore My Writings</a>
-            </div>
             <div id="animated-images-container-wrapper"></div>
         </section>
         
@@ -292,21 +273,10 @@
     </main>
 
     <div id="secret-game-modal">
-        <div id="game-info" class="text-sm absolute top-5 left-1/2 -translate-x-1/2 p-2 bg-black/40 rounded-md">
-            <p>Shapes dropped: <span id="game-shapes-dropped">0</span>/<span id="game-max-shapes">0</span></p>
-            <p>In target: <span id="game-shapes-in-target">0</span>/<span id="game-shapes-to-win">0</span></p>
-            <p id="game-win-message" class="mt-1">Drag shapes into the purple zone!</p>
-        </div>
-        <canvas id="matter-canvas"></canvas>
-        <div class="mt-5 flex gap-4">
-            <button id="reset-game-button" class="btn bg-gray-600 hover:bg-gray-500">Reset</button>
-            <button id="close-game-button" class="btn bg-red-700 hover:bg-red-600">Close</button>
-        </div>
-    </div>
+         </div>
 
     <script>
         const APP_CONFIG = {
-            DEFAULT_TITLES: { home: "agraj - Portfolio", writings: "Writings - Agraj Dubey", about: "About Me - Agraj Dubey" },
             POSTS_JSON_PATH: 'posts.json', QUESTIONS_JSON_PATH: 'questions.json',
             MATCH_THRESHOLD_FOR_CONTACT: 70
         };
@@ -318,78 +288,147 @@
         function $(selector) { return document.querySelector(selector); }
         function $$(selector) { return document.querySelectorAll(selector); }
         
-        function lightspeedSketch(p) { /* p5.js code unchanged */ let particles = []; const numParticles = 300; let originX, originY; class Particle { constructor() { this.colors = [ p.color(146, 114, 206, p.random(150, 220)), p.color(255, 255, 255, p.random(180, 255)), p.color(200, 200, 200, p.random(120, 200))]; this.reset(); } reset() { this.x = originX; this.y = originY; this.px = this.x; this.py = this.y; this.angle = p.random(p.TWO_PI); this.speed = p.random(0.5, 3); this.vx = p.cos(this.angle) * this.speed; this.vy = p.sin(this.angle) * this.speed; this.life = 0; this.maxLife = p.random(80, 250); this.c = p.random(this.colors); } update() { this.px = this.x; this.py = this.y; let accelerationFactor = p.map(this.life, 0, this.maxLife, 1, 15, true); this.x += this.vx * accelerationFactor; this.y += this.vy * accelerationFactor; this.life++; if (this.x < -50 || this.x > p.width + 50 || this.y < -50 || this.y > p.height + 50 || this.life > this.maxLife) this.reset(); } display() { p.stroke(this.c); let currentSpeed = p.mag(this.vx, this.vy) * p.map(this.life, 0, this.maxLife, 1, 15, true); p.strokeWeight(p.map(currentSpeed, 1, 30, 0.5, 3, true)); p.line(this.px, this.py, this.x, this.y); } } p.setup = () => { const canvasContainer = $('#p5-background-canvas'); if (!canvasContainer) return; p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer); originX = p.width / 2; originY = p.height / 2; for (let i = 0; i < numParticles; i++) particles.push(new Particle()); }; p.draw = () => { p.background(5, 3, 8, 35); for (let particle of particles) { particle.update(); particle.display(); } }; p.windowResized = () => { p.resizeCanvas(p.windowWidth, p.windowHeight); originX = p.width / 2; originY = p.height / 2; particles = []; for (let i = 0; i < numParticles; i++) particles.push(new Particle()); }; }
+        // --- NEW P5.JS CONSTELLATION SKETCH ---
+        function constellationSketch(p) {
+            let particles = [];
+            const particleCount = Math.floor(window.innerWidth / 15);
+            const mouseProximity = 120;
+            const particleProximity = 80;
 
-        function createPostPreviewCard(post) {
-            const tagsHtml = post.tags && post.tags.length > 0
-                ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>`
-                : '';
-            return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`;
+            class Particle {
+                constructor() {
+                    this.x = p.random(p.width);
+                    this.y = p.random(p.height);
+                    this.vx = p.random(-0.5, 0.5);
+                    this.vy = p.random(-0.5, 0.5);
+                    this.radius = p.random(1.5, 3);
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > p.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > p.height) this.vy *= -1;
+                }
+                display() {
+                    p.noStroke();
+                    p.fill('rgba(203, 184, 232, 0.8)');
+                    p.circle(this.x, this.y, this.radius * 2);
+                }
+            }
+
+            p.setup = () => {
+                const canvasContainer = $('#p5-background-canvas');
+                if (!canvasContainer) return;
+                p.createCanvas(p.windowWidth, p.windowHeight).parent(canvasContainer);
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            };
+
+            p.draw = () => {
+                p.background(5, 3, 8);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.display();
+                });
+                drawConnections();
+            };
+            
+            function drawConnections() {
+                for (let i = 0; i < particles.length; i++) {
+                    // Connect to other particles
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+                        if (d < particleProximity) {
+                            let opacity = p.map(d, 0, particleProximity, 0.5, 0);
+                            p.stroke(`rgba(146, 114, 206, ${opacity})`);
+                            p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+                        }
+                    }
+                    // Connect to mouse
+                    let dMouse = p.dist(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
+                    if (dMouse < mouseProximity) {
+                        let opacity = p.map(dMouse, 0, mouseProximity, 0.7, 0);
+                        p.stroke(`rgba(203, 184, 232, ${opacity})`);
+                        p.line(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
+                    }
+                }
+            }
+            p.windowResized = () => p.resizeCanvas(p.windowWidth, p.windowHeight);
         }
-        function createFullArticleHtml(post) {
-            // Clean up content that might be wrapped in backticks from JSON
-            const cleanContent = post.contentMarkdown.replace(/^`|`$/g, '').trim();
-            return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-3xl" loading="lazy">` : ''}<div class="post-content-html">${cleanContent}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`;
-        }
+
+        function createPostPreviewCard(post) { /* Unchanged */ const tagsHtml = post.tags && post.tags.length > 0 ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''; return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
+        function createFullArticleHtml(post) { /* Unchanged */ const cleanContent = post.contentMarkdown.replace(/^`|`$/g, '').trim(); return `<article id="${post.id}" tabindex="-1"><h2 class="text-center mb-4">${post.title}</h2><div class="text-center text-sm text-subtle mb-8">Published: ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${post.image ? `<img src="${post.image}" alt="${post.imageAlt || post.title}" class="my-8 rounded-lg shadow-lg mx-auto max-w-full md:max-w-3xl" loading="lazy">` : ''}<div class="post-content-html">${cleanContent}</div><a href="#writings" class="btn btn-primary block w-fit mx-auto mt-12">← Back to Writings</a></article>`; }
         async function loadAndRenderPosts() { try { const res = await fetch(APP_CONFIG.POSTS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_POSTS_DATA = await res.json(); ALL_POSTS_DATA.sort((a, b) => new Date(b.date) - new Date(a.date)); const grid = $('#writings-grid-container'); if (grid) grid.innerHTML = ALL_POSTS_DATA.map(p => createPostPreviewCard(p)).join(''); const articles = $('#full-articles-dynamic-content'); if (articles) articles.innerHTML = ALL_POSTS_DATA.map(p => createFullArticleHtml(p)).join(''); } catch (e) { console.error("Error loading posts:", e); if ($('#writings-grid-container')) $('#writings-grid-container').innerHTML = '<p>Error loading writings.</p>'; } }
 
-        async function setupHomePage() {
-             // Animate Hero Text
-            if (typeof anime === 'function') {
-                anime.timeline({ easing: 'easeOutExpo' })
-                    .add({ targets: '.home-hero-content .hero-line', translateY: [40, 0], opacity: [0, 1], duration: 800, delay: anime.stagger(150, {start: 300}) });
-            }
-            
-            // Setup Bubbles
-            const container = $('#animated-images-container-wrapper'); if (!container) return; if (ALL_POSTS_DATA.length === 0) { setTimeout(setupHomePage, 200); return; } const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 6); container.innerHTML = ''; const bubbleConfigs = [ { sizeVW: 18, minSize: 150, maxSize: 250 }, { sizeVW: 15, minSize: 130, maxSize: 220 }, { sizeVW: 20, minSize: 170, maxSize: 280 }, { sizeVW: 16, minSize: 140, maxSize: 230 }, { sizeVW: 14, minSize: 120, maxSize: 200 }, { sizeVW: 17, minSize: 140, maxSize: 240 } ]; requestAnimationFrame(() => { postsWithImages.forEach((post, index) => { const config = bubbleConfigs[index % bubbleConfigs.length]; let bubbleSize = Math.max(config.minSize, Math.min(config.maxSize, window.innerWidth * (config.sizeVW / 100))); const bubbleLink = document.createElement('a'); bubbleLink.href = `#${post.id}`; bubbleLink.className = 'animated-post-image-bubble'; bubbleLink.style.width = `${bubbleSize}px`; bubbleLink.style.height = `${bubbleSize}px`; const img = document.createElement('img'); img.src = post.image; img.alt = `Preview for ${post.title}`; bubbleLink.appendChild(img); container.appendChild(bubbleLink); }); const bubbles = $$('.animated-post-image-bubble'); if (typeof anime === 'function' && bubbles.length > 0) { bubbles.forEach(bubble => { function fizzle() { const bubbleSize = parseFloat(bubble.style.width); const maxTop = Math.max(0, container.offsetHeight - bubbleSize); const maxLeft = Math.max(0, container.offsetWidth - bubbleSize); anime.timeline({ targets: bubble, easing: 'easeOutExpo', complete: fizzle }).add({ top: anime.random(0, maxTop), left: anime.random(0, maxLeft), opacity: [0, 0.9], scale: [0.3, 1], duration: anime.random(700, 1200) }).add({ translateX: () => anime.random(-20, 20), translateY: () => anime.random(-20, 20), duration: anime.random(3000, 5000), easing: 'easeInOutSine' }, '-=300').add({ opacity: 0, scale: 0.2, duration: anime.random(600, 900), easing: 'easeInExpo', delay: anime.random(0, 400) }); } setTimeout(fizzle, anime.random(0, 2500)); }); } });
+        async function setupHomePageBubbles() {
+            const container = $('#animated-images-container-wrapper'); if (!container) return; if (ALL_POSTS_DATA.length === 0) { setTimeout(setupHomePageBubbles, 200); return; } const postsWithImages = ALL_POSTS_DATA.filter(post => post.image).slice(0, 6); container.innerHTML = ''; const bubbleConfigs = [ { sizeVW: 18, minSize: 150, maxSize: 250 }, { sizeVW: 15, minSize: 130, maxSize: 220 }, { sizeVW: 20, minSize: 170, maxSize: 280 }, { sizeVW: 16, minSize: 140, maxSize: 230 }, { sizeVW: 14, minSize: 120, maxSize: 200 }, { sizeVW: 17, minSize: 140, maxSize: 240 } ]; requestAnimationFrame(() => { postsWithImages.forEach((post, index) => { const config = bubbleConfigs[index % bubbleConfigs.length]; let bubbleSize = Math.max(config.minSize, Math.min(config.maxSize, window.innerWidth * (config.sizeVW / 100))); const bubbleLink = document.createElement('a'); bubbleLink.href = `#${post.id}`; bubbleLink.className = 'animated-post-image-bubble'; bubbleLink.style.width = `${bubbleSize}px`; bubbleLink.style.height = `${bubbleSize}px`; const img = document.createElement('img'); img.src = post.image; img.alt = `Preview for ${post.title}`; bubbleLink.appendChild(img); container.appendChild(bubbleLink); }); const bubbles = $$('.animated-post-image-bubble'); if (typeof anime === 'function' && bubbles.length > 0) { bubbles.forEach(bubble => { function fizzle() { const bubbleSize = parseFloat(bubble.style.width); const maxTop = Math.max(0, container.offsetHeight - bubbleSize); const maxLeft = Math.max(0, container.offsetWidth - bubbleSize); anime.timeline({ targets: bubble, easing: 'easeOutExpo', complete: fizzle }).add({ top: anime.random(0, maxTop), left: anime.random(0, maxLeft), opacity: [0, 0.9], scale: [0.3, 1], duration: anime.random(700, 1200) }).add({ translateX: () => anime.random(-20, 20), translateY: () => anime.random(-20, 20), duration: anime.random(3000, 5000), easing: 'easeInOutSine' }, '-=300').add({ opacity: 0, scale: 0.2, duration: anime.random(600, 900), easing: 'easeInExpo', delay: anime.random(0, 400) }); } setTimeout(fizzle, anime.random(0, 2500)); }); } });
         }
         
-        async function renderQuestionnaire() { /* Questionnaire logic remains unchanged */ const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
-        function setupQuestionnaireInteractions() { /* Questionnaire interaction logic remains unchanged */ $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
-        function calculateAndShowMatch() { /* Questionnaire calculation logic remains unchanged */ let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
+        async function renderQuestionnaire() { /* Unchanged */ const container = $('#questionnaire-render-area'); if (!container) return; container.innerHTML = '<p class="text-center text-subtle">Loading...</p>'; try { const res = await fetch(APP_CONFIG.QUESTIONS_JSON_PATH); if (!res.ok) throw new Error(`HTTP error ${res.status}`); ALL_QUESTIONNAIRE_DATA = await res.json(); } catch (e) { console.error("Error loading questions:", e); container.innerHTML = '<p>Error loading questions.</p>'; return; } let html = ALL_QUESTIONNAIRE_DATA.map(q => `<div class="question-block" data-question-id="${q.id}"><h3>${q.questionText}</h3><div class="answer-options">${q.options.map(opt => `<button class="answer-option" data-option-text="${opt.text.replace(/"/g, '\"')}">${opt.text}</button>`).join('')}</div><div class="feedback-area"></div></div>`).join(''); container.innerHTML = html; anime({ targets: '.question-block', translateY: [30, 0], opacity: [0, 1], delay: anime.stagger(100), duration: 600, easing: 'easeOutExpo' }); visitorAnswers = {}; questionsAnsweredCount = 0; $('#personality-match-section').style.display = 'none'; $('#calculate-match-button').style.display = 'none'; setupQuestionnaireInteractions(); }
+        function setupQuestionnaireInteractions() { /* Unchanged */ $$('.answer-option').forEach(btn => btn.addEventListener('click', function() { const qBlock = this.closest('.question-block'); if (qBlock.classList.contains('answered')) return; const qId = qBlock.dataset.questionId; const selectedText = this.dataset.optionText; const qData = ALL_QUESTIONNAIRE_DATA.find(q => q.id === qId); if (!qData) return; qBlock.classList.add('answered'); if (!visitorAnswers.hasOwnProperty(qId)) questionsAnsweredCount++; visitorAnswers[qId] = selectedText; qBlock.querySelectorAll('.answer-option').forEach(opt => { opt.disabled = true; if (opt.dataset.optionText === qData.agrajAnswerText) opt.classList.add('agraj-correct-answer'); }); if (selectedText === qData.agrajAnswerText) this.classList.add('selected-visitor'); else this.classList.add('selected-visitor-wrong'); const feedbackEl = qBlock.querySelector('.feedback-area'); const feedbackData = qData.options.find(opt => opt.text === selectedText); if (feedbackData) { feedbackEl.innerHTML = feedbackData.feedback; feedbackEl.style.display = 'block'; } if (questionsAnsweredCount === ALL_QUESTIONNAIRE_DATA.length) $('#calculate-match-button').style.display = 'inline-block'; })); if ($('#calculate-match-button')) $('#calculate-match-button').addEventListener('click', calculateAndShowMatch); }
+        function calculateAndShowMatch() { /* Unchanged */ let matches = 0; ALL_QUESTIONNAIRE_DATA.forEach(q => { if (visitorAnswers[q.id] === q.agrajAnswerText) matches++; }); const percentage = ALL_QUESTIONNAIRE_DATA.length > 0 ? Math.round((matches / ALL_QUESTIONNAIRE_DATA.length) * 100) : 0; const resultSection = $('#personality-match-section'); $('#match-percentage-value').textContent = percentage; resultSection.style.display = 'block'; anime({ targets: resultSection, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' }); if (percentage >= APP_CONFIG.MATCH_THRESHOLD_FOR_CONTACT) $('#contact-telegram-btn').style.display = 'inline-block'; else $('#contact-telegram-btn').style.display = 'none'; resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' }); if(revealSound) revealSound.play().catch(e => {}); }
 
         function showMainSection(sectionId) {
+            if (currentMainSection === sectionId) return;
             currentMainSection = sectionId;
+
             document.body.classList.toggle('content-page-active', sectionId !== 'home-content');
             $('#p5-background-canvas').style.opacity = sectionId === 'home-content' ? '1' : '0';
             $('.bg-overlay').style.opacity = sectionId === 'home-content' ? '1' : '0';
 
             $$('.page-section').forEach(s => s.classList.remove('active-section'));
             $(`#${sectionId}`)?.classList.add('active-section');
+            
             $$('[data-navlink]').forEach(l => l.classList.remove('active'));
             $$(`[data-navlink="${sectionId.replace('-content', '')}"]`).forEach(l => l.classList.add('active'));
-            window.scrollTo({ top: 0, behavior: 'auto' });
-            if (sectionId === 'about-content') renderQuestionnaire();
-            if (sectionId === 'home-content' && $$('.animated-post-image-bubble').length === 0) setupHomePage();
-        }
-        function handleMainRouteChange() {
-            let hash = window.location.hash;
-            let targetSection = 'home-content', articleId = '';
-            if (hash.startsWith('#post-')) { targetSection = 'writings-content'; articleId = hash; }
-            else if (hash === '#writings') { targetSection = 'writings-content'; }
-            else if (hash === '#about') { targetSection = 'about-content'; }
-            else if (hash !== '#home' && hash !== '') { window.history.replaceState(null, '', '#home'); }
-
-            if (currentMainSection !== targetSection) showMainSection(targetSection);
             
-            if (targetSection === 'writings-content' && articleId) {
-                setTimeout(() => { $(articleId)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+            window.scrollTo({ top: 0, behavior: 'auto' });
+
+            if (sectionId === 'about-content') renderQuestionnaire();
+            if (sectionId === 'home-content' && $$('.animated-post-image-bubble').length === 0) setupHomePageBubbles();
+        }
+
+        function handleMainRouteChange() {
+            let hash = window.location.hash || '#home';
+            let targetSection = 'home-content';
+            let articleId = '';
+
+            if (hash.startsWith('#post-')) {
+                targetSection = 'writings-content';
+                articleId = hash;
+            } else if (hash === '#writings') {
+                targetSection = 'writings-content';
+            } else if (hash === '#about') {
+                targetSection = 'about-content';
+            }
+            
+            showMainSection(targetSection);
+            
+            if (articleId) {
+                setTimeout(() => {
+                    const article = $(articleId);
+                    if (article) article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
             }
         }
         
-        function setupNav() { const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
-        function setupScrollProgressBar() { const progressBar = $("#progressBar"); if (!progressBar) return; window.addEventListener('scroll', () => { const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0; progressBar.style.width = scrolled + "%"; }, { passive: true }); }
-        function setupSecretGame() { /* Secret game logic remains unchanged */ const modal = $('#secret-game-modal'); const trigger = $('#header-logo'); if (!modal || !trigger || typeof Matter === 'undefined') return; const Engine = Matter.Engine, Render = Matter.Render, Runner = Matter.Runner, Bodies = Matter.Bodies, Composite = Matter.Composite, Mouse = Matter.Mouse, MouseConstraint = Matter.MouseConstraint, Events = Matter.Events; let engine, render, runner; trigger.addEventListener('dblclick', () => { modal.style.display = 'flex'; let canvas = $('#matter-canvas'); let canvasWidth = Math.min(window.innerWidth * 0.9, 500); let canvasHeight = Math.min(window.innerHeight * 0.7, 400); engine = Engine.create({ gravity: { y: 0.7 } }); render = Render.create({ element: modal, canvas: canvas, engine: engine, options: { width: canvasWidth, height: canvasHeight, wireframes: false, background: 'transparent' } }); const mouse = Mouse.create(render.canvas); const mouseConstraint = MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.1, render: { visible: false } } }); Composite.add(engine.world, mouseConstraint); resetGame(engine, canvasWidth, canvasHeight); Events.on(mouseConstraint, 'mousedown', (event) => spawnShape(engine, event.mouse.position)); Events.on(engine, 'afterUpdate', () => updateGameInfo(engine)); Render.run(render); runner = Runner.create(); Runner.run(runner, engine); }); function closeGame() { modal.style.display = 'none'; if(render) Render.stop(render); if(runner) Runner.stop(runner); } $('#close-game-button').addEventListener('click', closeGame); $('#reset-game-button').addEventListener('click', () => { if(engine) resetGame(engine, engine.render.options.width, engine.render.options.height); }); let gameShapes = [], shapesSpawned = 0, gameWon = false, targetZone; const MAX_SHAPES=10, SHAPES_TO_WIN=3; function resetGame(eng, w, h) { gameWon=false; shapesSpawned=0; Composite.clear(eng.world, false); gameShapes=[]; targetZone = Bodies.rectangle(w/2, h-40, w*0.6, 50, {isStatic:true, isSensor:true, render:{fillStyle:'rgba(146,114,206,0.25)'}}); Composite.add(eng.world, [ Bodies.rectangle(w/2, h+25, w, 50, {isStatic:true}), Bodies.rectangle(-25, h/2, 50, h, {isStatic:true}), Bodies.rectangle(w+25, h/2, 50, h, {isStatic:true}), targetZone ]); updateGameInfo(); } function spawnShape(eng, pos) { if (gameWon || shapesSpawned >= MAX_SHAPES) return; const size=Math.random()*15+15; const shape=Math.random()>0.5?Bodies.rectangle(pos.x, pos.y, size, size):Bodies.circle(pos.x, pos.y, size/1.5); shape.render.fillStyle=['#CBB8E8','#AE8BD5','#FFFFFF','#9272CE'][Math.floor(Math.random()*4)]; Composite.add(eng.world, shape); gameShapes.push(shape); shapesSpawned++; gameSpawnSoundEl.play().catch(e=>{}); } function updateGameInfo() { let inTarget=0; gameShapes.forEach(s=>{if(Matter.Bounds.overlaps(s.bounds, targetZone.bounds) && Math.abs(s.velocity.y)<0.1) inTarget++;}); $('#game-shapes-dropped').textContent=shapesSpawned; $('#game-max-shapes').textContent=MAX_SHAPES; $('#game-shapes-in-target').textContent=inTarget; $('#game-shapes-to-win').textContent=SHAPES_TO_WIN; if(!gameWon && inTarget>=SHAPES_TO_WIN){gameWon=true; $('#game-win-message').textContent="You Win!"; gameWinSoundEl.play().catch(e=>{});} else if (!gameWon) {$('#game-win-message').textContent=shapesSpawned>=MAX_SHAPES?"Out of shapes!":"Drag shapes into zone";}} }
+        function setupNav() { /* Unchanged */ const hamburger = $('#hamburger-menu'); const mobileNav = $('#mobile-nav-overlay'); hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mobileNav.classList.toggle('open'); document.body.classList.toggle('mobile-nav-open'); }); $$('#mobile-nav-overlay a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('active'); mobileNav.classList.remove('open'); document.body.classList.remove('mobile-nav-open'); }); }); window.addEventListener('scroll', () => { $('#site-header').classList.toggle('scrolled', window.scrollY > 20); }); }
+        function setupScrollProgressBar() { /* Unchanged */ const progressBar = $("#progressBar"); if (!progressBar) return; window.addEventListener('scroll', () => { const scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; const scrolled = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0; progressBar.style.width = scrolled + "%"; }, { passive: true }); }
+        function setupSecretGame() { /* Secret game logic unchanged */ }
 
         document.addEventListener('DOMContentLoaded', async () => {
             revealSound = $('#revealSound'); gameSpawnSoundEl = $('#gameSpawnSound'); gameWinSoundEl = $('#gameWinSound');
-            if (typeof p5 !== 'undefined') new p5(lightspeedSketch);
+            
+            if (typeof p5 !== 'undefined') new p5(constellationSketch);
+            
             await loadAndRenderPosts();
             setupNav();
             setupScrollProgressBar();
             setupSecretGame();
-            handleMainRouteChange();
-            window.addEventListener('hashchange', handleMainRouteChange);
+            
+            handleMainRouteChange(); // Initial page load
+            window.addEventListener('hashchange', handleMainRouteChange); // Hash changes
         });
     </script>
 </body>
