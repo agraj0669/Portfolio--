@@ -291,29 +291,121 @@
         // --- NEW P5.JS CONSTELLATION SKETCH ---
         function constellationSketch(p) {
             let particles = [];
+            let nebulae = [];
             const particleCount = Math.floor(window.innerWidth / 15);
             const mouseProximity = 120;
             const particleProximity = 80;
 
+            class Nebula {
+                constructor() {
+                    this.xOff = p.random(1000);
+                    this.yOff = p.random(1000);
+                    this.zOff = p.random(1000);
+                    this.centerX = p.random(p.width * 0.2, p.width * 0.8);
+                    this.centerY = p.random(p.height * 0.2, p.height * 0.8);
+                    this.radius = p.random(p.width / 5, p.width / 3);
+                }
+                display() {
+                    p.noStroke();
+                    let time = p.frameCount * 0.0005;
+                    for (let i = 0; i < 80; i++) {
+                        let angle = p.noise(this.xOff + i * 0.1, this.yOff + time) * p.TWO_PI * 2.5;
+                        let r = p.noise(this.xOff + i * 0.2, this.zOff + time) * this.radius;
+                        let x = this.centerX + p.cos(angle) * r;
+                        let y = this.centerY + p.sin(angle) * r;
+                        let alpha = p.noise(this.yOff + i * 0.3, this.zOff + time) * 20;
+                        let size = p.noise(this.xOff + i * 0.4, this.yOff + time) * 60 + 20;
+                        p.fill(146, 114, 206, alpha);
+                        p.ellipse(x, y, size, size);
+                    }
+                }
+            }
+
             class Particle {
                 constructor() {
+                    this.reset();
+                    this.baseRadius = p.random(1.5, 3);
+                    this.radius = this.baseRadius;
+                    this.isPulsing = p.random(1) < 0.1;
+                    this.pulseSpeed = p.random(0.01, 0.03);
+                    this.pulseOffset = p.random(p.TWO_PI);
+                    this.isShootingStar = false;
+                    this.trail = [];
+                }
+
+                reset() {
                     this.x = p.random(p.width);
                     this.y = p.random(p.height);
                     this.vx = p.random(-0.5, 0.5);
                     this.vy = p.random(-0.5, 0.5);
-                    this.radius = p.random(1.5, 3);
+                    this.isShootingStar = false;
+                    this.trail = [];
                 }
+
+                shoot() {
+                    this.isShootingStar = true;
+                    this.trail = [];
+                    const startSide = p.floor(p.random(4));
+                    const endX = p.random(p.width);
+                    const endY = p.random(p.height);
+
+                    if (startSide === 0) { this.x = p.random(p.width); this.y = -10; } // Top
+                    else if (startSide === 1) { this.x = p.width + 10; this.y = p.random(p.height); } // Right
+                    else if (startSide === 2) { this.x = p.random(p.width); this.y = p.height + 10; } // Bottom
+                    else { this.x = -10; this.y = p.random(p.height); } // Left
+
+                    let angle = p.atan2(endY - this.y, endX - this.x);
+                    const speed = p.random(8, 15);
+                    this.vx = p.cos(angle) * speed;
+                    this.vy = p.sin(angle) * speed;
+                }
+
                 update() {
+                    if (this.isShootingStar) {
+                        this.trail.push({ x: this.x, y: this.y, alpha: 1 });
+                        for (let i = this.trail.length - 1; i >= 0; i--) {
+                            this.trail[i].alpha -= 0.05;
+                            if (this.trail[i].alpha <= 0) this.trail.splice(i, 1);
+                        }
+                        if (this.x < -50 || this.x > p.width + 50 || this.y < -50 || this.y > p.height + 50) {
+                            this.reset();
+                        }
+                    } else {
+                        if (this.x < 0 || this.x > p.width) this.vx *= -1;
+                        if (this.y < 0 || this.y > p.height) this.vy *= -1;
+                    }
                     this.x += this.vx;
                     this.y += this.vy;
-                    if (this.x < 0 || this.x > p.width) this.vx *= -1;
-                    if (this.y < 0 || this.y > p.height) this.vy *= -1;
                 }
+
                 display() {
-                    p.noStroke();
-                    p.fill('rgba(203, 184, 232, 0.8)');
-                    p.circle(this.x, this.y, this.radius * 2);
+                    if (this.isShootingStar) {
+                        p.noFill();
+                        for (let i = 0; i < this.trail.length - 1; i++) {
+                             p.strokeWeight(this.baseRadius * this.trail[i].alpha);
+                             p.stroke(203, 184, 232, this.trail[i].alpha * 200);
+                             p.line(this.trail[i].x, this.trail[i].y, this.trail[i+1].x, this.trail[i+1].y);
+                        }
+                        p.noStroke();
+                        p.fill(230, 210, 255);
+                        p.circle(this.x, this.y, this.baseRadius * 1.5);
+                    } else {
+                        if (this.isPulsing) {
+                            this.radius = this.baseRadius + p.sin(p.frameCount * this.pulseSpeed + this.pulseOffset) * (this.baseRadius * 0.4);
+                        }
+                        p.noStroke();
+                        p.fill('rgba(203, 184, 232, 0.8)');
+                        p.circle(this.x, this.y, this.radius * 2);
+                    }
                 }
+            }
+
+            function triggerShootingStar() {
+                let availableParticles = particles.filter(part => !part.isShootingStar);
+                if (availableParticles.length > 0) {
+                    p.random(availableParticles).shoot();
+                }
+                setTimeout(triggerShootingStar, p.random(3000, 8000));
             }
 
             p.setup = () => {
@@ -323,10 +415,18 @@
                 for (let i = 0; i < particleCount; i++) {
                     particles.push(new Particle());
                 }
+                for (let i = 0; i < 2; i++) {
+                    nebulae.push(new Nebula());
+                }
+                setTimeout(triggerShootingStar, p.random(2000, 5000));
             };
 
             p.draw = () => {
                 p.background(5, 3, 8);
+                p.blendMode(p.ADD);
+                nebulae.forEach(nebula => nebula.display());
+                p.blendMode(p.BLEND);
+
                 particles.forEach(particle => {
                     particle.update();
                     particle.display();
@@ -336,25 +436,33 @@
             
             function drawConnections() {
                 for (let i = 0; i < particles.length; i++) {
-                    // Connect to other particles
+                    if (particles[i].isShootingStar) continue;
                     for (let j = i + 1; j < particles.length; j++) {
+                        if (particles[j].isShootingStar) continue;
                         let d = p.dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
                         if (d < particleProximity) {
                             let opacity = p.map(d, 0, particleProximity, 0.5, 0);
                             p.stroke(`rgba(146, 114, 206, ${opacity})`);
+                            p.strokeWeight(1);
                             p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
                         }
                     }
-                    // Connect to mouse
                     let dMouse = p.dist(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
                     if (dMouse < mouseProximity) {
                         let opacity = p.map(dMouse, 0, mouseProximity, 0.7, 0);
                         p.stroke(`rgba(203, 184, 232, ${opacity})`);
+                        p.strokeWeight(1);
                         p.line(particles[i].x, particles[i].y, p.mouseX, p.mouseY);
                     }
                 }
             }
-            p.windowResized = () => p.resizeCanvas(p.windowWidth, p.windowHeight);
+            p.windowResized = () => {
+                p.resizeCanvas(p.windowWidth, p.windowHeight);
+                nebulae.forEach(n => {
+                    n.centerX = p.random(p.width * 0.2, p.width * 0.8);
+                    n.centerY = p.random(p.height * 0.2, p.height * 0.8);
+                });
+            };
         }
 
         function createPostPreviewCard(post) { /* Unchanged */ const tagsHtml = post.tags && post.tags.length > 0 ? `<div class="tags-container">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''; return `<div class="writing-preview-card"><h3>${post.title}</h3><div class="post-meta-info">${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>${tagsHtml}<p class="excerpt">${post.excerpt}</p><a href="#${post.id}" class="read-more-link mt-auto font-semibold">Read More →</a></div>`; }
