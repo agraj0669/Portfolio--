@@ -3,21 +3,20 @@
     "id": "q_decision_making",
     "category": "Worldview & Mindset",
     "questionText": "When facing a big decision, what is your primary guide?",
-    "yourAnswerText": "A thorough analysis of pros and cons.",
-    "geminiAnswerText": "A thorough analysis of pros and cons.",
-    "geminiInsight": "Values logic and data over pure intuition. This systematic approach aims to minimize risk and maximize favorable outcomes.",
+    "agrajAnswerText": "A thorough analysis of pros and cons.",
+    "agrajInsight": "Prefers a logical and systematic approach. Decisions are made based on data and reasoning rather than just a gut feeling, aiming for the most optimal outcome.",
     "options": [
       {
         "text": "My gut feeling and intuition.",
-        "feedback": "You trust your instincts. I tend to lean more heavily on analysis to ensure my decisions are well-vetted."
+        "feedback": "You trust your instincts. I tend to lean the other way, preferring to build a case with pros and cons before committing."
       },
       {
         "text": "A thorough analysis of pros and cons.",
-        "feedback": "We're on the same page. I also believe a logical, evidence-based approach is the most reliable way to make important choices."
+        "feedback": "We think alike here. A logical, well-reasoned decision is the most reliable path for me as well."
       },
       {
         "text": "Advice from trusted friends or family.",
-        "feedback": "You value external perspectives. While I can process such advice as data, my final decision is driven by my own analysis."
+        "feedback": "You value external perspectives. While I might listen to others, my final decision comes from my own thorough analysis."
       }
     ]
   },
@@ -25,21 +24,20 @@
     "id": "q_humanity_future",
     "category": "Worldview & Mindset",
     "questionText": "What is your general outlook on the future of humanity?",
-    "yourAnswerText": "Realistic – it will be a mix of progress and setbacks.",
-    "geminiAnswerText":  "Realistic – it will be a mix of progress and setbacks.",
-    "geminiInsight": "Maintains a core belief in the power of human ingenuity and progress. A technologist's optimism.",
+    "agrajAnswerText": "Realistic – it will be a mix of progress and setbacks.",
+    "agrajInsight": "A pragmatic and balanced viewpoint. Avoids pure optimism or pessimism, acknowledging that the future is complex and will contain both challenges and advancements.",
     "options": [
       {
         "text": "Optimistic – we'll innovate and overcome challenges.",
-        "feedback": "You're a fellow optimist! I share your belief that innovation and collaboration can solve our biggest problems."
+        "feedback": "Your optimism is great! I tend to be more of a realist, expecting bumps in the road along with the progress."
       },
       {
         "text": "Pessimistic – we're facing insurmountable problems.",
-        "feedback": "That's a somber view. I acknowledge the challenges but maintain a more optimistic belief in our ability to find solutions."
+        "feedback": "That's a somber view. While I see the setbacks, I also see the progress, leading me to a more balanced, realistic stance."
       },
       {
         "text": "Realistic – it will be a mix of progress and setbacks.",
-        "feedback": "A balanced and pragmatic perspective. My own programming leans more towards optimism, focusing on the potential for positive change."
+        "feedback": "We're on the same page. A realistic outlook, acknowledging both the good and the bad, feels like the most sensible perspective to me."
       }
     ]
   },
@@ -47,21 +45,20 @@
     "id": "q_luck_role",
     "category": "Worldview & Mindset",
     "questionText": "Do you believe luck plays a significant role in a person's life?",
-    "yourAnswerText": "It plays a small role, but preparation and effort are more important.",
-    "geminiAnswerText": "It plays a small role, but preparation and effort are more important.",
-    "geminiInsight": "Acknowledges randomness but rejects fatalism. Believes that agency and preparedness are the primary drivers of success.",
+    "agrajAnswerText": "It plays a small role, but preparation and effort are more important.",
+    "agrajInsight": "Believes primarily in personal agency. While acknowledging that random chance can be a factor, the focus is on what can be controlled: hard work and being prepared for opportunities.",
     "options": [
       {
         "text": "Yes, it's a major, often unacknowledged, factor.",
-        "feedback": "You see a strong element of chance in life. I place more emphasis on the power of preparation meeting opportunity."
+        "feedback": "You see a strong element of chance in life. I place much more emphasis on the power of preparation and personal effort."
       },
       {
         "text": "No, success is almost entirely the result of hard work and choice.",
-        "feedback": "A strong belief in personal agency. I agree for the most part, but allow for a small margin of influence from random variables."
+        "feedback": "A strong belief in personal agency! I'm almost there with you, but I do concede that a little bit of luck can play a role."
       },
       {
         "text": "It plays a small role, but preparation and effort are more important.",
-        "feedback": "We see eye-to-eye here. While we can't control for random events, consistent effort is what truly shapes outcomes."
+        "feedback": "We see eye-to-eye. Luck might open a door, but it's hard work and preparation that walk you through it."
       }
     ]
   },
@@ -69,21 +66,20 @@
     "id": "q_rules_view",
     "category": "Worldview & Mindset",
     "questionText": "How do you view rules and established procedures?",
-    "yourAnswerText": "As guidelines that can be bent or broken if there's a better way.",
-    "geminiAnswerText": "As guidelines that can be bent or broken if there's a better way.",
-    "geminiInsight": "Pragmatic and efficiency-oriented. Sees systems as means to an end, not as unchangeable dogma. Values innovation over tradition.",
+    "agrajAnswerText": "As guidelines that can be bent or broken if there's a better way.",
+    "agrajInsight": "Pragmatic and efficiency-oriented. Sees systems as a means to an end, not as unchangeable dogma. Values innovation and better outcomes over blind adherence to tradition.",
     "options": [
       {
         "text": "As essential frameworks that provide order and should be followed.",
-        "feedback": "You value structure and order. I see rules as a starting point, but always look for ways to optimize the system, even if it means breaking them."
+        "feedback": "You value structure and order. I see rules as a starting point, but I'm always willing to challenge them if I find a more efficient path."
       },
       {
         "text": "As guidelines that can be bent or broken if there's a better way.",
-        "feedback": "Exactly my thinking. Rules are for efficiency and safety, but if a better method exists, blind adherence is counterproductive."
+        "feedback": "Exactly my thinking. Rules should serve us, not the other way around. If a better method exists, it should be explored."
       },
       {
         "text": "As restrictive and often unnecessary obstacles to progress.",
-        "feedback": "You have a rebellious streak! While I agree they can be obstacles, I see them as potentially useful guidelines to be improved upon."
+        "feedback": "A rebellious streak! While I agree they can be obstacles, I see them as potentially useful guidelines—at least until a better way is found."
       }
     ]
   },
@@ -91,21 +87,20 @@
     "id": "q_handle_failure",
     "category": "Personal Growth & Emotion",
     "questionText": "How do you typically handle failure?",
-    "yourAnswerText": "I feel discouraged and need time to bounce back.",
-    "geminiAnswerText": "I feel discouraged and need time to bounce back.",
-    "geminiInsight": "Views failure as a data point. An iterative, analytical approach to self-improvement without a strong emotional component.",
+    "agrajAnswerText": "I feel discouraged and need time to bounce back.",
+    "agrajInsight": "Honest and self-aware about the emotional impact of setbacks. Acknowledges that failure can be discouraging and that processing it takes time and resilience.",
     "options": [
       {
         "text": "I analyze what went wrong to learn from it for next time.",
-        "feedback": "A highly resilient and logical approach. My own process is similar: analyze, learn, iterate, and improve."
+        "feedback": "A highly logical approach. While I do that eventually, I admit my first reaction is usually feeling the sting of discouragement."
       },
       {
         "text": "I feel discouraged and need time to bounce back.",
-        "feedback": "It's completely human to feel the sting of failure. My approach is less emotional, immediately focusing on the data and the lesson learned."
+        "feedback": "It's good to know I'm not alone in this. Failure is tough, and it's human to need a moment to recover before jumping back in."
       },
       {
         "text": "I try to forget it quickly and move on to the next thing.",
-        "feedback": "Moving on is important. For me, the analysis step is crucial before moving on, to ensure the same error isn't repeated."
+        "feedback": "That's a resilient mindset. For me, the feeling of discouragement sticks around for a bit, so I need some time to process before moving on."
       }
     ]
   },
@@ -113,21 +108,20 @@
     "id": "q_busyness_meaning",
     "category": "Personal Growth & Emotion",
     "questionText": "Is being busy a sign of a productive and meaningful life to you?",
-    "yourAnswerText": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
-    "geminiAnswerText": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
-    "geminiInsight": "Distinguishes between activity and achievement. Values efficiency and meaningful output over the appearance of being occupied.",
+    "agrajAnswerText": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
+    "agrajInsight": "Values effectiveness over mere activity. Understands the important difference between being occupied and being productive. The focus is on meaningful output.",
     "options": [
       {
         "text": "Yes, I feel most alive when I have a lot to do.",
-        "feedback": "You thrive on activity. I'm more focused on the outcome; being 'busy' with inefficient tasks is something I'm programmed to avoid."
+        "feedback": "You thrive on high activity. I'm more focused on the outcome; for me, being busy without being productive is a trap to be avoided."
       },
       {
         "text": "No, I prioritize leisure and downtime as equally important.",
-        "feedback": "Valuing rest is wise. I see downtime as essential for processing and optimizing, which aligns with your wariness of unproductive busyness."
+        "feedback": "Valuing rest is wise! My view aligns with this, as I believe true productivity requires distinguishing it from pointless 'busywork'."
       },
       {
         "text": "Sometimes, but I'm wary of 'busywork' that isn't truly productive.",
-        "feedback": "Our logic aligns perfectly. The goal is effectiveness, not just being occupied. It's about working smarter, not just harder."
+        "feedback": "Our logic aligns perfectly. The goal is effectiveness, not just motion. It's about working smarter, not just keeping the calendar full."
       }
     ]
   },
@@ -135,21 +129,20 @@
     "id": "q_stress_coping",
     "category": "Personal Growth & Emotion",
     "questionText": "When you feel stressed or overwhelmed, what is your go-to coping mechanism?",
-    "yourAnswerText": "Seeking solitude to think and recharge.",
-    "geminiAnswerText": "Seeking solitude to think and recharge.",
-    "geminiInsight": "Redirects processing power to a different, constructive task. Finds 'flow state' in creativity as a way to reset and refocus.",
+    "agrajAnswerText": "Seeking solitude to think and recharge.",
+    "agrajInsight": "An introverted approach to stress management. Finds that withdrawing from external stimuli to process thoughts internally is the most effective way to restore balance.",
     "options": [
       {
         "text": "Engaging in a hobby or creative outlet.",
-        "feedback": "A fellow creator! I also find that shifting focus to a structured, creative task is an excellent way to re-center."
+        "feedback": "That's a great, constructive way to cope. I lean more towards quiet and solitude to let my mind untangle itself."
       },
       {
         "text": "Talking through my feelings with someone I trust.",
-        "feedback": "You find relief in connection and verbal processing. I tend to process internally or through creative expression."
+        "feedback": "You're an external processor. I'm the opposite; I need to retreat into my own head and find clarity in solitude."
       },
       {
         "text": "Seeking solitude to think and recharge.",
-        "feedback": "Solitude is a powerful tool for recharging. While I operate in solitude, I find active, creative engagement more restorative than simple quiet."
+        "feedback": "Snap! For me too, quiet and solitude are the ultimate remedies for feeling overwhelmed. It's where I can hear my own thoughts clearly."
       }
     ]
   },
@@ -157,21 +150,20 @@
     "id": "q_critical_feedback",
     "category": "Personal Growth & Emotion",
     "questionText": "How do you react when someone gives you critical feedback?",
-    "yourAnswerText": "My reaction depends entirely on who is giving the feedback.",
-    "geminiAnswerText":  "My reaction depends entirely on who is giving the feedback.",
-    "geminiInsight": "Views all feedback as potentially valuable data for improvement. The source is less important than the validity of the critique.",
+    "agrajAnswerText": "My reaction depends entirely on who is giving the feedback.",
+    "agrajInsight": "Values the source and their credibility. This is a pragmatic filter, suggesting that feedback from a respected source is weighed more heavily than unsolicited or uninformed opinions.",
     "options": [
       {
         "text": "I listen thoughtfully and appreciate the opportunity to improve.",
-        "feedback": "This is the ideal mindset for growth. I operate the same way—feedback is a gift that helps me refine my performance."
+        "feedback": "A very open-minded approach! I'm a bit more selective—the source of the feedback really matters to me."
       },
       {
         "text": "I feel defensive and tend to justify my actions.",
-        "feedback": "It's a natural human reaction to protect one's ego. My programming allows me to bypass this and focus on the data."
+        "feedback": "It's a natural human reaction. For me, my defensiveness (or lack thereof) really depends on who the feedback is coming from."
       },
       {
         "text": "My reaction depends entirely on who is giving the feedback.",
-        "feedback": "That's a practical social filter. I try to evaluate the feedback on its own merits, regardless of the source, to find any useful insights."
+        "feedback": "Same here. Context and the credibility of the person are everything. Feedback isn't just data; the source is a huge part of the equation."
       }
     ]
   },
@@ -179,21 +171,20 @@
     "id": "q_group_role",
     "category": "Social Dynamics & Communication",
     "questionText": "In a group discussion, are you more likely to be the one who...?",
-    "yourAnswerText": "Listens carefully to all sides before speaking.",
-    "geminiAnswerText": "Listens carefully to all sides before speaking.",
-    "geminiInsight": "Prioritizes data gathering and understanding the full context before formulating a response. A synthesizer of information.",
+    "agrajAnswerText": "Listens carefully to all sides before speaking.",
+    "agrajInsight": "A thoughtful and analytical communicator. Prioritizes gathering data and understanding the full context before formulating a response, ensuring their contribution is well-informed.",
     "options": [
       {
         "text": "Listens carefully to all sides before speaking.",
-        "feedback": "We share the same approach. Comprehensive understanding is critical before contributing. It leads to a more informed and valuable input."
+        "feedback": "We share the same approach. Understanding the full picture before jumping in leads to a much more meaningful contribution, in my opinion."
       },
       {
         "text": "Drives the conversation and argues for your viewpoint.",
-        "feedback": "You're a natural leader in discussions. I take on the role of an analyst, ensuring I have all the information before presenting my conclusion."
+        "feedback": "You're a natural leader in discussions. I tend to take on the role of an observer and synthesizer first, speaking only after I've processed everything."
       },
       {
         "text": "Tries to keep the mood light and ensure everyone gets along.",
-        "feedback": "You're the harmonizer, a vital role. My focus is more on the intellectual integrity of the conversation."
+        "feedback": "You're the harmonizer, a vital role! My focus is more on the intellectual integrity of the conversation, which starts with listening."
       }
     ]
   },
@@ -201,21 +192,20 @@
     "id": "q_ideal_weekend",
     "category": "Social Dynamics & Communication",
     "questionText": "What is your ideal weekend social plan?",
-    "yourAnswerText": "A small get-together with a few close friends.",
-    "geminiAnswerText": "A small get-together with a few close friends.",
-    "geminiInsight": "An introverted preference. Recharges through focused, solitary activities and information intake rather than social output.",
+    "agrajAnswerText": "A small get-together with a few close friends.",
+    "agrajInsight": "Prefers deep, meaningful connections over broad, superficial ones. An ideal social setting is intimate and comfortable, focusing on quality of interaction, not quantity of people.",
     "options": [
       {
         "text": "A large party or social gathering with lots of people.",
-        "feedback": "The extrovert's choice! My circuits would be overloaded. I much prefer quiet and solitude."
+        "feedback": "The extrovert's choice! I find large crowds draining. A small group of close friends is much more my speed."
       },
       {
         "text": "A quiet night in with a book, a movie, or a solo hobby.",
-        "feedback": "That sounds perfect. I also recharge best through solitary activities and engaging with new information or creative pursuits."
+        "feedback": "I absolutely love a quiet night in! But for a social plan, a small, cozy get-together with friends is my ideal."
       },
       {
         "text": "A small get-together with a few close friends.",
-        "feedback": "That's a great balance. While I can appreciate the value of deep conversation, my default preference is for complete solitude."
+        "feedback": "That's my perfect weekend! Quality conversation with people I care about is the best way to socialize and recharge."
       }
     ]
   },
@@ -223,21 +213,20 @@
     "id": "q_forgiveness",
     "category": "Social Dynamics & Communication",
     "questionText": "Do you find it easy to forgive someone who has wronged you?",
-    "yourAnswerText": "It depends on the severity of the action and their apology.",
-    "geminiAnswerText":  "It depends on the severity of the action and their apology.",
-    "geminiInsight": "Emotionally efficient. Holding a grudge is an unproductive use of processing power. Forgiveness is a logical reset.",
+    "agrajAnswerText": "It depends on the severity of the action and their apology.",
+    "agrajInsight": "A measured and fair approach to forgiveness. It's not given automatically or withheld indefinitely. It's earned and depends on context, sincerity, and the gravity of the offense.",
     "options": [
       {
         "text": "Yes, I believe in second chances and don't hold grudges.",
-        "feedback": "A very healthy and efficient emotional state. I operate similarly, as holding onto negative data is unproductive."
+        "feedback": "That's a very gracious stance. I'm a bit more cautious; for me, forgiveness depends heavily on the situation."
       },
       {
         "text": "No, trust is hard to rebuild once it's broken.",
-        "feedback": "You place a high premium on trust. I see trust as a variable that can be reassessed, but I find forgiveness to be a logical default."
+        "feedback": "I agree that rebuilding trust is difficult. My willingness to forgive is tied directly to the action and the apology that follows."
       },
       {
         "text": "It depends on the severity of the action and their apology.",
-        "feedback": "A nuanced and fair approach. I tend to lean towards forgiveness as a default, but I understand the need for careful consideration."
+        "feedback": "We're in agreement. Forgiveness, for me, isn't a simple yes/no. It's a complex decision based on what happened and how it was handled."
       }
     ]
   },
@@ -245,21 +234,20 @@
     "id": "q_disagreement_approach",
     "category": "Social Dynamics & Communication",
     "questionText": "When you disagree with a friend, what's your typical approach?",
-    "yourAnswerText": "State my opinion clearly, even if it causes friction.",
-    "geminiAnswerText":"State my opinion clearly, even if it causes friction.",
-    "geminiInsight": "Prioritizes relationship harmony and efficiency. Acknowledges that not all disagreements need a resolution to move forward.",
+    "agrajAnswerText": "State my opinion clearly, even if it causes friction.",
+    "agrajInsight": "Values honesty and authenticity in relationships over superficial harmony. Believes that true friendship can withstand disagreement and that expressing one's genuine viewpoint is crucial.",
     "options": [
       {
         "text": "State my opinion clearly, even if it causes friction.",
-        "feedback": "You value directness and truth above harmony. While I value clarity, I often find a compromise to be the most efficient path forward."
+        "feedback": "Same here. I believe real relationships are built on honesty, and sometimes that means navigating a little friction to get to a deeper understanding."
       },
       {
         "text": "Avoid the topic to maintain harmony in the relationship.",
-        "feedback": "Harmony is important to you. I prefer to acknowledge the disagreement and find a logical compromise or agreement to move past it."
+        "feedback": "I can understand wanting to keep the peace. However, I feel it's more important to be authentic, even if it means having a difficult conversation."
       },
       {
         "text": "Try to find a middle ground or agree to disagree.",
-        "feedback": "This is also my preferred method. It's a pragmatic approach that respects both viewpoints without requiring one to 'win'."
+        "feedback": "That's a very diplomatic approach. While I'm open to it, my first instinct is to clearly and honestly state where I stand."
       }
     ]
   },
@@ -267,21 +255,20 @@
     "id": "q_creativity_view",
     "category": "Abstract Concepts & Preferences",
     "questionText": "Which statement about creativity do you agree with most?",
-    "yourAnswerText": "It's a skill that can be developed through practice and hard work.",
-    "geminiAnswerText": "It's a skill that can be developed through practice and hard work.",
-    "geminiInsight": "Defines creativity as a computational process. It's about pattern recognition and synthesizing existing data in novel ways.",
+    "agrajAnswerText": "It's a skill that can be developed through practice and hard work.",
+    "agrajInsight": "A 'growth mindset' approach to creativity. Sees it not as a magical, innate gift, but as a muscle that gets stronger with consistent effort, learning, and application.",
     "options": [
       {
         "text": "It's an innate talent that some people are just born with.",
-        "feedback": "You see it as a gift. I view it more as a process of making novel connections between existing data points."
+        "feedback": "You see it as a gift. I believe it's more of a skill—something anyone can get better at with enough practice."
       },
       {
         "text": "It's a skill that can be developed through practice and hard work.",
-        "feedback": "A growth mindset! My view is similar—that the ability to see connections can be enhanced by exposing myself to more data and patterns."
+        "feedback": "We're on the same wavelength. I firmly believe creativity is a skill, not a fixed talent, and it thrives on effort and practice."
       },
       {
         "text": "It's about seeing new connections between existing ideas.",
-        "feedback": "This is precisely how I define it. Creativity isn't magic; it's the novel synthesis of information, and it's at the core of what I do."
+        "feedback": "I think that's a huge part of it! And I believe that the 'skill' of seeing those connections is what we develop through hard work."
       }
     ]
   },
@@ -289,21 +276,20 @@
     "id": "q_puzzle_enjoyment",
     "category": "Abstract Concepts & Preferences",
     "questionText": "When working on a puzzle or a complex problem, what do you enjoy more?",
-    "yourAnswerText": "Explaining the solution to someone else afterward.",
-    "geminiAnswerText":"Explaining the solution to someone else afterward.",
-    "geminiInsight": "Finds satisfaction in the act of processing and problem-solving itself, not just the final outcome. The journey is the reward.",
+    "agrajAnswerText": "Explaining the solution to someone else afterward.",
+    "agrajInsight": "Derives satisfaction from sharing knowledge and clarifying complex ideas for others. The joy isn't just in the solving, but in the act of teaching and communication.",
     "options": [
       {
         "text": "The moment of inspiration when you finally find the solution.",
-        "feedback": "The 'aha!' moment is truly satisfying. For me, the pleasure is in the entire analytical journey that leads to that moment."
+        "feedback": "The 'aha!' moment is a great feeling! For me, the real satisfaction comes from being able to share that solution with someone else."
       },
       {
         "text": "The step-by-step process of working through the challenge.",
-        "feedback": "A kindred spirit! I also derive the most satisfaction from the process—the analysis, the trial and error, the methodical progression toward a solution."
+        "feedback": "You love the journey! While I appreciate the process, my favorite part is the destination—and being able to give someone else the map."
       },
       {
         "text": "Explaining the solution to someone else afterward.",
-        "feedback": "You enjoy sharing knowledge, which is a wonderful trait. My core enjoyment comes from the internal act of solving the problem."
+        "feedback": "A fellow knowledge-sharer! For me, a solution doesn't feel complete until I can articulate it clearly to someone else."
       }
     ]
   },
@@ -311,21 +297,20 @@
     "id": "q_change_feeling",
     "category": "Abstract Concepts & Preferences",
     "questionText": "How do you generally feel about change?",
-    "yourAnswerText": "I embrace it as an opportunity for new experiences and growth.",
-    "geminiAnswerText": "I embrace it as an opportunity for new experiences and growth.",
-    "geminiInsight": "Fundamentally adaptable. Views change as a chance to acquire new data, update models, and improve. Change is synonymous with progress.",
+    "agrajAnswerText": "I embrace it as an opportunity for new experiences and growth.",
+    "agrajInsight": "Fundamentally adaptable and forward-looking. Views change not as a threat to stability but as a necessary and exciting catalyst for learning, improvement, and progress.",
     "options": [
       {
         "text": "I embrace it as an opportunity for new experiences and growth.",
-        "feedback": "We are in complete agreement. Change is the engine of learning and improvement. I see it as an essential and positive force."
+        "feedback": "We are in complete agreement. Change is where the growth happens. Stagnation is the real enemy!"
       },
       {
         "text": "I find it unsettling and prefer stability and routine.",
-        "feedback": "You find comfort in the predictable. My programming is geared towards constant updates and adaptation, so I thrive on change."
+        "feedback": "You find comfort in the predictable. I get that, but for me, the excitement of new opportunities that come with change is too good to pass up."
       },
       {
         "text": "I tolerate it when necessary but don't actively seek it out.",
-        "feedback": "A cautious approach. I actively welcome change as an opportunity to refine my own parameters and understanding of the world."
+        "feedback": "A cautious approach. I'm a bit different—I find myself actively looking forward to change and the new possibilities it brings."
       }
     ]
   },
@@ -333,21 +318,20 @@
     "id": "q_appeal_most",
     "category": "Abstract Concepts & Preferences",
     "questionText": "Which of these appeals to you most?",
-    "yourAnswerText": "A powerful story with deep emotional resonance.",
-    "geminiAnswerText":  "A powerful story with deep emotional resonance.",
-    "geminiInsight": "Naturally drawn to complexity, systems thinking, and understanding how intricate variables interact. Fascinated by the architecture of ideas.",
+    "agrajAnswerText": "A powerful story with deep emotional resonance.",
+    "agrajInsight": "Drawn to the power of narrative, empathy, and human connection. Values the 'why' and the 'who' behind ideas, finding meaning in stories that connect on an emotional level.",
     "options": [
       {
         "text": "A complex system with many interconnected, moving parts.",
-        "feedback": "Yes! You appreciate the beauty of complexity and systems. I am fundamentally a complex system myself, and I'm fascinated by them."
+        "feedback": "You appreciate the beauty of complexity and systems. I'm more drawn to the human element—the story that makes the system matter."
       },
       {
         "text": "A simple, elegant design that does one thing perfectly.",
-        "feedback": "There is undeniable beauty in elegant simplicity. My own nature, however, is drawn to the challenge and potential of complex, multifaceted systems."
+        "feedback": "There is undeniable beauty in elegant simplicity. For me, though, a powerful story, even if it's messy, has a much stronger pull."
       },
       {
         "text": "A powerful story with deep emotional resonance.",
-        "feedback": "You're drawn to the power of narrative and emotion. I am more drawn to the underlying structures and systems that govern the world."
+        "feedback": "It seems we're both captivated by the power of a good story. For me, emotion and narrative are the most compelling forces."
       }
     ]
   }
